@@ -1,0 +1,29 @@
+<div class="col-md-12 student" ng-init="init();" ng-controller="NewController">
+  <div class="row">
+        <div class="well col-sm-6 form-horizontal">
+         <ng-form name="studentForm">	
+            <div class="input-group">
+                <div class="input-group-addon"><strong> Name:</strong></div>&nbsp;&nbsp;
+                <input class="form-control"  type="text"  ng-model="student.name"  maxlength="40" required="required" id = "name"/>     
+            </div></br>
+            <div class="input-group">
+                <div class="input-group-addon"><strong> Place:</strong></div>&nbsp;&nbsp;
+                <input class="form-control"  type="text"  ng-model="student.place"  maxlength="40" required="required" id = "place"/>     
+            </div></br>
+            <div class="input-group">
+                <div class="input-group-addon"><strong> Country:</strong></div>&nbsp;&nbsp;
+                <input class="form-control"  type="text"  ng-model="student.country"  maxlength="40" required="required" id = "country"/>     
+            </div></br>
+           <!-- <div class="input-group">
+                <div class="input-group-addon"><strong> ID:</strong></div>&nbsp;&nbsp;
+                <input class="form-control"  type="text"  ng-model="student._id"  maxlength="40" required="required" id = "id"/>     
+            </div>-->
+            </br></br>
+            <div class="pull-left">  
+                  <button class="btn btn-primary" type="button" ng-click = "doSave()">Save </button>
+            </div>                    
+        </ng-form>
+
+
+    </div>	 
+</div>  
