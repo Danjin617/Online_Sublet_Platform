@@ -11,7 +11,7 @@ app.controller('LoginController',
       $http.post('/users/login',$scope.user).
         then(function(response){
           alert("done");
-          alert(response);
+          alert(response.username);
         })
     }
 

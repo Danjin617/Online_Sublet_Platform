@@ -1,4 +1,4 @@
-<!--
+
 <div class="col-md-12 home" ng-init="init();" ng-controller="MainController">
  <div class="row">
     <div class="col-md-12 well">
@@ -18,23 +18,4 @@
     </table>
      </div>
   </div>   
-</div>      
--->
-  <div class="col-md-12 home" ng-init="init();" ng-controller="MainController">
- <div class="row">
-    <div class="col-md-12 well">
-      <label>{{tagline}}</label>
-      <table class="table table-striped table-hover">
-      <tr>
-        <th ng-click="orderByMe('username')">Name</th>
-        <th ng-click="orderByMe('password')">Password </th>
-      <tbody>
-      <tr valign="middle" ng-repeat="obj in users | orderBy:myOrderBy">
-        <td> {{obj.username}} </a> </td>
-        <td> {{obj.password}}</td>
-      </tr>
-    </tbody>
-    </table>
-     </div>
-  </div>   
-</div> 
+</div>
