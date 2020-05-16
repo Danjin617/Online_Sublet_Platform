@@ -78,13 +78,33 @@ app.post('/users', async (req, res) => {
   }
 });
 
+/*
 app.post('/users/login', async (req, res) => {
-  const user = users.find(user => user.name === req.body.name)
-  if (user == null) {
+  await User.find({username: req.body.username}, async function (err, users) {
+    if (users == null) {
+      return res.status(400).send('Cannot find user')
+    }
+    try {
+      if(await bcrypt.compare(req.body.password, user.password)) {
+        res.send('Success')
+      } else {
+        res.send('Not Allowed')
+      }
+    } catch {
+      res.status(500).send()
+    }
+  });
+});
+*/
+app.post('/users/login', async (req, res) => {
+  //res.send('TEST1');
+ const user = await User.find({username: req.body.username})
+ 
+  if (user.length == 0) {
     return res.status(400).send('Cannot find user')
   }
   try {
-    if(await bcrypt.compare(req.body.password, user.password)) {
+    if(await bcrypt.compare(req.body.password, user[0].password)) {
       res.send('Success')
     } else {
       res.send('Not Allowed')
