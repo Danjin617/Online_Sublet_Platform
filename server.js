@@ -101,16 +101,17 @@ app.post('/users/login', async (req, res) => {
  const user = await User.find({username: req.body.username})
  
   if (user.length == 0) {
-    return res.status(400).send('Cannot find user')
+    return res.json({message: 'Cannot find user'});
   }
   try {
     if(await bcrypt.compare(req.body.password, user[0].password)) {
-      res.send('Success')
+      res.json(user[0])
     } else {
-      res.send('Not Allowed')
+      alert("try again");
+      res.json({message: 'Incorrect Password'});
     }
   } catch {
-    res.status(500).send()
+    res.json({message: 'Incorrect Password'});
   }
 })
 

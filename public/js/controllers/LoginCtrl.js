@@ -1,5 +1,5 @@
 app.controller('LoginController',
-    ['$scope','$http',function($scope, $http) {	
+    ['$scope','$http', '$rootScope',function($scope, $http, $rootScope) {	
    $scope.tagline = 'Welcome to Student section!';
 
 
@@ -10,8 +10,13 @@ app.controller('LoginController',
     $scope.login = function() {
       $http.post('/users/login',$scope.user).
         then(function(response){
-          alert("done");
-          alert(response.username);
+          if(response.data.message != null) {
+            alert(response.data.message);
+          } 
+          $rootScope.user = response.data;
+          //alert(JSON.stringify(response));
+          //alert(response.data.username);
+          alert($scope.user.username);
         })
     }
 
@@ -27,12 +32,5 @@ app.controller('LoginController',
           window.location.href = "/";
       });
    };
-
-   $scope.clear = function() {
-       $scope.user = new User();
-   }
-
-
-
 
 }]);
