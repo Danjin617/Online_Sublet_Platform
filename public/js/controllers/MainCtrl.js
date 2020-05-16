@@ -1,5 +1,6 @@
+
 app.controller('MainController',
- ['$scope','$http','Student',function($scope, $http, Student) {
+ ['$scope','$http',function($scope, $http) {
 
    $scope.tagline = 'Welcome to tutorials point angular app!';
 
@@ -9,9 +10,10 @@ app.controller('MainController',
 
    $scope.init = function(){
        //alert('init'); 
-       $http.get('/api/students').
+       $http.get('/users').
        then(function(response) {
-         $scope.students = response.data;
+        //alert(response.data);
+         $scope.users = response.data;
        });
      };
      $scope.orderByMe = function(x) {
