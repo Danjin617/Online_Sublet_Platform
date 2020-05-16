@@ -1,0 +1,26 @@
+                                                                                                                                                                                                                                                                                                   
+
+<div class="col-md-12 student" ng-init="init();" ng-controller="RegisterController">
+  <div class="row">
+        <div class="well col-sm-6 form-horizontal">
+         <ng-form name="studentForm">	
+            <div class="input-group">
+                <div class="input-group-addon"><strong> Username:</strong></div>&nbsp;&nbsp;
+                <input class="form-control" id="username" type="text"  ng-model="user.username"  maxlength="40" required="required"/>     
+            </div></br>
+            <div class="input-group">
+                <div class="input-group-addon"><strong> Password:</strong></div>&nbsp;&nbsp;
+                <input type="password" class="form-control" id="password"  type="text"  ng-model="user.password"  maxlength="40" required="required"/>
+            </div>
+            </br></br>
+            <div class="input-group">
+                <div class="input-group-addon"><strong> Confirm:</strong></div>&nbsp;&nbsp;
+                <input type="password" class="form-control" id="confirmPassword"  type="text"  ng-model="confirmPassword"  maxlength="40" required="required"/>
+            </div>
+            </br></br>
+            <div class="pull-left">
+             	  <button class="btn btn-primary" type="button" ng-click="register()" ng-disabled="!studentForm.$valid"> New </button>  
+            </div>                    
+        </ng-form>
+    </div>	 
+</div>  
