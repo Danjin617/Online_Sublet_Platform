@@ -186,16 +186,30 @@ app.get('/api/listings', function(req, res) {
    */
 app.post('/api/listings/send', function (req, res) {
    var listing = new Listing(); // create a new instance of the listing model
-   listing.address.streetname = req.body.streetname; // set the listing name (comes from the request)
-   listing.address.postal_code = req.body.postal_code;
-   listing.address.city = req.body.city;
-   listing.address.province = req.body.province;
-   listing.address.country = req.body.country;
+   listing.address.streetname = req.body.address.streetname; // set the listing name (comes from the request)
+   listing.address.postal_code = req.body.address.postal_code;
+   listing.address.city = req.body.address.city;
+   listing.address.province = req.body.address.province;
+   listing.address.country = req.body.address.country;
 
-   listing.timeframe.start_date = req.body.start_date;
-   listing.timeframe.end_date = req.body.end_date;
+   listing.timeframe.start_date = req.body.timeframe.start_date;
+   listing.timeframe.end_date = req.body.timeframe.end_date;
 
-   listing.features
+   listing.features.utilities = req.body.features.utilities;
+   listing.features.furnished = req.body.features.furnished;
+   listing.features.en_suite = req.body.features.en_suite;
+   listing.features.public_transport = req.body.features.public_transport;
+   listing.features.pets = req.body.features.pets;
+
+   listing.type = req.body.type;
+   listing.demographic = req.body.demographic;
+   listing.bed = req.body.bed;
+   listing.bath = req.body.bath;
+   listing.area = req.body.area;
+   listing.price = req.body.price;
+   listing.lister = req.body.username;
+   listing.images = req.body.images;
+
    listing.save(function(err) {
     if (err)
      res.send(err);
