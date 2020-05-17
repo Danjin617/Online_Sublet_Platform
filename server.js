@@ -156,11 +156,46 @@ app.get('/api/listings', function(req, res) {
     });
  });
 
+/*
+  address: {
+    streetname : {type : String, default: ''},
+    postal_code : {type : String, default: ''},
+    city : {type : String, default: ''},
+    province : {type : String, default: ''},
+    country : {type : String, default: ''}
+  },
+  timeframe: {
+    start_date : {type : Date, default: ''},
+    end_date : {type : Date, default: ''},
+  },
+  features: {
+    utilities: {type : Boolean, deafult: ''},
+    furnished: {type : Boolean, deafult: ''},
+    en_suite: {type : Boolean, deafult: ''},
+    public_transport: {type : Boolean, deafult: ''},
+    pets: {type : Boolean, deafult: ''},
+  },
+   type : {type : String, default: ''}, // aprtments, houses, townhouses, dormitory, lofts,
+   demographic: {type : String, deafult: ''}, //male, female, coed
+   bed: {type : Number, default: ''},
+   bath: {type : Number, default: ''},
+   area: {type : Number, default: ''},
+   price: {type : Number, default: ''},
+   lister : {type : String, default: ''},
+   images: {type: [String], default: ['https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?fit=scale']},
+   */
 app.post('/api/listings/send', function (req, res) {
    var listing = new Listing(); // create a new instance of the listing model
-   listing.name = req.body.name; // set the listing name (comes from the request)
-   listing.place = req.body.place; // set the listing name (comes from the request)
-   listing.country = req.body.country; // set the listing name (comes from the request)
+   listing.address.streetname = req.body.streetname; // set the listing name (comes from the request)
+   listing.address.postal_code = req.body.postal_code;
+   listing.address.city = req.body.city;
+   listing.address.province = req.body.province;
+   listing.address.country = req.body.country;
+
+   listing.timeframe.start_date = req.body.start_date;
+   listing.timeframe.end_date = req.body.end_date;
+
+   listing.features
    listing.save(function(err) {
     if (err)
      res.send(err);
