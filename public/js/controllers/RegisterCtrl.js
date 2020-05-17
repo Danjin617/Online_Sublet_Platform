@@ -11,7 +11,8 @@ app.controller('RegisterController',
     $scope.register = function() {
       alert('here');
 
-      if ($scope.user.password != $scope.user.confirmPassword) {
+      if ($scope.user.password != $scope.confirmPassword) {
+        alert("password"+$scope.confirmPassword+$scope.user.password);
         alert("Passwords do not match, please try again");
         return;
       }
