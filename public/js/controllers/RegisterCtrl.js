@@ -1,7 +1,7 @@
-  app.controller('RegisterController',
-    ['$scope','$http',function($scope, $http) {	
-   $scope.tagline = 'Welcome to Student section!';
 
+app.controller('RegisterController',
+    ['$scope','$http',function($scope, $http) { 
+   $scope.tagline = 'Welcome to Listing section!';
 
     $scope.init = function(){
       //alert('register');

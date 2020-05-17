@@ -1,6 +1,6 @@
 app.controller('LoginController',
-    ['$scope','$http', '$rootScope',function($scope, $http, $rootScope) {	
-   $scope.tagline = 'Welcome to Student section!';
+    ['$scope','$http','$rootScope',function($scope, $http, $rootScope) {	
+   $scope.tagline = 'Welcome to Listing section!';
 
 
     $scope.init = function(){
@@ -25,11 +25,11 @@ app.controller('LoginController',
 
     // CREATE 
    // when submitting the add form, send the text to the node API
-   $scope.createStudent = function() {
+   $scope.createListing = function() {
       // validate the formData to make sure that something is there
       // if form is empty, nothing will happen
     
-      $http.post('/api/students/add',$scope.student).
+      $http.post('/api/listings/add',$scope.listing).
         then(function(response) {
           
           window.location.href = "/";

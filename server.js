@@ -43,20 +43,20 @@ app.get('/users', (req, res) => {
       // nothing after res.send(err) will execute
       if (err)
        res.send(err);
-      res.json(users); // return all students in JSON format
+      res.json(users); // return all listings in JSON format
     });
 });
 
 
-/* app.post('/api/students/send', function (req, res) {
-   var student = new Student(); // create a new instance of the student model
-   student.name = req.body.name; // set the student name (comes from the request)
-   student.place = req.body.place; // set the student name (comes from the request)
-   student.country = req.body.country; // set the student name (comes from the request)
-   student.save(function(err) {
+/* app.post('/api/listings/send', function (req, res) {
+   var listing = new listing(); // create a new instance of the listing model
+   listing.name = req.body.name; // set the listing name (comes from the request)
+   listing.place = req.body.place; // set the listing name (comes from the request)
+   listing.country = req.body.country; // set the listing name (comes from the request)
+   listing.save(function(err) {
       if (err)
          res.send(err);
-         res.json({ message: 'student created!' });
+         res.json({ message: 'listing created!' });
    });
 });
 
@@ -83,7 +83,7 @@ const user = await User.find({username: req.body.username})
         new_user.save(function(err) {
           if (err)
             res.send(err);
-          res.json({message: 'user created!'});
+          res.json(new_user);
         });
       }
       catch {
@@ -125,7 +125,7 @@ app.post('/users/login', async (req, res) => {
     if(await bcrypt.compare(req.body.password, user[0].password)) {
       res.json(user[0])
     } else {
-      alert("try again");
+      //alert("try again");
       res.json({message: 'Incorrect Password'});
     }
   } catch {
@@ -135,43 +135,43 @@ app.post('/users/login', async (req, res) => {
 
 
 // sample api route
-// grab the student model we just created
-var Student = require('./models/students');
+// grab the listing model we just created
+var Listing = require('./models/listings');
 
 
-//var student =  { name: 'Bob' , place: 'Ross', country: 'Canada'};
-//Student.create(student,function(err, students) {
+//var listing =  { name: 'Bob' , place: 'Ross', country: 'Canada'};
+//listing.create(listing,function(err, listings) {
 
 //});
 
 
-app.get('/api/students', function(req, res) {
-   // use mongoose to get all students in the database
-   Student.find(function(err, students) {
+app.get('/api/listings', function(req, res) {
+   // use mongoose to get all listings in the database
+   Listing.find(function(err, listings) {
       // if there is an error retrieving, send the error.
       // nothing after res.send(err) will execute
       if (err)
        res.send(err);
-      res.json(students); // return all students in JSON format
+      res.json(listings); // return all listings in JSON format
     });
  });
 
-app.post('/api/students/send', function (req, res) {
-   var student = new Student(); // create a new instance of the student model
-   student.name = req.body.name; // set the student name (comes from the request)
-   student.place = req.body.place; // set the student name (comes from the request)
-   student.country = req.body.country; // set the student name (comes from the request)
-   student.save(function(err) {
+app.post('/api/listings/send', function (req, res) {
+   var listing = new Listing(); // create a new instance of the listing model
+   listing.name = req.body.name; // set the listing name (comes from the request)
+   listing.place = req.body.place; // set the listing name (comes from the request)
+   listing.country = req.body.country; // set the listing name (comes from the request)
+   listing.save(function(err) {
     if (err)
      res.send(err);
-   res.json({ message: 'student created!' });
+   res.json({ message: 'listing created!' });
  });
  });
 
 
-app.delete('/api/students/:student_id', function (req, res) {
- Student.remove({
-  _id: req.params.student_id
+app.delete('/api/listings/:listing_id', function (req, res) {
+ Listing.remove({
+  _id: req.params.listing_id
 }, function(err, bear) {
   if (err)
    res.send(err);
@@ -179,15 +179,15 @@ app.delete('/api/students/:student_id', function (req, res) {
 });
 });
 
-app.get('/api/students/:student_id', function (req, res) {
- Student.findById(req.params.student_id, function (err, post) {
+app.get('/api/listings/:listing_id', function (req, res) {
+ Listing.findById(req.params.listing_id, function (err, post) {
   if (err) res.send(err);
   res.json(post);
 });
 });
 
-app.put('/api/students/:student_id', function (req, res) {
- Student.findByIdAndUpdate(req.params.student_id, req.body, function (err, post) {
+app.put('/api/listings/:listing_id', function (req, res) {
+ Listing.findByIdAndUpdate(req.params.listing_id, req.body, function (err, post) {
   if (err) res.send(err);
   res.json({message: "successfully saved"});
 });

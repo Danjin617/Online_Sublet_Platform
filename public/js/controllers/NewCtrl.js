@@ -1,15 +1,15 @@
 app.controller('NewController',
-  ['$scope','$http','Student',function($scope, $http, Student) {	
-   $scope.tagline = 'Welcome to Student section!';
+  ['$scope','$http',function($scope, $http) {	
+   $scope.tagline = 'Welcome to Listing section!';
 
    $scope.init = function(){
-    $scope.student = new Student();
+    $scope.listing = new Listing();
    };
 
   $scope.doSave = function(){
-    $http.post('/api/students/send',$scope.student).
+    $http.post('/api/listings/send',$scope.listing).
     then(function(response) {
-      alert(response.message);
+      //alert(response.message);
     });
 
   };
