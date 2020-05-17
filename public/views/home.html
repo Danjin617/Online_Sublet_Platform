@@ -9,8 +9,8 @@
         <th ng-click="orderByMe('place')">Place </th>
         <th ng-click="orderByMe('country')">Country </th>
       <tbody>
-      <tr valign="middle" ng-repeat="obj in students | orderBy:myOrderBy">
-        <td> <a href="#/student/{{obj._id}}"> {{obj.name}} </a> </td>
+      <tr valign="middle" ng-repeat="obj in listings | orderBy:myOrderBy">
+        <td> <a href="#/listing/{{obj._id}}"> {{obj.name}} </a> </td>
         <td> {{obj.place}}</td>
         <td> {{obj.country}}</td>
       </tr>

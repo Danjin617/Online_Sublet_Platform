@@ -1,5 +1,5 @@
 app.controller('MainController',
- ['$scope','$http','$rootScope','Student',function($scope, $http, $rootScope, Student) {
+ ['$scope','$http','$rootScope',function($scope, $http, $rootScope) {
 
    $scope.tagline = 'Welcome to tutorials point angular app!';
 
@@ -8,11 +8,11 @@ app.controller('MainController',
 
 
    $scope.init = function(){
-      alert($rootScope.user.username);
+      //alert($rootScope.user.username);
        //alert('init'); 
-       $http.get('/api/students').
+       $http.get('/api/listings').
        then(function(response) {
-         $scope.students = response.data;
+         $scope.listings = response.data;
        });
      };
      $scope.orderByMe = function(x) {
