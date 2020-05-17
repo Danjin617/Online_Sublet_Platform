@@ -4,18 +4,29 @@ app.controller('RegisterController',
 
 
     $scope.init = function(){
-      alert('register');
-       $scope.user = new User();
+      //alert('register');
+      $scope.user = new User();
     };
 
     $scope.register = function() {
       alert('here');
+
+      if ($scope.user.password != $scope.user.confirmPassword) {
+        alert("Passwords do not match, please try again");
+        return;
+      }
+
       $http.post('/users',$scope.user).
         then(function(response){
-          alert("done");
-          alert(response);
+          if(response.data.message != null) {
+            alert(response.data.message);
+          } 
+          $rootScope.user = response.data;
+          window.location.href = "/";
+          alert("Registered User");
         })
     };
+
     // CREATE 
    // when submitting the add form, send the text to the node API
    /*

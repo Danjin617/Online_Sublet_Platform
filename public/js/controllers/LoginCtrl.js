@@ -16,7 +16,10 @@ app.controller('LoginController',
           $rootScope.user = response.data;
           //alert(JSON.stringify(response));
           //alert(response.data.username);
-          alert($scope.user.username);
+
+          window.location.href = "/";
+          alert("Login complete!");
+          //alert($scope.user.username);
         })
     }
 
