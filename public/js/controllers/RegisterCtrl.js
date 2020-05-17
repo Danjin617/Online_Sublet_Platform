@@ -21,10 +21,15 @@ app.controller('RegisterController',
         then(function(response){
           if(response.data.message != null) {
             alert(response.data.message);
+            return;
           } 
-          $rootScope.user = response.data;
+          $scope.user = response.data;
+          sessionStorage.setItem("session_username", $scope.user.username);
+
+          alert("session"+sessionStorage.getItem("session_username"));
+          //$rootScope.user = response.data;
           window.location.href = "/";
-          alert("Registered User");
+
         })
     };
 

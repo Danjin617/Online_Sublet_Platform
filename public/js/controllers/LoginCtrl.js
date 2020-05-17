@@ -12,12 +12,13 @@ app.controller('LoginController',
         then(function(response){
           if(response.data.message != null) {
             alert(response.data.message);
+            return;
           } 
-          $rootScope.user = response.data;
           //alert(JSON.stringify(response));
           //alert(response.data.username);
 
           window.location.href = "/";
+          sessionStorage.setItem("session_username", $scope.user.username);
           alert("Login complete!");
           //alert($scope.user.username);
         })

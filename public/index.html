@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <title>Tutorialspoint Node and Angular</title>
+   <title>Sublets</title>
    
    <!-- CSS -->
    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
@@ -20,10 +20,11 @@
    <script src="js/controllers/NewCtrl.js"></script>
    <script src="js/controllers/LoginCtrl.js"></script>
    <script src="js/controllers/RegisterCtrl.js"></script>
+   <script src="js/navbar.js"></script>
    
 
 </head>
-<body ng-app="sampleApp" ng-controller="MainController">
+<body ng-app="sampleApp" ng-controller="MainController" onload="init()">
    <div class="container">
       <!-- HEADER -->
       <nav class="navbar navbar-inverse">
@@ -34,12 +35,36 @@
             <li><a href="#/new">New</a></li>
          </ul>
          <ul class="nav navbar-nav">
-            <li><a href="#/login">Login</a></li>
+            <li>
+               <a href="#/login" id="login" style="visibility: visible;">Login</a>
+               <a href="#/logout" onclick="logoutPressed()" id="logout" style="visibility: visible;" >Logout</a>
+            </li>
          </ul>
       </nav>
-      
       <!-- ANGULAR DYNAMIC CONTENT -->
       <div ng-view></div>
    </div>
+
+   <script>
+      
+   function logoutPressed() {
+
+         //alert("h"+sessionStorage.getItem("session_username"));
+         sessionStorage.clear();
+         //alert(sessionStorage.getItem("session_username"));   
+         init();
+   }
+   function init() {
+      if (sessionStorage.getItem("session_username") == null) {
+         //alert("not logged in");
+         document.getElementById("login").style.visibility = "visible";
+         document.getElementById("logout").style.visibility = "hidden";
+      } else {
+         document.getElementById("login").style.visibility = "hidden";
+         document.getElementById("logout").style.visibility = "visible";
+      }
+   }
+
+   </script>
 </body>
 </html>
