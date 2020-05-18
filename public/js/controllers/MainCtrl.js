@@ -20,7 +20,8 @@ app.controller('MainController',
     }
 
     $scope.toDate = function(x) {
-      return date.getMonth() + " " + date.getDate() + ", " + date.getFullYear();
+      var options = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
+      return date.toLocaleDateString("en-US", options);
     };
 
     
