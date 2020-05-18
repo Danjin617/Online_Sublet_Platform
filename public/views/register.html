@@ -28,6 +28,7 @@
 
 <style>
 /* Style all input fields */
+/*
 input {
   width: 100%;
   padding: 12px;
@@ -36,6 +37,13 @@ input {
   box-sizing: border-box;
   margin-top: 6px;
   margin-bottom: 16px;
+}*/
+
+input:invalid {
+    border: 1px solid red;
+}
+input:valid {
+    border: 1px solid green;
 }
 
 /* Style the submit button */
@@ -59,43 +67,114 @@ input[type=submit] {
   padding: 20px;
   margin-top: 10px;
 }
-
+/*
 #message p {
   padding: 10px 35px;
   font-size: 18px;
 }
-
+*/
 </style>
-</head>
-<body>
 
-<h3>Password Validation</h3>
-<p>Try to submit the form.</p>
 
-<div class="container">
-  <form action="/">
+<div class="container col-md-6 user" ng-init="init();" ng-controller="RegisterController"> 
+
+<h3>Registration</h3>
+<!---
+  <form name="userForm" onsubmit="fun()">
     <label for="email">Email</label>
-    <input type="email" id="email" name="email" title="Must be a valid email" ng-model="user.email"  maxlength="40" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+    <input type="email" id="email" name="email" class="form-control" title="Must be a valid email" ng-model="user.email"  maxlength="40" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
     
-    <label for="usrname">Username</label>
-    <input type="text" id="usrname" name="usrname"  ng-model="user.username"  maxlength="40" required>
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" class="form-control" ng-model="user.username"  maxlength="40" required>
 
     <label for="psw">Password</label>
-    <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  ng-model="user.password"  maxlength="40" required>
+    <input type="password" id="psw" name="psw" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  ng-model="user.password"  maxlength="40" required>
     
     <label for="confirmpsw">Confirm Password</label>
-    <input type="password" id="confirmpsw" name="confirmpsw" title="Must match password" ng-model="confirmPassword"  maxlength="40" required>
+    <input type="password" id="confirmpsw" name="confirmpsw" class="form-control" title="Must match password" ng-model="confirmPassword"  maxlength="40" required>
     
+    <br>
+    <div class="pull-left">
 
+      <input class="btn btn-primary" type="submit" value="Submit" id="submit">
+  </div>      
    
-
-    <input type="submit" value="Submit">
   </form>
-</div>
+-->
+<form name="userForm" onsubmit="fun()">
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" class="form-control" title="Must be a valid email" ng-model="user.email"  maxlength="40" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+  
+  <label for="username">Username</label>
+  <input type="text" id="username" name="username" class="form-control" ng-model="user.username"  maxlength="40" required>
 
+  <label for="psw">Password</label>
+  <input type="password" id="psw" name="psw" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"  ng-model="user.password"  maxlength="40" required>
+  
+  <label for="confirmpsw">Confirm Password</label>
+  <input type="password" id="confirmpsw" name="confirmpsw" class="form-control" title="Must match password" ng-model="confirmPassword"  maxlength="40" required>
+  
+  <br>
+  <div class="pull-left">
+    <button class="btn btn-primary" type="button" ng-click="register()" ng-disabled="!userForm.$valid"> New </button>   
+  </div>      
+ 
+</form>
   <h3>Password must contain the following:</h3>
   <p id="letter">A <b>lowercase</b> letter</p>
   <p id="capital">A <b>capital (uppercase)</b> letter</p>
   <p id="number">A <b>number</b></p>
   <p id="length">Minimum <b>8 characters</b></p>
+</div>
+
+
+<script>
+  function fun() {
+    alert('s');
+    /*
+    if (confirm("Confirm your registration?")) {
+      register();
+    }
+    */
+   return true;
+
+  }
+
+/*
+    alert(document.getElementById('email').validity.patternMismatch); //false
+    alert(document.getElementById('username').validity.patternMismatch); //true
+
+    var password1 = document.getElementById('psw');
+    var password2 = document.getElementById('confirmpsw');
+    var email = document.getElementById('email');
+
+    var checkPasswordValidity = function() {
+        if (password1.value != password2.value) {
+            password2.setCustomValidity('Passwords must match.');
+        } else {
+            password2.setCustomValidity('');
+        }        
+    };
+
+
+    password1.addEventListener('change', checkPasswordValidity, false);
+    password2.addEventListener('change', checkPasswordValidity, false);
+    document.getElementById('userForm').addEventListener('submit', function(evt){
+        evt.preventDefault();
+        alert('hi;');
+        //document.getElementById('donate').style.display = 'none';
+        //document.getElementById('topMessage').style.display = 'none';
+    })
+    /*
+    form.addEventListener('submit', function() {
+      alert("hi");
+        checkPasswordValidity();
+        if (!this.checkValidity()) {
+            event.preventDefault();
+            //Implement you own means of displaying error messages to the user here.
+            password1.focus();
+        }
+    }, false);
+    */
+</script>
 
