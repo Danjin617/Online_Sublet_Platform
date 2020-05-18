@@ -17,9 +17,15 @@ app.controller('LoginController',
           //alert(JSON.stringify(response));
           //alert(response.data.username);
 
-          window.location.href = "/";
+          if (!$scope.user.confirmed) {
+            //send an email to confirm
+            alert("Check email to confirm account");
+            window.location.href = "/";
+            return;
+          }
           sessionStorage.setItem("session_username", $scope.user.username);
-          alert("Login complete!"+sessionStorage.getItem("session_username"));
+          window.location.href = "/";
+          alert("Login complete! Welcome, "+sessionStorage.getItem("session_username"));
           //alert($scope.user.username);
         })
     }

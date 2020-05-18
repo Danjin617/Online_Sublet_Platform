@@ -32,9 +32,11 @@ app.controller('RegisterController',
             return;
           } 
           $scope.user = response.data;
-          sessionStorage.setItem("session_username", $scope.user.username);
+          //send an email to confirm
+          alert("Check email to confirm account");
+          //sessionStorage.setItem("session_username", $scope.user.username);
 
-          alert("Welcome, "+sessionStorage.getItem("session_username"));
+          //alert("Welcome, "+sessionStorage.getItem("session_username"));
           //$rootScope.user = response.data;
           window.location.href = "/";
 
