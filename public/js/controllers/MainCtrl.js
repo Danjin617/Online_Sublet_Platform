@@ -19,5 +19,9 @@ app.controller('MainController',
       $scope.myOrderBy = x;
     }
 
+    $scope.toDate = function(x) {
+      return date.getMonth() + " " + date.getDate() + ", " + date.getFullYear();
+    };
+
     
   }]);
