@@ -7,5 +7,6 @@ module.exports = mongoose.model('User', {
    password: {type : String, default: ''},
    confirmed: {type : Boolean, default: false},
    email: {type : String, default: ''},
+   token: {type : String, default: ''},
    bookmarked: {type : [String], default: []},
 });
