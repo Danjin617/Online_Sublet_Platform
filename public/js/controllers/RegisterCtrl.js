@@ -12,7 +12,7 @@ app.controller('RegisterController',
       alert('here');
 
       if ($scope.user.password != $scope.confirmPassword) {
-        alert("password"+$scope.confirmPassword+$scope.user.password);
+        //alert("password"+$scope.confirmPassword+$scope.user.password);
         alert("Passwords do not match, please try again");
         return;
       }
@@ -28,7 +28,7 @@ app.controller('RegisterController',
 
           alert("session"+sessionStorage.getItem("session_username"));
           //$rootScope.user = response.data;
-          window.location.href = "/";
+          //window.location.href = "/";
 
         })
     };
