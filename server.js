@@ -207,6 +207,7 @@ app.post('/api/listings/send', function (req, res) {
    listing.bath = req.body.bath;
    listing.area = req.body.area;
    listing.price = req.body.price;
+   listing.description = req.body.description;
    listing.lister = req.body.lister;
    listing.images = req.body.images;
 

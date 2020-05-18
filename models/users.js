@@ -5,4 +5,7 @@ var mongoose = require('mongoose');
 module.exports = mongoose.model('User', {
    username : {type : String, default: ''},
    password: {type : String, default: ''},
+   confirmed: {type : Boolean, default: ''},
+   email: {type : String, default: ''},
+   bookmarked: {type : [String], default: []},
 });
