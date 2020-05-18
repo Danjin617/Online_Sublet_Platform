@@ -4,6 +4,7 @@ app.controller('NewController',
 
    $scope.init = function(){
     $scope.listing = new Listing();
+    $scope.listing.lister = sessionStorage.getItem("session_username");
    };
 
   $scope.doSave = function(){

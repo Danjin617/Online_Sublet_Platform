@@ -32,7 +32,7 @@
             <a class="navbar-brand" href="/">Tutorial</a>
          </div>
          <ul class="nav navbar-nav">
-            <li><a href="#/new">New</a></li>
+            <li><a href="#/new" id="login">New</a></li>
          </ul>
          <ul class="nav navbar-nav">
             <li>
@@ -59,9 +59,11 @@
          //alert("not logged in");
          document.getElementById("login").style.visibility = "visible";
          document.getElementById("logout").style.visibility = "hidden";
+         document.getElementById("new").style.visibility = "hidden";
       } else {
          document.getElementById("login").style.visibility = "hidden";
          document.getElementById("logout").style.visibility = "visible";
+         document.getElementById("new").style.visibility = "visible";
       }
    }
 
