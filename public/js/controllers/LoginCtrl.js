@@ -19,7 +19,7 @@ app.controller('LoginController',
 
           window.location.href = "/";
           sessionStorage.setItem("session_username", $scope.user.username);
-          alert("Login complete!");
+          alert("Login complete!"+sessionStorage.getItem("session_username"));
           //alert($scope.user.username);
         })
     }
