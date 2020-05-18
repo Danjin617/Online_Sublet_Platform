@@ -1,238 +1,237 @@
-<div class="col-md-12 listing" ng-init="init();" ng-controller="NewController">
+<div class="col-md-12 listing" ng-init="alert('s');init();" ng-controller="NewController">
   <div class="row">
     <div class="well col-sm-6 form-horizontal">
 
 
-        <form>
-          <div class="form-row">
-              <div class="form-group col-md-10">
-                <label>Address</label>
-                <input type="text" class="form-control" id="inputAddress" ng-model="listing.address.streetname" placeholder="1234 Main St">
-            </div>
-            <div class="form-group col-md-2">
-              <label>Zip</label>
-              <input type="text" class="form-control" id="inputZip" ng-model="listing.address.zip">
+      <form>
+        <div class="form-row">
+          <div class="form-group col-md-10">
+            <label>Address</label>
+            <input type="text" class="form-control" id="inputAddress" ng-model="listing.address.streetname" placeholder="1234 Main St">
           </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-5">
-          <label>City</label>
-          <input type="text" class="form-control" id="inputCity" ng-model="listing.address.city">
-      </div>
-      <div class="form-group col-md-4">
-          <label>Province</label>
-          <select id="inputProvince" class="form-control" ng-model="listing.address.province">
-            <option selected>Choose...</option>
-            <option>Alberta</option>
-            <option>British Columbia</option>
-            <option>Ontario</option>
-            <option>Prince Edwards Island</option>
-            <option>Manitoba</option>
-            <option>Newfoundland Labrador</option>
-            <option>New Brunswick</option>
-            <option>Northwest Territories</option>
-            <option>Nova Scotia</option>
-            <option>Nunavut</option>
-            <option>Quebec</option>
-            <option>Saskatchewan</option>
-            <option>Yukon</option>
-        </select>
+          <div class="form-group col-md-2">
+            <label>Zip</label>
+            <input type="text" class="form-control" id="inputZip" ng-model="listing.address.zip">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-5">
+            <label>City</label>
+            <input type="text" class="form-control" id="inputCity" ng-model="listing.address.city">
+          </div>
+          <div class="form-group col-md-4">
+            <label>Province</label>
+            <select id="inputProvince" class="form-control" ng-model="listing.address.province">
+              <option selected>Choose...</option>
+              <option>Alberta</option>
+              <option>British Columbia</option>
+              <option>Ontario</option>
+              <option>Prince Edwards Island</option>
+              <option>Manitoba</option>
+              <option>Newfoundland Labrador</option>
+              <option>New Brunswick</option>
+              <option>Northwest Territories</option>
+              <option>Nova Scotia</option>
+              <option>Nunavut</option>
+              <option>Quebec</option>
+              <option>Saskatchewan</option>
+              <option>Yukon</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label>Country</label>
+            <input type="text" class="form-control" id="inputCountry" ng-model="listing.address.country">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Start Time</label>
+            <input type="date" class="form-control" id="inputStart" ng-model="listing.timeframe.start_date">
+          </div>
+          <div class="form-group col-md-6">
+            <label>End Time</label>
+            <input type="date" class="form-control" id="inputEnd" ng-model="listing.timeframe.end_date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" ng-model="listing.features.utilities" id="utilities">
+            <label> Utilities</label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" ng-model="listing.features.furnished" id="utilities">
+            <label> Furnished</label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" ng-model="listing.features.en_suite" id="en_suite">
+            <label> En Suite</label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" ng-model="listing.features.public_transport" id="public_transport">
+            <label> Public Transport</label>
+          </div>
+
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" ng-model="listing.features.pets" id="pets">
+            <label> Pets</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Type</label>
+            <select id="inputType" class="form-control" ng-model="listing.type">
+              <option selected>Choose...</option>
+              <option>apartments</option>
+              <option>houses</option>
+              <option>townhouses</option>
+              <option>dormitory</option>
+              <option>lofts</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <label>Demographic</label>
+            <select id="inputDemographic" class="form-control" ng-model="listing.demographic">
+              <option selected>Choose...</option>
+              <option>male</option>
+              <option>female</option>
+              <option>coed</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Bed</label>
+            <input type="number" class="form-control" id="inputBed" ng-model="listing.bed">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Bath</label>
+            <input type="number" class="form-control" id="inputBath" ng-model="listing.bath">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Area</label>
+            <input type="number" class="form-control" id="inputArea" ng-model="listing.area">
+          </div>
+          <div class="form-group col-md-6">
+            <label>Price</label>
+            <input type="number" class="form-control" id="inputPrice" ng-model="listing.price">
+          </div>
+          <div class="form-group col-md-12">
+            <label>Description</label>
+            <textarea class="form-control" id="inputDescription" rows="3" ng-model="listing.description"></textarea>
+          </div>
+
+        </div>
+      </form>
+
+      <br>
+      <button type="submit" class="btn btn-primary" ng-click = "doSave()">Save</button>
     </div>
-    <div class="form-group col-md-3">
-      <label>Country</label>
-      <input type="text" class="form-control" id="inputCountry" ng-model="listing.address.country">
+
   </div>
 </div>
-<div class="form-row">
-    <div class="form-group col-md-6">
-      <label>Start Time</label>
-      <input type="date" class="form-control" id="inputStart" ng-model="listing.timeframe.start_date">
-  </div>
-  <div class="form-group col-md-6">
-      <label>End Time</label>
-      <input type="date" class="form-control" id="inputEnd" ng-model="listing.timeframe.end_date">
-  </div>
+<!--
+<p> I'll make this look nicer after</p>
+<ng-form name="listingForm">
+<h3>Address</h3> <br>
+<div class="input-group">
+    <div class="input-group-addon"><strong> Streetname:</strong></div>&nbsp;&nbsp;
+    <input class="form-control"  type="text"  ng-model="listing.address.streetname"  maxlength="40" required="required" id = "streetname"/>     
+</div></br>
+<div class="input-group">
+    <div class="input-group-addon"><strong>Postal Code:</strong></div>&nbsp;&nbsp;
+    <input class="form-control"  type="text"  ng-model="listing.address.postal_code"  maxlength="40" required="required" id = "postal_code"/>     
+</div></br>
+<div class="input-group">
+    <div class="input-group-addon"><strong> City:</strong></div>&nbsp;&nbsp;
+    <input class="form-control"  type="text"  ng-model="listing.address.city"  maxlength="40" required="required" id = "city"/>     
+</div></br>
+<div class="input-group">
+    <div class="input-group-addon"><strong> Province:</strong></div>&nbsp;&nbsp;
+    <input class="form-control"  type="text"  ng-model="listing.address.province"  maxlength="40" required="required" id = "province"/>     
+</div></br>
+<div class="input-group">
+    <div class="input-group-addon"><strong> Country:</strong></div>&nbsp;&nbsp;
+    <input class="form-control"  type="text"  ng-model="listing.address.country"  maxlength="40" required="required" id = "country"/>     
+</div></br>
+
+<h3>Time Frame</h3> <br>
+<div class="input-group">
+    <div class="input-group-addon"><strong> Start Date</strong></div>&nbsp;&nbsp;
+    <input class="form-control"  type="date"  ng-model="listing.timeframe.start_date"  maxlength="40" required="required" id = "start_date"/>     
+</div></br>
+
+<div class="input-group">
+    <div class="input-group-addon"><strong> End Date</strong></div>&nbsp;&nbsp;
+    <input class="form-control"  type="date"  ng-model="listing.timeframe.end_date"  maxlength="40" required="required" id = "end_date"/>     
+</div></br>
+
+<h3>Features</h3> <br>
+
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" ng-model="listing.features.utilities" id="utilities">
+    <div class="input-group-addon"><strong> Utilities</strong></div>&nbsp;&nbsp;
 </div>
-<div class="form-row">
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" ng-model="listing.features.utilities" id="utilities">
-        <label> Utilities</label>
-    </div>
 
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" ng-model="listing.features.furnished" id="utilities">
-        <label> Furnished</label>
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" ng-model="listing.features.en_suite" id="en_suite">
-        <label> En Suite</label>
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" ng-model="listing.features.public_transport" id="public_transport">
-        <label> Public Transport</label>
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" ng-model="listing.features.pets" id="pets">
-        <label> Pets</label>
-    </div>
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" ng-model="listing.features.utilities" id="utilities">
+    <div class="input-group-addon"><strong> Furnished</strong></div>&nbsp;&nbsp;
 </div>
-<div class="form-row">
-    <div class="form-group col-md-6">
-      <label>Type</label>
-      <select id="inputType" class="form-control" ng-model="listing.type">
-        <option selected>Choose...</option>
+
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" ng-model="listing.features.en_suite" id="en_suite">
+    <div class="input-group-addon"><strong> En Suite</strong></div>&nbsp;&nbsp;
+</div>
+
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" ng-model="listing.features.public_transport" id="public_transport">
+    <div class="input-group-addon"><strong> Public Transportat</strong></div>&nbsp;&nbsp;
+</div>
+
+<div class="form-check">
+    <input type="checkbox" class="form-check-input" ng-model="listing.features.pets" id="pets">
+    <div class="input-group-addon"><strong> Pets</strong></div>&nbsp;&nbsp;
+</div>
+
+<h3>Extra Info</h3> <br>
+<div class="input-group">
+    <div class="input-group-addon"><strong> Type:</strong></div>
+    <select class="form-control" ng-model="listing.type">
         <option>apartments</option>
         <option>houses</option>
         <option>townhouses</option>
         <option>dormitory</option>
         <option>lofts</option>
     </select>
-    </div>
-    <div class="form-group col-md-6">
-      <label>Demographic</label>
-      <select id="inputDemographic" class="form-control" ng-model="listing.demographic">
-        <option selected>Choose...</option>
+</div>
+<br>
+<div class="input-group">
+    <div class="input-group-addon" ng-model="listing.demographic"><strong> Demographic:</strong></div>
+    <select class="form-control">
         <option>male</option>
         <option>female</option>
         <option>coed</option>
     </select>
-    </div>
 </div>
-
-<div class="form-row">
-  <div class="form-group col-md-6">
-    <label>Bed</label>
-    <input type="number" class="form-control" id="inputBed" ng-model="listing.bed">
-    </div>
-    <div class="form-group col-md-6">
-      <label>Bath</label>
-      <input type="number" class="form-control" id="inputBath" ng-model="listing.bath">
-    </div>
-    <div class="form-group col-md-6">
-        <label>Area</label>
-        <input type="number" class="form-control" id="inputArea" ng-model="listing.area">
-    </div>
-    <div class="form-group col-md-6">
-      <label>Price</label>
-      <input type="number" class="form-control" id="inputPrice" ng-model="listing.price">
-
-    </div>
-    <div class="form-group col-md-12">
-    <label>Description</label>
-    <textarea class="form-control" id="inputDescription" rows="3" ng-model="listing.description"></textarea>
-  </div>
-</form>
-
 <br>
-
-</div>
-<button type="submit" class="btn btn-primary" ng-click = "doSave()">Save</button>
-</form>
-</div>
-</div>
-
-<!--
-<p> I'll make this look nicer after</p>
-<ng-form name="listingForm">
-    <h3>Address</h3> <br>
-    <div class="input-group">
-        <div class="input-group-addon"><strong> Streetname:</strong></div>&nbsp;&nbsp;
-        <input class="form-control"  type="text"  ng-model="listing.address.streetname"  maxlength="40" required="required" id = "streetname"/>     
-    </div></br>
-    <div class="input-group">
-        <div class="input-group-addon"><strong>Postal Code:</strong></div>&nbsp;&nbsp;
-        <input class="form-control"  type="text"  ng-model="listing.address.postal_code"  maxlength="40" required="required" id = "postal_code"/>     
-    </div></br>
-    <div class="input-group">
-        <div class="input-group-addon"><strong> City:</strong></div>&nbsp;&nbsp;
-        <input class="form-control"  type="text"  ng-model="listing.address.city"  maxlength="40" required="required" id = "city"/>     
-    </div></br>
-    <div class="input-group">
-        <div class="input-group-addon"><strong> Province:</strong></div>&nbsp;&nbsp;
-        <input class="form-control"  type="text"  ng-model="listing.address.province"  maxlength="40" required="required" id = "province"/>     
-    </div></br>
-    <div class="input-group">
-        <div class="input-group-addon"><strong> Country:</strong></div>&nbsp;&nbsp;
-        <input class="form-control"  type="text"  ng-model="listing.address.country"  maxlength="40" required="required" id = "country"/>     
-    </div></br>
-
-    <h3>Time Frame</h3> <br>
-    <div class="input-group">
-        <div class="input-group-addon"><strong> Start Date</strong></div>&nbsp;&nbsp;
-        <input class="form-control"  type="date"  ng-model="listing.timeframe.start_date"  maxlength="40" required="required" id = "start_date"/>     
-    </div></br>
-
-    <div class="input-group">
-        <div class="input-group-addon"><strong> End Date</strong></div>&nbsp;&nbsp;
-        <input class="form-control"  type="date"  ng-model="listing.timeframe.end_date"  maxlength="40" required="required" id = "end_date"/>     
-    </div></br>
-
-    <h3>Features</h3> <br>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" ng-model="listing.features.utilities" id="utilities">
-        <div class="input-group-addon"><strong> Utilities</strong></div>&nbsp;&nbsp;
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" ng-model="listing.features.utilities" id="utilities">
-        <div class="input-group-addon"><strong> Furnished</strong></div>&nbsp;&nbsp;
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" ng-model="listing.features.en_suite" id="en_suite">
-        <div class="input-group-addon"><strong> En Suite</strong></div>&nbsp;&nbsp;
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" ng-model="listing.features.public_transport" id="public_transport">
-        <div class="input-group-addon"><strong> Public Transportat</strong></div>&nbsp;&nbsp;
-    </div>
-
-    <div class="form-check">
-        <input type="checkbox" class="form-check-input" ng-model="listing.features.pets" id="pets">
-        <div class="input-group-addon"><strong> Pets</strong></div>&nbsp;&nbsp;
-    </div>
-
-    <h3>Extra Info</h3> <br>
-    <div class="input-group">
-        <div class="input-group-addon"><strong> Type:</strong></div>
-        <select class="form-control" ng-model="listing.type">
-            <option>apartments</option>
-            <option>houses</option>
-            <option>townhouses</option>
-            <option>dormitory</option>
-            <option>lofts</option>
-        </select>
-    </div>
-    <br>
-    <div class="input-group">
-        <div class="input-group-addon" ng-model="listing.demographic"><strong> Demographic:</strong></div>
-        <select class="form-control">
-            <option>male</option>
-            <option>female</option>
-            <option>coed</option>
-        </select>
-    </div>
-    <br>
-    <div class="input-group">
-        <div class="input-group-addon"><strong> Bed:</strong></div>&nbsp;&nbsp;
-        <input class="form-control"  type="number"  ng-model="listing.bed"  maxlength="40" required="required" id = "bed"/>     
-    </div></br>
-    <div class="input-group">
-        <div class="input-group-addon"><strong> Bath:</strong></div>&nbsp;&nbsp;
-        <input class="form-control"  type="number"  ng-model="listing.bath"  maxlength="40" required="required" id = "bath"/>     
-    </div></br>
-    <div class="input-group">
-        <div class="input-group-addon"><strong> Area:</strong></div>&nbsp;&nbsp;
-        <input class="form-control"  type="number"  ng-model="listing.area"  maxlength="40" required="required" id = "area"/>     
-    </div></br>
+<div class="input-group">
+    <div class="input-group-addon"><strong> Bed:</strong></div>&nbsp;&nbsp;
+    <input class="form-control"  type="number"  ng-model="listing.bed"  maxlength="40" required="required" id = "bed"/>     
+</div></br>
+<div class="input-group">
+    <div class="input-group-addon"><strong> Bath:</strong></div>&nbsp;&nbsp;
+    <input class="form-control"  type="number"  ng-model="listing.bath"  maxlength="40" required="required" id = "bath"/>     
+</div></br>
+<div class="input-group">
+    <div class="input-group-addon"><strong> Area:</strong></div>&nbsp;&nbsp;
+    <input class="form-control"  type="number"  ng-model="listing.area"  maxlength="40" required="required" id = "area"/>     
+</div></br>
 </br></br>
 <div class="pull-left">  
-  <button class="btn btn-primary" type="button" ng-click = "doSave()">Save </button>
+<button class="btn btn-primary" type="button" ng-click = "doSave()">Save </button>
 </div>                    
 </ng-form>
 
@@ -241,32 +240,32 @@
 </div>  
 
 
-    /*
-  address: {
-    streetname : {type : String, default: ''},
-    postal_code : {type : String, default: ''},
-    city : {type : String, default: ''},
-    province : {type : String, default: ''},
-    country : {type : String, default: ''}
-  },
-  timeframe: {
-    start_date : {type : Date, default: ''},
-    end_date : {type : Date, default: ''},
-  },
-  features: {
-    utilities: {type : Boolean, deafult: ''},
-    furnished: {type : Boolean, deafult: ''},
-    en_suite : {type : Boolean, deafult: ''},
-    public_transport: {type : Boolean, deafult: ''},
-    pets: {type : Boolean, deafult: ''},
-  },
-   type : {type : String, default: ''}, // aprtments, houses, townhouses, dormitory, lofts,
-   demographic: {type : String, deafult: ''}, //male, female, coed
-   bed: {type : Number, default: ''},
-   bath: {type : Number, default: ''},
-   area: {type : Number, default: ''},
-   price: {type : Number, default: ''},
-   lister : {type : String, default: ''},
-   images: {type: [String], default: ['https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?fit=scale']},
-   */
-   -->
+/*
+address: {
+streetname : {type : String, default: ''},
+postal_code : {type : String, default: ''},
+city : {type : String, default: ''},
+province : {type : String, default: ''},
+country : {type : String, default: ''}
+},
+timeframe: {
+start_date : {type : Date, default: ''},
+end_date : {type : Date, default: ''},
+},
+features: {
+utilities: {type : Boolean, deafult: ''},
+furnished: {type : Boolean, deafult: ''},
+en_suite : {type : Boolean, deafult: ''},
+public_transport: {type : Boolean, deafult: ''},
+pets: {type : Boolean, deafult: ''},
+},
+type : {type : String, default: ''}, // aprtments, houses, townhouses, dormitory, lofts,
+demographic: {type : String, deafult: ''}, //male, female, coed
+bed: {type : Number, default: ''},
+bath: {type : Number, default: ''},
+area: {type : Number, default: ''},
+price: {type : Number, default: ''},
+lister : {type : String, default: ''},
+images: {type: [String], default: ['https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?fit=scale']},
+*/
+-->
