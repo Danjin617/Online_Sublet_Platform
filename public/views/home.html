@@ -12,7 +12,7 @@
       <tbody>
       <tr valign="middle" ng-repeat="obj in listings | orderBy:myOrderBy">
         <td> <a href="#/listing/{{obj._id}}"> {{obj.address.streetname}} </a> </td>
-        <td> {{obj.address.city}}</td>
+        <td> {{obj.address.city}}</td> 
         <td> {{toDate(obj.timeframe.start_date)}}</td>
         <td> {{toDate(obj.timeframe.end_date)}}</td>
       </tr>

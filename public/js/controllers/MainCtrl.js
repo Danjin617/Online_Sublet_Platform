@@ -21,7 +21,8 @@ app.controller('MainController',
 
     $scope.toDate = function(x) {
       var date = new Date(x);
-      return date.getMonth() + " " + date.getDate() + ", " + date.getFullYear();
+      var options = {year: 'numeric', month : 'long', day: 'numeric'};
+      return date.toLocaleDateString("en-US", options);
     };
 
     
