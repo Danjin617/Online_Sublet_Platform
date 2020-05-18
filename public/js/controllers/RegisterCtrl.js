@@ -8,14 +8,22 @@ app.controller('RegisterController',
       $scope.user = new User();
     };
 
+    $scope.confirmRegistration = function() {
+      if (confirm("Confirm your registration?")) {
+
+      }
+    }
+
     $scope.register = function() {
-      alert('here');
+      //alert('here');
 
       if ($scope.user.password != $scope.confirmPassword) {
         //alert("password"+$scope.confirmPassword+$scope.user.password);
         alert("Passwords do not match, please try again");
         return;
       }
+
+      if (!confirm("Confirm registration?")) {return;}
 
       $http.post('/users',$scope.user).
         then(function(response){
@@ -26,9 +34,9 @@ app.controller('RegisterController',
           $scope.user = response.data;
           sessionStorage.setItem("session_username", $scope.user.username);
 
-          alert("session"+sessionStorage.getItem("session_username"));
+          alert("Welcome, "+sessionStorage.getItem("session_username"));
           //$rootScope.user = response.data;
-          //window.location.href = "/";
+          window.location.href = "/";
 
         })
     };
