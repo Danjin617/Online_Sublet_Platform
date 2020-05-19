@@ -71,44 +71,44 @@ app.post('/users', async (req, res) => {
       
       const url = `http://localhost:3030/#/confirmation/${emailToken}`;
      // console.log(url);
-   
 
-var transporter = nodemailer.createTransport({
- service: 'gmail',
- auth: {
+
+     var transporter = nodemailer.createTransport({
+       service: 'gmail',
+       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD
-    }
-});
-   
-      const mailOptions = {
+      }
+    });
+
+     const mailOptions = {
   from: process.env.EMAIL, // sender address
   to: new_user.email, // list of receivers
   subject: 'Confirmation Email', // Subject line
   html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`// plain text body
 };
 console.log('BEFORE');
-  await  transporter.sendMail(mailOptions, function (err, info) {
-   if(err)
-     console.log(err)
-   else
-     console.log('EMAIL SENTTTT');
+await  transporter.sendMail(mailOptions, function (err, info) {
+ if(err)
+   console.log(err)
+ else
+   console.log('EMAIL SENTTTT');
 });
 console.log('AFTER');
-      new_user.save(function(err) {
-        if (err)
-          res.send(err);
+new_user.save(function(err) {
+  if (err)
+    res.send(err);
         //res.json({message: 'http://localhost:3030/#/confirmation/${emailToken}'});
         res.json(new_user);
       });
-    }
-    catch (e) {
-      console.log(e);
+}
+catch (e) {
+  console.log(e);
      // res.status(500).send()
-    }
+   }
 
-  } 
-  else {
+ } 
+ else {
    res.json({message: 'user exists'});
  }
 });
@@ -132,6 +132,20 @@ app.post('/users/login', async (req, res) => {
     res.json({message: 'Incorrect Password'});
   }
 })
+
+app.put('/users/confirm', async function (req, res) {
+    //fuind params (res) res.body.confirm = true;
+    const user = await User.find({token: req.body.token});
+    if (user.length == 0) {
+      return res.json({message: 'Cannot find user'});
+    }
+    user.confirmed = true;
+
+    Listing.findByIdAndUpdate(user._id, user, function (err, post) {
+      if (err) res.send(err);
+      res.json({username: user.username});
+    });
+  });
 
 app.delete('/users/:user_id', function (req, res) {
  User.remove({
@@ -245,7 +259,6 @@ app.get('/api/listings', function(req, res) {
       res.json({message: "successfully saved"});
     });
    });
-
 
 // startup our app at http://localhost:3000
 app.listen(port, function () {
