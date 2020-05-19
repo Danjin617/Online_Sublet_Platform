@@ -9,6 +9,7 @@ app.config(function ($routeProvider) {
     .when('/register', { templateUrl: 'views/register.html'})
     .when('/login', { templateUrl: 'views/login.html'})
     .when('/dashboard', { templateUrl: 'views/dashboard.html'})
+    .when('/confirmation/:id', { templateUrl: 'views/confirmation.html'})
     .otherwise({ redirectTo: '/' });
 });
 
