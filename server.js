@@ -114,6 +114,28 @@ catch (e) {
 });
 
 
+app.post('/users/confirm/:token', async (req, res) => {
+  const user = await User.find({token: req.params.token})
+  if (user.length == 0){
+    res.json({message: 'user doesnt exists'});
+  }
+  try {
+    user[0].confirmed = true;
+     user[0].save(function(err) {
+  if (err)
+    res.send(err);
+        //res.json({message: 'http://localhost:3030/#/confirmation/${emailToken}'});
+        res.json(user[0]);
+      });
+}
+catch (e) {
+  console.log(e);
+     // res.status(500).send()
+   }
+
+ } 
+);
+
 app.post('/users/login', async (req, res) => {
   //res.send('TEST1');
   const user = await User.find({username: req.body.username})
@@ -147,20 +169,20 @@ app.put('/users/confirm', async function (req, res) {
     });
   });
 */
-app.put('/users/confirm', function (req, res) {
-    Listing.findByIdAndUpdate(req.body.user_id, req.body, function (err, post) {
+app.put('/users/:user_id', function (req, res) {
+    Listing.findByIdAndUpdate(req.params.user_id, req.body, function (err, post) {
       if (err) res.send(err);
       res.json({message: 'successful'});
     });
   });
 
 
-app.get('/users/confirm', async function(req, res) {
- const user = await User.find({token: req.body.token});
+app.get('/users/confirm/:token', async function(req, res) {
+ const user = await User.find({token: req.params.token});
     if (user.length == 0) {
       return res.json({message: 'Cannot find user'});
     }
-    res.json({_id: user[0]._id});
+    res.json(user[0]);
 });
 
 

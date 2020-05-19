@@ -1,44 +1,32 @@
 app.controller('ConfirmationController',
- ['$scope','$http','$rootScope',function($scope, $http, $rootScope) {
+ ['$scope','$http','$routeParams',function($scope, $http, $routeParams) {
 
    $scope.confirmation_status = '';
 
    $scope.init = function(){
-       var req = {token: $rootScope.id};
-       $http.get('/users/confirm', req).
-       then(function(response) {
-           if(response.data.message != null) {
-               $scope.confirmation_status = response.data.message;
-               return;
-           }
-           $scope.confirmation_status = "registration complete";
+    //alert($routeParams.id);
+    var to = $routeParams.id;
+    var req = {token: to};
+
+
+        $http.post('/users/confirm/'+$routeParams.id).
+        then(function(response) {
+            if(response.data.message != null) {
+                $scope.confirmation_status = response.data.message;
+                //alert("oops");
+                return;
+            }
+
             $scope.user = response.data;
-            $scope.user.confirmed = true;
+            sessionStorage.setItem("session_username", $scope.user.username);
             
+            window.location.href = "/";
+            alert("Confirmation successful! Welcome, "+$scope.user.username);
+            //alert($scope.user.confirmed);
         });
-        
-        alert($scope.user.username);
-      //alert($rootScope.user.username);
-       //alert('init'); 
-       /*
-       $http.get('/users/'+sessionStorage.getItem("session_username")).
-       then(function(response) {
-         $scope.user = response.data;
-       });
-       //fetch all bookmarks
-       for (id in $scope.user.bookmarks){
-           $http.get('/api/listings/'+id).
-           then(function(reponse) {
-               if (response.data.message == null){
-                    $scope.bookmarks.push(reponse.data);
-               } else {
-                   console.log("unable to fetch info for " + id);
-               }
-           });
-       }
-       */
-     };
-     $scope.orderByMe = function(x) {
+    };
+
+    $scope.orderByMe = function(x) {
       $scope.myOrderBy = x;
     }
 
