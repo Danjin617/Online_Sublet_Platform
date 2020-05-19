@@ -147,7 +147,7 @@ app.put('/users/confirm', async function (req, res) {
     });
   });
 */
-app.put('/users/confirm', function (req, res) {
+app.put('/users/save', function (req, res) {
     Listing.findByIdAndUpdate(req.body.user_id, req.body, function (err, post) {
       if (err) res.send(err);
       res.json({message: 'successful'});
@@ -160,7 +160,7 @@ app.get('/users/confirm', async function(req, res) {
     if (user.length == 0) {
       return res.json({message: 'Cannot find user'});
     }
-    res.json({_id: user[0]._id});
+    res.json(user[0]);
 });
 
 
