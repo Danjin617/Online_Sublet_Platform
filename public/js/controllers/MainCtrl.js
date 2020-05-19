@@ -1,5 +1,5 @@
 app.controller('MainController',
- ['$scope','$http','$rootScope',function($scope, $http, $rootScope) {
+ ['$scope','$http',function($scope, $http) {
 
    $scope.tagline = 'Welcome to tutorials point angular app!';
 
