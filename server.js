@@ -133,19 +133,36 @@ app.post('/users/login', async (req, res) => {
   }
 })
 
+/*
 app.put('/users/confirm', async function (req, res) {
     //fuind params (res) res.body.confirm = true;
     const user = await User.find({token: req.body.token});
     if (user.length == 0) {
       return res.json({message: 'Cannot find user'});
     }
-    user.confirmed = true;
 
-    Listing.findByIdAndUpdate(user._id, user, function (err, post) {
+    Listing.findByIdAndUpdate(user[0]._id, user[0], function (err, post) {
       if (err) res.send(err);
-      res.json({username: user.username});
+      res.json({username: user[0].});
     });
   });
+*/
+app.put('/users/confirm', function (req, res) {
+    Listing.findByIdAndUpdate(req.body.user_id, req.body, function (err, post) {
+      if (err) res.send(err);
+      res.json({message: 'successful'});
+    });
+  });
+
+
+app.get('/users/confirm', async function(req, res) {
+ const user = await User.find({token: req.body.token});
+    if (user.length == 0) {
+      return res.json({message: 'Cannot find user'});
+    }
+    res.json({_id: user[0]._id});
+});
+
 
 app.delete('/users/:user_id', function (req, res) {
  User.remove({
