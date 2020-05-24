@@ -9,4 +9,5 @@ module.exports = mongoose.model('User', {
    email: {type : String, default: ''},
    token: {type : String, default: ''},
    bookmarked: {type : [String], default: []},
+   lists: {type : [String], default: []},
 });

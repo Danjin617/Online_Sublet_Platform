@@ -39,6 +39,8 @@ mongoose.connect(db.url); //Mongoose connection created
 app.use(express.json());
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//USERS
 
 var User = require('./models/users');
 
@@ -121,20 +123,65 @@ app.post('/users/confirm/:token', async (req, res) => {
   }
   try {
     user[0].confirmed = true;
-     user[0].save(function(err) {
-  if (err)
-    res.send(err);
+    user[0].save(function(err) {
+      if (err)
+        res.send(err);
         //res.json({message: 'http://localhost:3030/#/confirmation/${emailToken}'});
         res.json(user[0]);
       });
-}
-catch (e) {
-  console.log(e);
+  }
+  catch (e) {
+    console.log(e);
      // res.status(500).send()
    }
 
  } 
-);
+ );
+
+app.post('/users/sendlisting', async (req, res) => {
+  const user = await User.find({username: req.params.username})
+  if (user.length == 0){
+    res.json({message: 'user doesnt exists'});
+  }
+  try {
+    user[0].lists.push(req.params.listing);
+    user[0].save(function(err) {
+      if (err)
+        res.send(err);
+        //res.json({message: 'http://localhost:3030/#/confirmation/${emailToken}'});
+        res.json(user[0]);
+      });
+  }
+  catch (e) {
+    console.log(e);
+     // res.status(500).send()
+   }
+
+ } 
+ );
+
+app.post('/users/sendbookmark', async (req, res) => {
+  const user = await User.find({username: req.params.username})
+  if (user.length == 0){
+    res.json({message: 'user doesnt exists'});
+  }
+  try {
+    user[0].bookmarked.push(req.params.listing);
+    user[0].save(function(err) {
+      if (err)
+        res.send(err);
+        //res.json({message: 'http://localhost:3030/#/confirmation/${emailToken}'});
+        res.json(user[0]);
+      });
+  }
+  catch (e) {
+    console.log(e);
+     // res.status(500).send()
+   }
+
+ } 
+ );
+
 
 app.post('/users/login', async (req, res) => {
   //res.send('TEST1');
@@ -153,44 +200,8 @@ app.post('/users/login', async (req, res) => {
   } catch {
     res.json({message: 'Incorrect Password'});
   }
-})
-
-/*
-app.put('/users/confirm', async function (req, res) {
-    //fuind params (res) res.body.confirm = true;
-    const user = await User.find({token: req.body.token});
-    if (user.length == 0) {
-      return res.json({message: 'Cannot find user'});
-    }
-
-    Listing.findByIdAndUpdate(user[0]._id, user[0], function (err, post) {
-      if (err) res.send(err);
-      res.json({username: user[0].});
-    });
-  });
-
-
-<<<<<<< HEAD
-app.put('/users/save', function (req, res) {
-    Listing.findByIdAndUpdate(req.body.user_id, req.body, function (err, post) {
-=======
-app.put('/users/:user_id', function (req, res) {
-    Listing.findByIdAndUpdate(req.params.user_id, req.body, function (err, post) {
->>>>>>> 27e0ac82f59f617c6ffb4133e8e3d690cd937cfd
-      if (err) res.send(err);
-      res.json({message: 'successful'});
-    });
-  });
-
-
-app.get('/users/confirm/:token', async function(req, res) {
- const user = await User.find({token: req.params.token});
-    if (user.length == 0) {
-      return res.json({message: 'Cannot find user'});
-    }
-    res.json(user[0]);
 });
-*/
+
 
 app.delete('/users/:user_id', function (req, res) {
  User.remove({
@@ -201,6 +212,10 @@ app.delete('/users/:user_id', function (req, res) {
  res.json({ message: 'Successfully deleted' });
 });
 });
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//LISTINGS
 
 // sample api route
 // grab the listing model we just created
@@ -218,35 +233,8 @@ app.get('/api/listings', function(req, res) {
     });
  });
 
-/*
-  address: {
-    streetname : {type : String, default: ''},
-    postal_code : {type : String, default: ''},
-    city : {type : String, default: ''},
-    province : {type : String, default: ''},
-    country : {type : String, default: ''}
-  },
-  timeframe: {
-    start_date : {type : Date, default: ''},
-    end_date : {type : Date, default: ''},
-  },
-  features: {
-    utilities: {type : Boolean, deafult: ''},
-    furnished: {type : Boolean, deafult: ''},
-    en_suite: {type : Boolean, deafult: ''},
-    public_transport: {type : Boolean, deafult: ''},
-    pets: {type : Boolean, deafult: ''},
-  },
-   type : {type : String, default: ''}, // aprtments, houses, townhouses, dormitory, lofts,
-   demographic: {type : String, deafult: ''}, //male, female, coed
-   bed: {type : Number, default: ''},
-   bath: {type : Number, default: ''},
-   area: {type : Number, default: ''},
-   price: {type : Number, default: ''},
-   lister : {type : String, default: ''},
-   images: {type: [String], default: ['https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?fit=scale']},
-   */
-   app.post('/api/listings/send', function (req, res) {
+
+app.post('/api/listings/send', function (req, res) {
    var listing = new Listing(); // create a new instance of the listing model
    listing.address.streetname = req.body.address.streetname; // set the listing name (comes from the request)
    listing.address.postal_code = req.body.address.postal_code;
@@ -276,34 +264,34 @@ app.get('/api/listings', function(req, res) {
    listing.save(function(err) {
     if (err)
      res.send(err);
-   res.json({ message: 'listing created!' });
+   res.json(listing._id);
  });
  });
 
 
-   app.delete('/api/listings/:listing_id', function (req, res) {
-     Listing.remove({
-      _id: req.params.listing_id
-    }, function(err, bear) {
-      if (err)
-       res.send(err);
-     res.json({ message: 'Successfully deleted' });
-   });
-   });
+app.delete('/api/listings/:listing_id', function (req, res) {
+ Listing.remove({
+  _id: req.params.listing_id
+}, function(err, bear) {
+  if (err)
+   res.send(err);
+ res.json({ message: 'Successfully deleted' });
+});
+});
 
-   app.get('/api/listings/:listing_id', function (req, res) {
-     Listing.findById(req.params.listing_id, function (err, post) {
-      if (err) res.send(err);
-      res.json(post);
-    });
-   });
+app.get('/api/listings/:listing_id', function (req, res) {
+ Listing.findById(req.params.listing_id, function (err, post) {
+  if (err) res.send(err);
+  res.json(post);
+});
+});
 
-   app.put('/api/listings/:listing_id', function (req, res) {
-     Listing.findByIdAndUpdate(req.params.listing_id, req.body, function (err, post) {
-      if (err) res.send(err);
-      res.json({message: "successfully saved"});
-    });
-   });
+app.put('/api/listings/:listing_id', function (req, res) {
+ Listing.findByIdAndUpdate(req.params.listing_id, req.body, function (err, post) {
+  if (err) res.send(err);
+  res.json({message: "successfully saved"});
+});
+});
 
 // startup our app at http://localhost:3000
 app.listen(port, function () {
