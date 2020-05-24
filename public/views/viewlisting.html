@@ -1,0 +1,66 @@
+<div class="col-md-12 listing" ng-init=" init();" ng-controller="ViewListingController">
+  	<div class="row">
+        <div class="well col-sm-6 form-horizontal">
+            <!--
+            listing.address.streetname = req.body.address.streetname; // set the listing name (comes from the request)
+   listing.address.postal_code = req.body.address.postal_code;
+   listing.address.city = req.body.address.city;
+   listing.address.province = req.body.address.province;
+   listing.address.country = req.body.address.country;
+
+   listing.timeframe.start_date = req.body.timeframe.start_date;
+   listing.timeframe.end_date = req.body.timeframe.end_date;
+
+   listing.features.utilities = req.body.features.utilities;
+   listing.features.furnished = req.body.features.furnished;
+   listing.features.en_suite = req.body.features.en_suite;
+   listing.features.public_transport = req.body.features.public_transport;
+   listing.features.pets = req.body.features.pets;
+
+   listing.type = req.body.type;
+   listing.demographic = req.body.demographic;
+   listing.bed = req.body.bed;
+   listing.bath = req.body.bath;
+   listing.area = req.body.area;
+   listing.price = req.body.price;
+   listing.description = req.body.description;
+   listing.lister = req.body.lister;
+   listing.images = req.body.images;
+-->
+        	<p>Street: {{listing.address.streetname}}</p>
+            <p>City: {{listing.address.city}}</p>
+            <p>{{listing.address.postal_code}}</p>
+            <p>{{listing.address.province}}</p>
+            <p>{{listing.address.country}}</p>
+
+            <p>{{toDate(listing.timeframe.start_date)}}</p>
+            <p>{{toDate(listing.timeframe.end_date)}}</p>
+
+            <p>{{listing.features.utilities}}</p>
+            <p>{{listing.features.furnished}}</p>
+            <p>{{listing.features.en_suite}}</p>
+            <p>{{listing.features.public_transport}}</p>
+            <p>{{listing.features.pet}}</p>
+
+            <p>{{listing.type}}</p>
+            <p>{{listing.demographic}}</p>
+            <p>{{listing.bed}}</p>
+            <p>{{listing.bath}}</p>
+            <p>{{listing.area}}</p>
+            <p>{{listing.price}}</p>
+            <p>{{listing.description}}</p>
+            <p>{{listing.lister}}</p>
+
+        </div>
+
+    </div>
+    <div class="row">
+    	<div class="well col-sm-6 form-horizontal">
+        	<button class="btn btn-primary" id="edit" type="button" ng-click = "redirectToNewPage()" style="visibility: hidden;"> Edit</button>   
+    	</div>
+        <div class="well col-sm-6 form-horizontal">
+        	<button class="btn btn-primary" id="bookmark" type="button" ng-click = "toggle()" style="visibility: hidden;"> {{bookmarkToggle}}</button>   
+        </div>
+        
+    </div>
+</div>

@@ -14,30 +14,23 @@ app.controller('EditListingController',
        });
      };
 
-     $scope.toggle = function myFunction() {
-      var result = !document.getElementById("name").readOnly;
-      document.getElementById("name").readOnly = result;
-      document.getElementById("place").readOnly = result;
-      document.getElementById("country").readOnly = result;
-    }
-
-    $scope.doSave = function(){
-      $http.post('/api/listings/send',$scope.listing).
-      then(function(response) {
-       // alert(response);
-      });
-
-    }
 
     $scope.update = function(){
       $http.put('/api/listings/' + $scope.listing._id, $scope.listing).
       then(function(response) {
        // alert(response);
+      window.location.href = '/#/viewlisting/'+$routeParams.id;
+
       });
 
     }
 
-
+    $scope.toDate = function(x) {
+      var date = new Date(x);
+      var options = {year: 'numeric', month : 'long', day: 'numeric'};
+      return date.toLocaleDateString("en-US", options);
+    };
+    
    // delete a todo after checking it
    $scope.deleteListing = function() {
     $scope.loading = true;

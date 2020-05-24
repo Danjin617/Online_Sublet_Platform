@@ -1,52 +1,158 @@
-app.controller('EditListingController',
+app.controller('ViewListingController',
   ['$scope','$http','$routeParams',function($scope, $http, $routeParams) {	
    $scope.tagline = 'Welcome to Listing section!';
+   $scope.bookmarks = [];
+   $scope.bookmarkToggle = "Bookmark";
 
    $scope.init = function(){
-       alert('init');	
+     //alert('init');	
 
-       alert($routeParams.id);
-       $http.get('/api/listings/' + $routeParams.id).
-       then(function(response) {
+     //alert($routeParams.id);
+     $http.get('/api/listings/' + $routeParams.id).
+     then(function(response) {
        // alert("mwahahaha");
        alert(response.data.lister);
-         $scope.listing = response.data;
-       });
-     };
+       $scope.listing = response.data;
+       //see if it is the lister
+       if (sessionStorage.getItem("session_username") == $scope.listing.lister) {
+          //is lister
+          alert("is lister");
+          document.getElementById("bookmark").style.visibility = "hidden";
+          document.getElementById("edit").style.visibility = "visible";
+        } else{
+          document.getElementById("bookmark").style.visibility = "visible";
+          document.getElementById("edit").style.visibility = "hidden";
 
-     $scope.toggle = function myFunction() {
-      var result = !document.getElementById("name").readOnly;
-      document.getElementById("name").readOnly = result;
-      document.getElementById("place").readOnly = result;
-      document.getElementById("country").readOnly = result;
-    }
-
-    $scope.doSave = function(){
-      $http.post('/api/listings/send',$scope.listing).
-      then(function(response) {
-       // alert(response);
-      });
-
-    }
-
-    $scope.update = function(){
-      $http.put('/api/listings/' + $scope.listing._id, $scope.listing).
-      then(function(response) {
-       // alert(response);
-      });
-
-    }
+        }
+       //alert($scope.toggle());
 
 
-   // delete a todo after checking it
-   $scope.deleteListing = function() {
-    $scope.loading = true;
-    $http.delete('/api/listings/' + $scope.listing._id, $scope.listing)
-      // if successful delete, call our get function to get all the new Student
-      .then(function(response) {
-       $scope.loading = false;
-      window.location.href = '/';
+       //$scope.toggle();
+
+
      });
-    };
 
-  }]);
+     var result = -1;
+
+     $scope.req = {
+        username: sessionStorage.getItem("session_username")
+      }
+        //$scope.req.body.username = sessionStorage.getItem("session_username");
+        //$scope.req.body.listing = response.data.message;
+        $http.post('/users/bookmarks', $scope.req).
+        then(function(response) {
+          //alert(JSON.stringify(response.data));
+          $scope.bookmarked = response.data;
+          //test if route params is in bookmakrs
+          for (i = 0; i < $scope.bookmarked.length; i++) {
+            //alert($scope.bookmarked[i] + " " + $routeParams.id);
+            if ($scope.bookmarked[i] == $routeParams.id) {
+              alert("index:" + i);
+              result = i;
+              //return result;
+
+            }
+          }
+          console.log('INDEX' + result);
+          if (result != -1) {
+            $scope.bookmarkToggle = "Unbookmark";
+
+          } else {
+
+        $scope.bookmarkToggle = "Bookmark";
+          }
+
+
+
+   });
+ };
+
+   $scope.redirectToNewPage = function() {
+    alert("redirect");
+    window.location.href = "/#/editlisting/"+$routeParams.id;
+  }
+/*
+     $scope.indexOf =function(){
+      var result = -1;
+      //add listing id to user
+      $scope.req = {
+        username: sessionStorage.getItem("session_username")
+      }
+        //$scope.req.body.username = sessionStorage.getItem("session_username");
+        //$scope.req.body.listing = response.data.message;
+        $http.post('/users/bookmarks', $scope.req).
+        then(function(response) {
+          alert(JSON.stringify(response.data));
+          $scope.bookmarked = response.data;
+          //test if route params is in bookmakrs
+          for (i = 0; i < $scope.bookmarked.length; i++) {
+            alert($scope.bookmarked[i] + " " + $routeParams.id);
+            if ($scope.bookmarked[i] == $routeParams.id) {
+              alert("index:" + i);
+              result = i;
+              //return result;
+
+            }
+          }
+        });
+        return result;
+      };
+      */
+      $scope.toggle = function(){
+        //alert($scope.indexOf());
+        var result = -1;
+      //add listing id to user
+      $scope.req = {
+        username: sessionStorage.getItem("session_username")
+      }
+        //$scope.req.body.username = sessionStorage.getItem("session_username");
+        //$scope.req.body.listing = response.data.message;
+        $http.post('/users/bookmarks', $scope.req).
+        then(function(response) {
+          //alert(JSON.stringify(response.data));
+          $scope.bookmarked = response.data;
+          //test if route params is in bookmakrs
+          for (i = 0; i < $scope.bookmarked.length; i++) {
+            //alert($scope.bookmarked[i] + " " + $routeParams.id);
+            if ($scope.bookmarked[i] == $routeParams.id) {
+              alert("index:" + i);
+              result = i;
+              //return result;
+
+            }
+          }
+          console.log('INDEX' + result);
+          if (result != -1) {
+       // if ($scope.indexOf() != undefined) {
+        console.log('REMOVE')
+        $scope.req = {
+          username: sessionStorage.getItem("session_username"),
+          index: result
+        }
+        $http.post('/users/removebookmark', $scope.req).
+        then(function(response) {
+          alert("removed bookmark");
+        });
+        $scope.bookmarkToggle = "Bookmark";
+
+      } else {
+        //add listing id to user
+        console.log('ADD')
+        $scope.req = {
+          username: sessionStorage.getItem("session_username"),
+          listing: $routeParams.id
+        }
+        //$scope.req.body.username = sessionStorage.getItem("session_username");
+        //$scope.req.body.listing = response.data.message;
+        $http.post('/users/sendbookmark', $scope.req).
+        then(function(response) {
+          alert("sent bookmark");
+        });
+        $scope.bookmarkToggle = "Unbookmark";
+      }
+
+    });
+
+      };  
+
+    }]);

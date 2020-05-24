@@ -182,6 +182,28 @@ app.post('/users/sendbookmark', async (req, res) => {
  } 
  );
 
+app.post('/users/removebookmark', async (req, res) => {
+  const user = await User.find({username: req.body.username})
+  if (user.length == 0){
+    res.json({message: 'user doesnt exists'});
+  }
+  try {
+    user[0].bookmarked.splice(req.body.index, 1);
+    user[0].save(function(err) {
+      if (err)
+        res.send(err);
+        //res.json({message: 'http://localhost:3030/#/confirmation/${emailToken}'});
+        res.json(user[0]);
+      });
+  }
+  catch (e) {
+    console.log(e);
+     // res.status(500).send()
+   }
+
+ } 
+ );
+
 
 app.post('/users/login', async (req, res) => {
   //res.send('TEST1');
@@ -224,6 +246,20 @@ app.post('/users/username', async (req, res) => {
   }
 
  res.json(user[0]);
+
+});
+
+app.post('/users/bookmarks', async (req, res) => {
+  //res.send('TEST1');
+
+  const user = await User.find({username: req.body.username})
+
+  if (user.length == 0) {
+
+    return res.json({message: 'Cannot find user'});
+  }
+
+ res.json(user[0].bookmarked);
 
 });
 /*

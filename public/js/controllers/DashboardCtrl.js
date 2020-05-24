@@ -47,17 +47,18 @@ app.controller('DashboardController',
 
     $scope.initBookmarks = function(){
        //fetch all bookmarks
-       for (id in $scope.user.bookmarked){
+       for (i = 0; i < $scope.user.bookmarked.length; i++){
+          const id = $scope.user.bookmarked[i];
+         console.log('ID:' + id);
            $http.get('/api/listings/'+id).
-           then(function(reponse) {
+           then(function(response) {
+            console.log('GOT LISTINGSSSSSS');
+            alert(JSON.stringify(response.data));
                if (response.data.message == null){
-                    $scope.bookmarks.push(reponse.data);
+                    $scope.bookmarks.push(response.data);
                } else {
                    console.log("unable to fetch info for " + id);
-           $http.get('/users/'+sessionStorage.getItem("session_username")).
-       then(function(response) {
-         $scope.user = response.data;
-       });    }
+               }
            });
        }
     };
