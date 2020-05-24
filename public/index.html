@@ -36,6 +36,10 @@
          <ul class="nav navbar-nav">
             <li><a href="#/new" id="new" style="visibility: hidden;">New</a></li>
          </ul>
+
+         <ul class="nav navbar-nav">
+            <li><a href="#/dashboard" id="dashboard" style="visibility: hidden;">Dashboard</a></li>
+         </ul>
          <ul class="nav navbar-nav">
             <li>
                <a href="#/login" id="login" style="visibility: hidden;">Login</a>
@@ -62,11 +66,13 @@
          document.getElementById("login").style.visibility = "visible";
          document.getElementById("logout").style.visibility = "hidden";
          document.getElementById("new").style.visibility = "hidden";
+         document.getElementById("dashboard").style.visibility = "hidden";
       } else {
          //alert(sessionStorage.getItem("session_username"));
          document.getElementById("login").style.visibility = "hidden";
          document.getElementById("logout").style.visibility = "visible";
          document.getElementById("new").style.visibility = "visible";
+         document.getElementById("dashboard").style.visibility = "visible";
       }
    }
 
