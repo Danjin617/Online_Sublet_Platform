@@ -15,13 +15,20 @@ app.controller('NewController',
     $http.post('/api/listings/send',$scope.listing).
     then(function(response) {
       if(response.data.message != null) {
+        //return id
         alert(response.data.message);
         window.location.href = "/";
+        //add listing id to user
+        $scope.req.username = sessionStorage.getItem("session_username");
+        $scope.req.listing = response.data.message;
+        $http.post('/users/sendlisting', $scope.req).
+        then(function(response)) {
+          alert("sent listing");
+        }
+
       }
     });
-
   };
-
 
 
   }]);
