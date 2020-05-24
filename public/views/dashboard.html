@@ -1,0 +1,23 @@
+<div class="col-md-12 home" ng-init="init();" ng-controller="DashboardController">
+    <div class="row">
+       <div class="col-md-12 well">
+         <label>{{tagline}}</label>
+         <table class="table table-striped table-hover">
+         <tr>
+           <th ng-click="orderByMe('streetname')">Address</th>
+           <th ng-click="orderByMe('city')">City</th>
+           <th ng-click="orderByMe('start_date')">Start Date</th>
+           <th ng-click="orderByMe('end_date')">End Date</th>
+         <tbody>
+         <tr valign="middle" ng-repeat="obj in bookmarks | orderBy:myOrderBy">
+           <td> <a href="#/listing/{{obj._id}}"> {{obj.address.streetname}} </a> </td>
+           <td> {{obj.address.city}}</td> 
+           <td> {{toDate(obj.timeframe.start_date)}}</td>
+           <td> {{toDate(obj.timeframe.end_date)}}</td>
+         </tr>
+       </tbody>
+       </table>
+        </div>
+     </div>   
+   </div>
+   
