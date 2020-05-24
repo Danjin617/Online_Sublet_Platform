@@ -14,6 +14,8 @@ app.controller('LoginController',
             alert(response.data.message);
             return;
           } 
+          $scope.user = response.data;
+          //alert($scope.user.confirmed);
           //alert(JSON.stringify(response));
           //alert(response.data.username);
 
