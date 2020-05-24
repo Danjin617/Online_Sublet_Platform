@@ -139,12 +139,12 @@ app.post('/users/confirm/:token', async (req, res) => {
  );
 
 app.post('/users/sendlisting', async (req, res) => {
-  const user = await User.find({username: req.params.username})
+  const user = await User.find({username: req.body.username})
   if (user.length == 0){
     res.json({message: 'user doesnt exists'});
   }
   try {
-    user[0].lists.push(req.params.listing);
+    user[0].lists.push(req.body.listing);
     user[0].save(function(err) {
       if (err)
         res.send(err);
@@ -161,12 +161,12 @@ app.post('/users/sendlisting', async (req, res) => {
  );
 
 app.post('/users/sendbookmark', async (req, res) => {
-  const user = await User.find({username: req.params.username})
+  const user = await User.find({username: req.body.username})
   if (user.length == 0){
     res.json({message: 'user doesnt exists'});
   }
   try {
-    user[0].bookmarked.push(req.params.listing);
+    user[0].bookmarked.push(req.body.listing);
     user[0].save(function(err) {
       if (err)
         res.send(err);
@@ -213,7 +213,33 @@ app.delete('/users/:user_id', function (req, res) {
 });
 });
 
+app.post('/users/username', async (req, res) => {
+  //res.send('TEST1');
 
+  const user = await User.find({username: req.body.username})
+
+  if (user.length == 0) {
+
+    return res.json({message: 'Cannot find user'});
+  }
+
+ res.json(user[0]);
+
+});
+/*
+app.get('/users/:username', async (req, res) => {
+  //res.send('TEST1');
+  const user = await User.find({username: req.params.username})
+
+  if (user.length == 0) {
+    return res.json({message: 'Cannot find user'});
+  }
+  if (err)
+   res.send(err);
+ res.json(user[0]);
+
+});
+*/
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //LISTINGS
 
@@ -264,7 +290,7 @@ app.post('/api/listings/send', function (req, res) {
    listing.save(function(err) {
     if (err)
      res.send(err);
-   res.json(listing._id);
+   res.json({message: listing._id});
  });
  });
 

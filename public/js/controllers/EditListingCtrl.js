@@ -1,17 +1,15 @@
-app.controller('ListingController',
+app.controller('EditListingController',
   ['$scope','$http','$routeParams',function($scope, $http, $routeParams) {	
    $scope.tagline = 'Welcome to Listing section!';
 
    $scope.init = function(){
-       //alert('init');	
-       document.getElementById("name").readOnly = true;
-       document.getElementById("place").readOnly = true;
-       document.getElementById("country").readOnly = true;
-       //alert($routeParams.id);
+       alert('init');	
+
+       alert($routeParams.id);
        $http.get('/api/listings/' + $routeParams.id).
        then(function(response) {
        // alert("mwahahaha");
-       // alert(response.data.name);
+       alert(response.data.lister);
          $scope.listing = response.data;
        });
      };
@@ -43,7 +41,7 @@ app.controller('ListingController',
    // delete a todo after checking it
    $scope.deleteListing = function() {
     $scope.loading = true;
-    Listing.delete($scope.listing._id)
+    $http.delete('/api/listings/' + $scope.listing._id, $scope.listing)
       // if successful delete, call our get function to get all the new Student
       .then(function(response) {
        $scope.loading = false;
