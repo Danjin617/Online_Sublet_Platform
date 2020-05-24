@@ -20,9 +20,9 @@ app.controller('DashboardController',
       $http.post('/users/username', $scope.req).
        then(function(response) {
          $scope.user = response.data;
-         alert(sessionStorage.getItem("session_username"));
-         alert(JSON.stringify(response.data));
-         alert($scope.user.lists);
+         //alert(sessionStorage.getItem("session_username"));
+         //alert(JSON.stringify(response.data));
+         //alert($scope.user.lists);
          console.log("getting bookmarks");
          $scope.initBookmarks();
          console.log("getting listings");
@@ -53,10 +53,11 @@ app.controller('DashboardController',
            $http.get('/api/listings/'+id).
            then(function(response) {
             console.log('GOT LISTINGSSSSSS');
-            alert(JSON.stringify(response.data));
+            //alert(JSON.stringify(response.data));
                if (response.data.message == null){
                     $scope.bookmarks.push(response.data);
                } else {
+                  //delete bookmarks
                    console.log("unable to fetch info for " + id);
                }
            });
@@ -70,15 +71,26 @@ app.controller('DashboardController',
        console.log($scope.user.lists.length);
        for (i = 0; i < $scope.user.lists.length; i++){
           const id = $scope.user.lists[i];
-         console.log('ID:' + id);
-           $http.get('/api/listings/'+id).
-           then(function(response) {
+          console.log('ID:' + id);
+          $http.get('/api/listings/'+id).
+          then(function(response) {
             console.log('GOT LISTINGSSSSSS');
-            alert(JSON.stringify(response.data));
+            //alert(JSON.stringify(response.data));
                if (response.data.message == null){
                     $scope.listings.push(response.data);
                } else {
-                   console.log("unable to fetch info for " + id);
+                /*
+                CHECK LATER AND DELETE IDS FROM LIST
+                  console.log("unable to fetch info for " + id);
+                  $scope.req = {
+                    username: sessionStorage.getItem("session_username"),
+                    index: i
+                  }
+                  $http.post('/users/removebookmark', $scope.req).
+                  then(function(response) {
+                    alert("removed bookmark");
+                  });
+                  */
                }
            });
        }
