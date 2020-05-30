@@ -8,7 +8,8 @@
 
       <p>Price<p>
       <input type="text" class="form-control" type="number" id="price" ng-model="price">
-      </select>
+      
+      <!--
       <div class="form-check">
         <input type="checkbox" class="form-check-input" ng-init="utilities.checks = false" ng-model="utilities" id="utilities">
         <label> Utilities</label>
@@ -29,7 +30,26 @@
         <input type="checkbox" class="form-check-input" ng-model="pets" id="pets">
         <label> Pets</label>
       </div>
-        {{utilities}}
+    -->
+
+        
+
+        <label>Start Time</label>
+        <input type="date" class="form-control" id="inputStart" ng-model="start_date">
+        <label>End Time</label>
+        <input type="date" class="form-control" id="inputEnd" ng-model="end_date">
+          
+        <label>Type</label>
+        <select id="inputType" class="form-control" ng-model="type">
+          <option>apartments</option>
+          <option>houses</option>
+          <option>townhouses</option>
+          <option>dormitory</option>
+          <option>lofts</option>
+          <option>any</option>
+        </select>
+        <br>
+        <button class="btn btn-primary" ng-click="clearFilters()">Clear</button>
     </div>
 
     <div class="col-md-10 well">
@@ -41,7 +61,7 @@
           <th>Start Date</th>
           <th>End Date</th>
         <tbody>
-        <tr valign="middle" ng-repeat="obj in listings | filter:predicate() | filter: search">
+        <tr valign="middle" ng-repeat="obj in listings | filter:predicate() | filter: search | filter:startDate() | filter:endDate() | filter:typeFilter()">
           <td> <a href="#/viewlisting/{{obj._id}}"> {{obj.address.streetname}} </a> </td>
           <td> {{obj.address.city}}</td> 
           <td> {{toDate(obj.timeframe.start_date)}}</td>

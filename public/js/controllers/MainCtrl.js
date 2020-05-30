@@ -33,6 +33,41 @@ app.controller('MainController',
       }
     }
 
+    $scope.startDate = function() {
+      return function(item) {
+        if ($scope.start_date === undefined) {return true;}
+
+        return Date.parse(item.timeframe.start_date) <= Date.parse($scope.start_date);
+
+      }
+    }
+
+    $scope.endDate = function() {
+      return function(item) {
+        if ($scope.end_date === undefined) {return true;}
+
+        return Date.parse(item.timeframe.end_date) >= Date.parse($scope.end_date);
+
+      }
+    }
+
+    $scope.typeFilter = function() {
+      return function(item) {
+        if ($scope.type === undefined || $scope.type == "any") {return true;}
+
+        return item.type == $scope.type;
+
+      }
+    }
+
+    $scope.clearFilters = function() {
+      $scope.search = undefined;
+      $scope.price = undefined;
+      $scope.end_date = undefined;
+      $scope.start_date = undefined;
+      
+    }
+
 
     
   }]);
