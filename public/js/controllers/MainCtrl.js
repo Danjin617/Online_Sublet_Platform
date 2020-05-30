@@ -25,5 +25,29 @@ app.controller('MainController',
       return date.toLocaleDateString("en-US", options);
     };
 
+    $scope.predicate = function() {
+      return function(item) {
+        if ($scope.price === undefined || $scope.price == 0) {return true;}
+
+        return (item.price <= $scope.price);
+      }
+    }
+
+
     
   }]);
+
+/*
+$scope.predicate = function() {
+      return function(item) {
+        if ($scope.price === undefined || $scope.price == 0) {return true;}
+
+        return (item.price <= $scope.price) &&
+        (item.features.utilties === $scope.utilities.checked) &&
+        (item.features.furnished === $scope.furnished.checked) &&
+        (item.features.en_suite === $scope.en_suite.checked) &&
+        (item.features.pets === $scope.pets.checked)&&
+        (item.features.public_transportation === $scope.public_transportation.checked);
+      }
+    }
+    */
