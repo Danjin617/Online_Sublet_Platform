@@ -11,7 +11,7 @@ app.controller('ViewListingController',
      $http.get('/api/listings/' + $routeParams.id).
      then(function(response) {
        // alert("mwahahaha");
-       alert(response.data.lister);
+       //alert(response.data.lister);
        $scope.listing = response.data;
        //see if it is the lister
        if (sessionStorage.getItem("session_username") == $scope.listing.lister) {
