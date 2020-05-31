@@ -71,7 +71,7 @@ app.post('/users', async (req, res) => {
       },process.env.ACCESS_TOKEN_SECRET);
       new_user.token = emailToken;
       
-      const url = `http://localhost:3030/#/confirmation/${emailToken}`;
+      const url = `http://online-subletting-platform.herokuapp.com/#/confirmation/${emailToken}`;
      // console.log(url);
 
 
