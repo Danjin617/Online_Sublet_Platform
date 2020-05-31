@@ -10,7 +10,7 @@ var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 
 // set our port
-const port = 3030;
+const port = process.env.PORT || 3030;
 //app.get('/', (req, res) => res.send('Welcome to Tutorialspoint!'));
 
 // configuration =========================================== 
