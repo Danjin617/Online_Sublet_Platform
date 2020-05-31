@@ -33,7 +33,7 @@ app.use(express.static(__dirname + '/public'));
 // config files
 var db = require('./config/db');
 console.log("connecting--",db);
-mongoose.connect(db.url); //Mongoose connection created
+mongoose.connect(process.env.MONGODB_URI || db.url); //Mongoose connection created
 
 
 app.use(express.json());
