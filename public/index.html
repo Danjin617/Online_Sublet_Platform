@@ -24,7 +24,6 @@
    <script src="js/controllers/RegisterCtrl.js"></script>
    <script src="js/controllers/DashboardCtrl.js"></script>
    <script src="js/controllers/ConfirmationCtrl.js"></script>
-   <script src="js/controllers/GeoCtrl.js"></script>
    
 
 </head>
@@ -79,5 +78,45 @@
    }
 
    </script>
+
+
+<script>
+  console.log("Hi");
+
+  function toggle(type){
+   var listBtn = document.getElementById('listBtn');
+   var mapBtn = document.getElementById('mapBtn');
+    if(type === "list") {
+      show("listSearch");
+      show("listView");
+      hide("mapSearch");
+      hide("mapView");
+      listBtn.className = "btn btn-primary";
+      mapBtn.className = "btn btn-light";
+    } else{
+
+      show("mapSearch");
+      show("mapView");
+      hide("listSearch");
+      hide("listView");
+      mapBtn.className = "btn btn-primary";
+      listBtn.className = "btn btn-light";
+    }
+  }
+
+  function hide(id) {
+    var x = document.getElementById(id);
+    x.style.visibility = "hidden";
+
+  }
+
+  function show(id) {
+    var x = document.getElementById(id);
+    x.style.visibility = "visible";
+  }
+
+
+</script>
+
 </body>
 </html>

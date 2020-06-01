@@ -11,7 +11,6 @@ app.config(function ($routeProvider) {
     .when('/login', { templateUrl: 'views/login.html'})
     .when('/dashboard', { templateUrl: 'views/dashboard.html'})
     .when('/confirmation/:id', { templateUrl: 'views/confirmation.html'})
-    .when('/geocodeCall', { templateUrl: 'views/geocodeCall.html'})
     .otherwise({ redirectTo: '/' });
 });
 
