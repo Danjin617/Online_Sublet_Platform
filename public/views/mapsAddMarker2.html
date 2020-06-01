@@ -52,11 +52,14 @@
 <div id='map'></div>
 
 
-
-
 <script>
+   
+//get token from file
+var token = "pk.eyJ1Ijoib25saW5lc3VibGV0dGluZ3BsYXRmb3JtIiwiYSI6ImNrYXZqM2ZtMzFma2QzMHBiZTY5dG9ndG4ifQ.LOeLC-pSdWEmrdtHBFvxtA";
+var map;
 
-var token  = process.env.MAPBOX_APIKEY;
+var features = [];
+
 mapboxgl.accessToken = token;
 var map = new mapboxgl.Map({
   container: 'map',
@@ -64,9 +67,8 @@ var map = new mapboxgl.Map({
   center: [-96, 37.8],
   zoom: 3
 });
+getListings();
 
-        
-var features = [];
 
 
 function getListings() {
@@ -123,10 +125,6 @@ function makeMarkers(address) {
   }
 }
 
-//makeMarkers();
-
-getListings();
-//populate();
 
 // code from the next step will go here!
 
@@ -150,6 +148,8 @@ function clicked(url){
 
 
 </script>
+
+
 
 </body>
 </html>
