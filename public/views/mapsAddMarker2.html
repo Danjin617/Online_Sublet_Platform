@@ -73,7 +73,7 @@ getListings();
 
 function getListings() {
     var proxy = "https://cors-anywhere.herokuapp.com/";
-    var url = "https://online-subletting-platform.herokuapp.com/api/listings";
+    var url = "http://online-subletting-platform.herokuapp.com/api/listings";
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
