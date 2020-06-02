@@ -228,14 +228,31 @@ app.post('/users/login', async (req, res) => {
 });
 
 
-app.delete('/users/:user_id', function (req, res) {
- User.remove({
-  _id: req.params.user_id
-}, function(err, bear) {
-  if (err)
-   res.send(err);
- res.json({ message: 'Successfully deleted' });
-});
+app.delete('/users/:user_id', async function (req, res) {
+  //get user first to get its array of listings
+  const user = await User.find({_id: req.params.user_id});
+  const listingArray = user.lists;
+
+  //delete their listings
+
+  for(var i = 0; i < listingArray.length; i++) {
+    Listing.remove({
+      _id: req.params.listing_id
+    }, function(err, bear) {
+      if (err)
+       console.log(err);
+     console.log('Successfully deleted');
+    });
+  }
+
+
+  User.remove({
+    _id: req.params.user_id
+    }, function(err, bear) {
+      if (err)
+       res.send(err);
+      res.json({ message: 'Successfully deleted' });
+  });
 });
 
 app.post('/users/username', async (req, res) => {

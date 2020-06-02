@@ -63,7 +63,7 @@ var features = [];
 mapboxgl.accessToken = token;
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/light-v10',
+  style: 'mapbox://styles/mapbox/streets-v11',
   center: [-96, 37.8],
   zoom: 3
 });
@@ -92,7 +92,49 @@ function getListings() {
 
 
 function makeMarkers(address) {
-  for(var i = 0; i < address.length; i++) {
+  for(var i = 0; i < address.length; i++) { 
+    var listing = address[i];
+    var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+listing.address.streetname+".json?access_token="+token;
+    getMarker(url, listing._id);
+  }
+}
+
+function getMarker(url, listing_id) {
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.response);
+        console.log(response.features[0].place_name);
+        //response.features[0].center
+
+        var marker = {
+                          type: 'Feature',
+                          geometry: {
+                            type: 'Point',
+                            coordinates: response.features[0].center
+                          },
+                          properties: {
+                            title: response.features[0].place_name,
+                            link: 'http://online-subletting-platform.herokuapp.com/#/viewlisting/'+listing_id
+                          }
+                        };
+
+        features.push(marker); 
+        populate(marker);           
+
+
+      }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
+
+
+
+
+/*
+function makeMarkers(address) {
+  for(var i = 0; i < address.length; i++) { 
     var listing = address[i];
     var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+listing.address.streetname+".json?access_token="+token;
     var xhttp = new XMLHttpRequest();
@@ -125,7 +167,7 @@ function makeMarkers(address) {
 
   }
 }
-
+*/
 
 // code from the next step will go here!
 
@@ -147,6 +189,43 @@ function clicked(url){
   window.top.location.href = url; 
 }
 
+
+
+window.addEventListener('message', function(event) {
+    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+    //alert("here");
+    /*
+    if (origin !== "http://online-subletting-platform.herokuapp.com/#/")
+        return;
+        */
+    if (typeof event.data == 'object' && event.data.call=='sendValue') {
+      var address = event.data.value;
+      console.log(address);
+      if(address === undefined) return;
+      var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+address+".json?access_token="+token;
+      center(url);
+    }
+}, false);
+
+
+function center(url) {
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.response);
+        console.log(response.features[0].center);
+        var center = response.features[0].center;
+        //do something
+        map.fitBounds([
+          [center[0] - 0.1, center[1] - 0.1],
+          [center[0] + 0.1, center[1] + 0.1]
+          ]);
+
+      }
+    };
+    xhttp.open("GET", url, true);
+    xhttp.send();
+}
 
 </script>
 
