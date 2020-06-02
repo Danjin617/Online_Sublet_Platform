@@ -94,6 +94,7 @@ function getListings() {
 function makeMarkers(address) {
   for(var i = 0; i < address.length; i++) {
     var listing = address[i];
+
     var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+listing.address.streetname+".json?access_token="+token;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -112,6 +113,7 @@ function makeMarkers(address) {
                             title: response.features[0].place_name,
                             link: 'https://online-subletting-platform.herokuapp.com/#/viewlisting/'+listing._id
                           }
+
                         };
 
         features.push(marker); 

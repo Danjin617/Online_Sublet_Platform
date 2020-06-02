@@ -29,3 +29,10 @@ input[type=submit] {
   padding: 20px;
   margin-top: 10px;
 }
+body {
+  /*background-image: url('backgroundnight.jpg');*/
+  background-image: url('DAYTIMEBACKGROUND.jpg');
+
+  background-repeat: no-repeat;
+  background-size: cover;
+}
