@@ -90,7 +90,7 @@ app.post('/users', async (req, res) => {
   from: process.env.EMAIL, // sender address
   to: new_user.email, // list of receivers
   subject: 'Confirmation Email', // Subject line
-  html: `Please click this email to confirm your email: <a href="${url}">${url}</a>`// plain text body
+  html: `<p>Hi ${new_user.username},</p> <p>Please click this email to confirm your email: <a href="${url}">${url}</a></p>`// plain text body
 };
 console.log('BEFORE');
 await  transporter.sendMail(mailOptions, function (err, info) {
