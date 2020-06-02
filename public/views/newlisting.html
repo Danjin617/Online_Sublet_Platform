@@ -3,54 +3,39 @@
     <div class="well col-sm-6 form-horizontal">
 
 
-      <form>
+      <form name="userForm">
         <div class="form-row">
           <div class="form-group col-md-10">
             <label>Address</label>
-            <input type="text" class="form-control" id="inputAddress" ng-model="listing.address.streetname" placeholder="1234 Main St">
+            <input type="text" class="form-control" id="inputAddress" ng-model="listing.address.streetname" placeholder="1234 Main St" required>
           </div>
           <div class="form-group col-md-2">
             <label>Zip</label>
-            <input type="text" class="form-control" id="inputZip" ng-model="listing.address.zip">
+            <input type="text" class="form-control" id="inputZip" ng-model="listing.address.zip" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-5">
             <label>City</label>
-            <input type="text" class="form-control" id="inputCity" ng-model="listing.address.city">
+            <input type="text" class="form-control" id="inputCity" ng-model="listing.address.city" required>
           </div>
           <div class="form-group col-md-4">
             <label>Province</label>
-            <select id="inputProvince" class="form-control" ng-model="listing.address.province">
-              <option selected>Choose...</option>
-              <option>Alberta</option>
-              <option>British Columbia</option>
-              <option>Ontario</option>
-              <option>Prince Edwards Island</option>
-              <option>Manitoba</option>
-              <option>Newfoundland Labrador</option>
-              <option>New Brunswick</option>
-              <option>Northwest Territories</option>
-              <option>Nova Scotia</option>
-              <option>Nunavut</option>
-              <option>Quebec</option>
-              <option>Saskatchewan</option>
-              <option>Yukon</option>
-            </select>
+            <input type="text" class="form-control" id="inputProvince" ng-model="listing.address.province" required>
           </div>
           <div class="form-group col-md-3">
             <label>Country</label>
-            <input type="text" class="form-control" id="inputCountry" ng-model="listing.address.country">
+            <input type="text" class="form-control" id="inputCountry" ng-model="listing.address.country" required>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
             <label>Start Time</label>
-            <input type="date" class="form-control" id="inputStart" ng-model="listing.timeframe.start_date">
+            <input type="date" class="form-control" id="inputStart" ng-model="listing.timeframe.start_date" required>
           </div>
           <div class="form-group col-md-6">
             <label>End Time</label>
-            <input type="date" class="form-control" id="inputEnd" ng-model="listing.timeframe.end_date">
+            <input type="date" class="form-control" id="inputEnd" ng-model="listing.timeframe.end_date" required>
           </div>
         </div>
         <div class="form-row">
@@ -61,7 +46,7 @@
         </div>
         <div class="form-row">
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" ng-model="listing.features.furnished" id="utilities">
+            <input type="checkbox" class="form-check-input" ng-model="listing.features.furnished" id="furnished">
             <label> Furnished</label>
           </div>
         </div>
@@ -80,6 +65,13 @@
         <div class="form-row">
           <div class="form-check">
             <input type="checkbox" class="form-check-input" ng-model="listing.features.pets" id="pets">
+            <label> Pets</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" ng-model="none" id="none">
             <label> Pets</label>
           </div>
         </div>
@@ -129,7 +121,7 @@
         </div>
       </form>
       <br>
-      <button type="submit" class="btn btn-primary" ng-click = "doSave()">Save</button>
+      <button type="submit" class="btn btn-primary" ng-click = "doSave()" ng-disabled="!userForm.$valid">Save</button>
     </div>
 
   </div>
