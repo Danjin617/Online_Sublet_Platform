@@ -122,7 +122,7 @@ catch (e) {
 app.post('/users/confirm/:token', async (req, res) => {
   const user = await User.find({token: req.params.token})
   if (user.length == 0){
-    res.json({message: 'user doesnt exists'});
+    res.json({message: 'user does not exist'});
   }
   try {
     user[0].confirmed = true;
@@ -144,7 +144,7 @@ app.post('/users/confirm/:token', async (req, res) => {
 app.post('/users/sendlisting', async (req, res) => {
   const user = await User.find({username: req.body.username})
   if (user.length == 0){
-    res.json({message: 'user doesnt exists'});
+    res.json({message: 'user does not exist'});
   }
   try {
     user[0].lists.push(req.body.listing);

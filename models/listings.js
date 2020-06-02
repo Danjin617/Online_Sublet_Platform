@@ -12,7 +12,7 @@ module.exports = mongoose.model('Listing', {
 	},
 	timeframe: {
 		start_date : {type : Date, default: ''},
-		end_date : {type : Date, default: ''},
+		end_date : {type : Date, default: ''}
 	},
 	features: {
 		utilities: {type : Boolean, deafult: false},
@@ -20,6 +20,7 @@ module.exports = mongoose.model('Listing', {
 		en_suite: {type : Boolean, deafult: false},
 		public_transport: {type : Boolean, deafult: false},
 		pets: {type : Boolean, deafult: false},
+		none: {type : Boolean, deafult: false}
 	},
    type : {type : String, default: ''}, // aprtments, houses, townhouses, dormitory, lofts,
    demographic: {type : String, deafult: ''}, //male, female, coed
@@ -29,5 +30,5 @@ module.exports = mongoose.model('Listing', {
    price: {type : Number, default: 0},
    description : {type : String, default: ''},
    lister : {type : String, default: ''},
-   images: {type: [String], default: ['https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?fit=scale']},
+   images: {type: [String], default: ['https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?fit=scale']}
 });

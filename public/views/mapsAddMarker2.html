@@ -30,7 +30,7 @@
         height: 100%;
       }
       .marker {
-        background-image: url('MAPPIN.png');
+        background-image: url('../img/MAPPIN.png');
         background-size: cover;
         width: 40px;
         height: 40px;
@@ -94,7 +94,7 @@ function getListings() {
 function makeMarkers(address) {
   for(var i = 0; i < address.length; i++) { 
     var listing = address[i];
-    var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+listing.address.streetname+".json?access_token="+token;
+    var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+listing.address.streetname+"%20"+listing.address.province+"%20"+listing.address.country+".json?access_token="+token;
     getMarker(url, listing._id);
   }
 }
@@ -136,7 +136,8 @@ function getMarker(url, listing_id) {
 function makeMarkers(address) {
   for(var i = 0; i < address.length; i++) { 
     var listing = address[i];
-    var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+listing.address.streetname+".json?access_token="+token;
+
+    var url = "https://api.mapbox.com/geocoding/v5/mapbox.places/"+listing.address.streetname+".json?access_token="+token;
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -152,8 +153,9 @@ function makeMarkers(address) {
                           },
                           properties: {
                             title: response.features[0].place_name,
-                            link: 'http://online-subletting-platform.herokuapp.com/#/viewlisting/'+listing._id
+                            link: 'https://online-subletting-platform.herokuapp.com/#/viewlisting/'+listing._id
                           }
+
                         };
 
         features.push(marker); 
