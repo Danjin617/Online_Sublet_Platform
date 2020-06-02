@@ -33,9 +33,9 @@
       <div class="wrapper">
         <!--MAP SEARCH -->
         <div id="mapSearch" style="visibility: hidden;">
-          <input type="text" class="form-control" id="location" placeholder="Address" >
+          <input type="text" class="form-control" id="location" placeholder="Address" ng-model="address">
           <br>
-          <button class="btn btn-primary" onclick="findLocation()">Find</button>
+          <button class="btn btn-primary" ng-click="findLocation()">Find</button>
         </div>
         
         <!--LIST SEARCH -->

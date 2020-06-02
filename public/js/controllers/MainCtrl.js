@@ -11,6 +11,8 @@ app.controller('MainController',
        $http.get('/api/listings').
        then(function(response) {
          $scope.listings = response.data;
+
+
        });
      };
      $scope.orderByMe = function(x) {
@@ -66,6 +68,11 @@ app.controller('MainController',
       
     }
 
+    $scope.findLocation = function(){
+      var frame = document.getElementById("map");
+      frame.contentWindow.postMessage({call:'sendValue', value: $scope.address}, '*');
+
+    }
 
     
   }]);
