@@ -13,6 +13,7 @@ app.controller('ViewListingController',
        // alert("mwahahaha");
        //alert(response.data.lister);
        $scope.listing = response.data;
+       $scope.sendLocation();
        //see if it is the lister
        if (sessionStorage.getItem("session_username") == $scope.listing.lister) {
           //is lister
@@ -70,6 +71,16 @@ app.controller('ViewListingController',
    $scope.redirectToNewPage = function() {
     alert("redirect");
     window.location.href = "/#/editlisting/"+$routeParams.id;
+  };
+
+
+  $scope.sendLocation = function(){
+      var address = $scope.listing.address.streetname + " " + $scope.listing.address.province + " " + $scope.listing.address.country;
+      console.log(address);
+      var frame = document.getElementById("viewAddress");
+      console.log(address);
+      frame.contentWindow.postMessage({call:'sendValue', value: address}, '*');
+      console.log("sent message");
   }
 /*
      $scope.indexOf =function(){

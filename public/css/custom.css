@@ -37,3 +37,7 @@ body {
   background-size: cover;
   background-attachment: fixed;
 }
+
+.minwidth-10 {
+  min-width: 10vh;
+}
