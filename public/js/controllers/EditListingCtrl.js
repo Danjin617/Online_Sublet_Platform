@@ -3,13 +3,13 @@ app.controller('EditListingController',
    $scope.tagline = 'Welcome to Listing section!';
 
    $scope.init = function(){
-       alert('init');	
+       //alert('init');	
 
        alert($routeParams.id);
        $http.get('/api/listings/' + $routeParams.id).
        then(function(response) {
        // alert("mwahahaha");
-       alert(response.data.lister);
+       //alert(response.data.lister);
          $scope.listing = response.data;
        });
      };

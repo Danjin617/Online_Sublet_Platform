@@ -30,24 +30,25 @@
 
 
 <body ng-app="sampleApp" ng-controller="MainController" onload="init()" >
-   <div class="container">
+
+   <div class="container col-md-11 mt-3">
       <!-- HEADER -->
       <nav class="navbar navbar-inverse">
          <div class="navbar-header">
           <!-- see if i can make it the same size as the bootstrap columns-->
-            <a class="navbar-brand" href="/"><img class="logo" src="img/logo.png" style="width:17.5vh; margin-left: -4px;"></img></a>
+            <a class="navbar-brand" href="/"><img class="logo" src="img/logo.png" style="width:21vh; margin-left: 0px;"></img></a>
          </div>
          <ul class="nav navbar-nav">
-            <li><a href="#/new" class = "btn btn-light minwidth-10" id="new" style="visibility: hidden;">New</a></li>
+            <li><a href="#/new" class = "btn minwidth-10" id="new" style="visibility: hidden;">NEW</a></li>
          </ul>
 
          <ul class="nav navbar-nav">
-            <li><a href="#/dashboard" class = "btn btn-light minwidth-10" id="dashboard" style="visibility: hidden;">Dashboard</a></li>
+            <li><a href="#/dashboard" class = "btn minwidth-10" id="dashboard" style="visibility: hidden;">DASHBOARD</a></li>
          </ul>
          <ul class="nav navbar-nav">
             <li>
-               <a href="#/login" class = " btn btn-light minwidth-10" id="login" style="visibility: hidden;">Login</a>
-               <a href="#/logout" class = " btn btn-light minwidth-10" onclick="logoutPressed()" id="logout" style="visibility: hidden;" >Logout</a>
+               <a href="#/login" class = " btn minwidth-10" id="login" style="visibility: hidden;">LOGIN</a>
+               <a href="#/logout" class = " btn minwidth-10" onclick="logoutPressed()" id="logout" style="visibility: hidden;" >LOGOUT</a>
             </li>
          </ul>
       </nav>
@@ -94,16 +95,16 @@
       show("listView");
       hide("mapSearch");
       hide("mapView");
-      listBtn.className = "btn btn-primary";
-      mapBtn.className = "btn btn-light";
+      listBtn.className = "btn";
+      mapBtn.className = "btn";
     } else{
 
       show("mapSearch");
       show("mapView");
       hide("listSearch");
       hide("listView");
-      mapBtn.className = "btn btn-primary";
-      listBtn.className = "btn btn-light";
+      mapBtn.className = "btn";
+      listBtn.className = "btn";
     }
   }
 
@@ -124,6 +125,25 @@
 </script>
 
 
+<script>
+var currentTime = new Date().getHours();
+//alert(currentTime);
+if (6 <= currentTime && currentTime < 19) {
+    if (document.body) {
+      //alert("day");
+      document.body.background = '../img/daytimebackground!.jpg';
+        //document.body.backgroundImage = url('../img/daytimebackground!.jpg');
+    }
+}
+else {
+  //alert("night");
+    if (document.body) {
+      document.body.background = '../img/backgroundnight!.jpg';
+        //document.body.backgroundImage = url('../img/backgroundnight!.jpg');
+    }
+}
+
+</script>
 
 
 </body>

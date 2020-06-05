@@ -158,12 +158,7 @@ function populate(marker) {
 
 
 window.addEventListener('message', function(event) {
-    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-    //alert("here");
-    /*
-    if (origin !== "http://online-subletting-platform.herokuapp.com/#/")
-        return;
-        */
+    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent ]
     console.log("received");
     if (typeof event.data == 'object' && event.data.call=='sendValue') {
       var address = event.data.value;

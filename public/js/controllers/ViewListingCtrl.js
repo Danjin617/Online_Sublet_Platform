@@ -17,7 +17,7 @@ app.controller('ViewListingController',
        //see if it is the lister
        if (sessionStorage.getItem("session_username") == $scope.listing.lister) {
           //is lister
-          alert("is lister");
+          //alert("is lister");
           document.getElementById("bookmark").style.visibility = "hidden";
           document.getElementById("edit").style.visibility = "visible";
         } else{
@@ -48,7 +48,7 @@ app.controller('ViewListingController',
           for (i = 0; i < $scope.bookmarked.length; i++) {
             //alert($scope.bookmarked[i] + " " + $routeParams.id);
             if ($scope.bookmarked[i] == $routeParams.id) {
-              alert("index:" + i);
+              //alert("index:" + i);
               result = i;
               //return result;
 

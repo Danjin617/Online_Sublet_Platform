@@ -1,3 +1,14 @@
+@font-face {
+  font-family: 'Kollektif';
+  font-style: normal;
+  font-weight: 100;
+  src: url(https://static.canva.com/static/webfonts/Kollektif.woff) format('woff');
+}
+
+:root {
+  --main-bg-color: #81b2d5;
+}
+
 input:invalid {
     border: 1px solid red;
 }
@@ -13,9 +24,9 @@ input[type=submit] {
 
 /* Style the container for inputs */
 .login {
-  background-color: #f1f1f1;
+  background-color: rgba(241, 241, 241,0.85);
   padding: 20px;
-
+  color: black;
   margin-left: auto;
   margin-right: auto;
 }
@@ -30,12 +41,32 @@ input[type=submit] {
   margin-top: 10px;
 }
 body {
-  background-image: url('../img/backgroundnight.jpg');
-  background-image: url('../img/DAYTIMEBACKGROUND.jpg');
-
+  /*background-image: url('../img/backgroundnight!.jpg');*/
+  /*background-image: url('../img/daytimebackground!.jpg');*/
   background-repeat: no-repeat;
   background-size: cover;
-  background-attachment: scroll;
+  background-attachment: fixed;
+}
+
+
+body {
+  font-family: kollektif;
+  font-weight: 300;
+  color: white;
+}
+
+nav {
+  font-size: xx-small;
+}
+.btn {
+  border-color: white;
+  color: white;
+  border-width: 2px;
+}
+
+.btn:hover {
+  background: #2196F3;
+  color: white;
 }
 
 .minwidth-10 {

@@ -32,13 +32,13 @@
 
 
 </style>
-<div class="col-md-12 home" ng-init="init();toggle('list');" ng-controller="MainController">
+<div class="col-md-12" ng-init="init();toggle('list');" ng-controller="MainController">
  <div class="row">
     
     <div class="col-md-2 well">
       <div>
-        <button id="listBtn" type="button" class="btn btn-primary" onclick="toggle('list')">List</button>
-        <button id="mapBtn" type="button" class="btn btn-light" onclick="toggle('map')">Map</button>
+        <button id="listBtn" type="button" class="btn" onclick="toggle('list')">List</button>
+        <button id="mapBtn" type="button" class="btn" onclick="toggle('map')">Map</button>
       </div>
 
       <div class="wrapper text-white">
@@ -47,7 +47,7 @@
         <div id="mapSearch" style="visibility: hidden;">
           <input type="text" class="form-control" id="location" placeholder="Address" ng-model="address">
           <br>
-          <button class="btn btn-primary" ng-click="findLocation()">Find</button>
+          <button class="btn" ng-click="findLocation()">Find</button>
         </div>
         
         <!--LIST SEARCH -->
@@ -57,9 +57,9 @@
 
           <p>Price<p>
           <input type="text" class="form-control" type="number" id="price" ng-model="price">
-          <label>Start Time</label>
+          <label>Start Date</label>
           <input type="date" class="form-control" id="inputStart" ng-model="start_date">
-          <label>End Time</label>
+          <label>End Date</label>
           <input type="date" class="form-control" id="inputEnd" ng-model="end_date">
             
           <label>Type</label>
@@ -72,13 +72,14 @@
             <option>any</option>
           </select>
           <br>
-          <button class="btn btn-primary" ng-click="clearFilters()">Clear</button>
+          <button class="btn" ng-click="clearFilters()">Clear</button>
         </div>
       </div>
     
     </div>
-
-    <div class="col-md-10 well">
+<div class="col-md-1 well">
+</div>
+    <div class="col-md-9 well">
 
 
       <div class="wrapper" >
