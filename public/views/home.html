@@ -23,7 +23,7 @@
 .my-custom-scrollbar {
   position: relative;
   /*height of the scroll bar*/
-  height: 55vh;
+  height: 60vh;
   overflow: auto;
 }
 .table-wrapper-scroll-y {
@@ -93,17 +93,20 @@
 
           <table class="table table-bordered table-striped mb-0">
           -->
-            <tr>
-              <th>Address</th>
-              <th>City</th>
-              <th>Start Date</th>
-              <th>End Date</th>
+               <tr>
+            <th ng-click="orderByMe('address.streetname')">Address</th>
+            <th ng-click="orderByMe('address.city')">City</th>
+            <th ng-click="orderByMe('timeframe.start_date')">Start Date </th>
+            <th ng-click="orderByMe('timeframe.end_date')">End Date </th>
+            <th ng-click="orderByMe('price')">Price </th>
+          </tr>
             <tbody>
-            <tr valign="middle" ng-repeat="obj in listings | filter:predicate() | filter: search | filter:startDate() | filter:endDate() | filter:typeFilter()">
+            <tr valign="middle" ng-repeat="obj in listings | orderBy:myOrderBy | filter:predicate() | filter: search | filter:startDate() | filter:endDate() | filter:typeFilter()">
               <td> <a href="#/viewlisting/{{obj._id}}"> {{obj.address.streetname}} </a> </td>
               <td> {{obj.address.city}}</td> 
               <td> {{toDate(obj.timeframe.start_date)}}</td>
               <td> {{toDate(obj.timeframe.end_date)}}</td>
+              <td> {{obj.price}}</td>
             </tr>
           </tbody>
           </table>

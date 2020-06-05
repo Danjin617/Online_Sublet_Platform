@@ -218,8 +218,8 @@ function center(url) {
         var center = response.features[0].center;
         //do something
         map.fitBounds([
-          [center[0] - 0.1, center[1] - 0.1],
-          [center[0] + 0.1, center[1] + 0.1]
+          [center[0] - 0.02, center[1] - 0.02],
+          [center[0] + 0.02, center[1] + 0.02]
           ]);
 
       }
