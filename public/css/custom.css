@@ -24,7 +24,7 @@ input[type=submit] {
 
 /* Style the container for inputs */
 .login {
-  background-color: rgba(241, 241, 241,0.85);
+  background-color: rgba(241, 241, 241,0.8);
   padding: 20px;
   color: black;
   margin-left: auto;
