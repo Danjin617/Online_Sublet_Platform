@@ -13,21 +13,25 @@ app.controller('ViewListingController',
        // alert("mwahahaha");
        //alert(response.data.lister);
        $scope.listing = response.data;
-       $scope.sendLocation();
+       //$scope.sendLocation();
        //see if it is the lister
        if (sessionStorage.getItem("session_username") == $scope.listing.lister) {
           //is lister
           //alert("is lister");
+          //$scope.sendLocation();
           document.getElementById("bookmark").style.visibility = "hidden";
           document.getElementById("edit").style.visibility = "visible";
         } else if (sessionStorage.getItem("session_username")){
+          //$scope.sendLocation();
+
           document.getElementById("bookmark").style.visibility = "visible";
           document.getElementById("edit").style.visibility = "hidden";
 
         }
        //alert($scope.toggle());
+        var myVar = setTimeout($scope.sendLocation, 1000);
 
-
+       //document.getElementById("loadlocation").click();
        //$scope.toggle();
 
 
