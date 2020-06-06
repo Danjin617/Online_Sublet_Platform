@@ -1,4 +1,4 @@
-<div class="col-md-12 listing" ng-init=" init();" ng-controller="ViewListingController">
+<div class="col-md-12 listing" ng-init=" init(); window.setTimeout(sendLocation, 5000);" ng-controller="ViewListingController">
   	<div class="row">
         <div class="well col-sm-6 form-horizontal">
         	<p>Street: {{listing.address.streetname}}</p>
@@ -31,6 +31,7 @@
           <div class="embed-responsive embed-responsive-4by3" id="singleMapView">
             <iframe class="embed-responsive-item" src="views/viewAddressMap.html" title="Maps" id="viewAddress"></iframe>
           </div>
+
           <br>
           <div class="well col-sm-6 form-horizontal">
           <button class="btn btn-primary" id="edit" type="button" ng-click = "redirectToNewPage()" style="visibility: hidden;"> Edit</button>   
