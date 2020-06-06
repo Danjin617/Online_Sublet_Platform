@@ -29,7 +29,7 @@ app.controller('ViewListingController',
 
         }
        //alert($scope.toggle());
-        var myVar = setTimeout($scope.sendLocation, 1000);
+        var myVar = setTimeout($scope.sendLocation, 500);
 
        //document.getElementById("loadlocation").click();
        //$scope.toggle();
@@ -89,9 +89,11 @@ app.controller('ViewListingController',
   */
 
   $scope.sendLocation = function(){
+      var address = $scope.listing.address.streetname + " " + $scope.listing.address.province + " " + $scope.listing.address.country;
+
       var frame = document.getElementById("viewAddress");
       console.log(frame);
-      frame.contentWindow.postMessage({call:'sendValue', value: $scope.listing.address.streetname}, '*');
+      frame.contentWindow.postMessage({call:'sendValue', value: address}, '*');
       console.log("sent message from view listing");
     }
 /*
