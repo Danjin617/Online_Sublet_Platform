@@ -73,7 +73,7 @@ app.controller('ViewListingController',
  };
 
    $scope.redirectToNewPage = function() {
-    alert("redirect");
+   // alert("redirect");
     window.location.href = "/#/editlisting/"+$routeParams.id;
   };
 

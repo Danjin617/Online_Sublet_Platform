@@ -1,11 +1,11 @@
 app.controller('EditListingController',
   ['$scope','$http','$routeParams',function($scope, $http, $routeParams) {	
-   $scope.tagline = 'Welcome to Listing section!';
+  // $scope.tagline = 'Welcome to Listing section!';
 
    $scope.init = function(){
        //alert('init');	
 
-       alert($routeParams.id);
+       //alert($routeParams.id);
        $http.get('/api/listings/' + $routeParams.id).
        then(function(response) {
        // alert("mwahahaha");

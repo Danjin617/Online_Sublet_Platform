@@ -1,12 +1,12 @@
 
 <div class="col-md-12 home" ng-init="init();" ng-controller="MainController">
  <div class="row">
-    
-    <div class="col-md-2 well">
+  
+  <div class="col-md-2 well">
 
-      <input type="text" class="form-control" id="location" placeholder="Address">
-      <br>
-      <button class="btn btn-primary" onclick="findLocation()">Find</button>
+    <input type="text" class="form-control" id="location" placeholder="Address">
+    <br>
+    <button class="btn btn-primary" onclick="findLocation()">Find</button>
 
       <!--
       <p>Address<p>
@@ -31,14 +31,14 @@
       <br>
       <button class="btn btn-primary" ng-click="clearFilters()">Clear</button>
     -->
+  </div>
+
+  <div class="col-md-10 well">
+
+    <div class="embed-responsive embed-responsive-4by3">
+      <iframe class="embed-responsive-item" src="views/mapsAddMarker2.html" title="Maps" id="map"></iframe>
     </div>
-
-    <div class="col-md-10 well">
-
-      <div class="embed-responsive embed-responsive-4by3">
-        <iframe class="embed-responsive-item" src="views/mapsAddMarker2.html" title="Maps" id="map"></iframe>
-      </div>
-      
+    
       <!--
       <table class="table table-striped table-hover">
         <tr>
@@ -56,7 +56,7 @@
       </tbody>
       </table>
     -->
-     </div>
-  </div>   
+  </div>
+</div>   
 </div>
 

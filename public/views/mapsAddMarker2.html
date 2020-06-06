@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset='utf-8' />
-    <title></title>
-    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css' rel='stylesheet' />
-    <style>
-      body {
-        margin: 50;
-        padding: 50;
-      }
+  <meta charset='utf-8' />
+  <title></title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.10.1/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    body {
+      margin: 50;
+      padding: 50;
+    }
 
 /*
       #map {
@@ -20,40 +20,40 @@
         bottom: 1000;
         width: 70%;
         height: 70%;
-      }*/
+        }*/
 
-      #map {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
-      }
-      .marker {
-        background-image: url('../img/MAPPIN.png');
-        background-size: cover;
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        cursor: pointer;
-      }
+        #map {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          width: 100%;
+          height: 100%;
+        }
+        .marker {
+          background-image: url('../img/MAPPIN.png');
+          background-size: cover;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          cursor: pointer;
+        }
 
-      .mapboxgl-popup {
-        max-width: 200px;
-      }
+        .mapboxgl-popup {
+          max-width: 200px;
+        }
 
-      .mapboxgl-popup-content {
-        text-align: center;
-        font-family: 'Open Sans', sans-serif;
-      }
-    </style>
-</head>
-<body>
-<div id='map'></div>
+        .mapboxgl-popup-content {
+          text-align: center;
+          font-family: 'Open Sans', sans-serif;
+        }
+      </style>
+    </head>
+    <body>
+      <div id='map'></div>
 
 
-<script>
-   
+      <script>
+       
 //get token from file
 var token = "pk.eyJ1Ijoib25saW5lc3VibGV0dGluZ3BsYXRmb3JtIiwiYSI6ImNrYXZqM2ZtMzFma2QzMHBiZTY5dG9ndG4ifQ.LOeLC-pSdWEmrdtHBFvxtA";
 var map;
@@ -72,7 +72,7 @@ getListings();
 
 
 function getListings() {
-    var proxy = "https://cors-anywhere.herokuapp.com/";
+  var proxy = "https://cors-anywhere.herokuapp.com/";
     //var url = "http://online-subletting-platform.herokuapp.com/api/listings";
     var url = "/api/listings";
     var xhttp = new XMLHttpRequest();
@@ -88,18 +88,18 @@ function getListings() {
     xhttp.open("GET", url, true);
     xhttp.send();
 
-}
-
-
-function makeMarkers(address) {
-  for(var i = 0; i < address.length; i++) { 
-    var listing = address[i];
-    var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+listing.address.streetname+"%20"+listing.address.province+"%20"+listing.address.country+".json?access_token="+token;
-    getMarker(url, listing._id);
   }
-}
 
-function getMarker(url, listing_id) {
+
+  function makeMarkers(address) {
+    for(var i = 0; i < address.length; i++) { 
+      var listing = address[i];
+      var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+listing.address.streetname+"%20"+listing.address.province+"%20"+listing.address.country+".json?access_token="+token;
+      getMarker(url, listing._id);
+    }
+  }
+
+  function getMarker(url, listing_id) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -108,16 +108,16 @@ function getMarker(url, listing_id) {
         //response.features[0].center
 
         var marker = {
-                          type: 'Feature',
-                          geometry: {
-                            type: 'Point',
-                            coordinates: response.features[0].center
-                          },
-                          properties: {
-                            title: response.features[0].place_name,
-                            link: 'http://online-subletting-platform.herokuapp.com/#/viewlisting/'+listing_id
-                          }
-                        };
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: response.features[0].center
+          },
+          properties: {
+            title: response.features[0].place_name,
+            link: 'http://online-subletting-platform.herokuapp.com/#/viewlisting/'+listing_id
+          }
+        };
 
         features.push(marker); 
         populate(marker);           
@@ -127,7 +127,7 @@ function getMarker(url, listing_id) {
     };
     xhttp.open("GET", url, true);
     xhttp.send();
-}
+  }
 
 
 
@@ -175,18 +175,18 @@ function makeMarkers(address) {
 
 function populate(marker) {
 
-    var el = document.createElement('div');
-    el.className = 'marker';
+  var el = document.createElement('div');
+  el.className = 'marker';
 
     // make a marker for each feature and add to the map
     new mapboxgl.Marker(el)
-      .setLngLat(marker.geometry.coordinates)
-      .setPopup(new mapboxgl.Popup({ offset: 25 })
+    .setLngLat(marker.geometry.coordinates)
+    .setPopup(new mapboxgl.Popup({ offset: 25 })
       .setHTML("<h3>" + marker.properties.title + "</h3><button onclick=\"clicked('"+ marker.properties.link + "')\">View Details</button>"))
-      .addTo(map);
-}
+    .addTo(map);
+  }
 
-function clicked(url){
+  function clicked(url){
   //alert("hi");
   window.top.location.href = url; 
 }
@@ -199,25 +199,25 @@ window.addEventListener('message', function(event) {
     /*
     if (origin !== "http://online-subletting-platform.herokuapp.com/#/")
         return;
-        */
+      */
 
-    console.log("received message in mapsAddMarker");
-    if (typeof event.data == 'object' && event.data.call=='sendValue') {
-      var address = event.data.value;
-      console.log(address);
-      if(address === undefined) return;
-      var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+address+".json?access_token="+token;
-      center(url);
-    }
-}, false);
+      console.log("received message in mapsAddMarker");
+      if (typeof event.data == 'object' && event.data.call=='sendValue') {
+        var address = event.data.value;
+        console.log(address);
+        if(address === undefined) return;
+        var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+address+".json?access_token="+token;
+        center(url);
+      }
+    }, false);
 
 function center(url) {
   var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        var response = JSON.parse(this.response);
-        console.log(response.features[0].center);
-        var center = response.features[0].center;
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var response = JSON.parse(this.response);
+      console.log(response.features[0].center);
+      var center = response.features[0].center;
         //do something
         map.fitBounds([
           [center[0] - 0.02, center[1] - 0.02],
@@ -228,7 +228,7 @@ function center(url) {
     };
     xhttp.open("GET", url, true);
     xhttp.send();
-}
+  }
 
 </script>
 

@@ -1,38 +1,38 @@
 
 <style>
 
-.my-custom-scrollbar {
-  position: relative;
-  /*height of the scroll bar*/
-  height: 30vh;
-  overflow: auto;
-}
-.table-wrapper-scroll-y {
-  display: block;
-  opacity:0.8;
-}
+  .my-custom-scrollbar {
+    position: relative;
+    /*height of the scroll bar*/
+    height: 30vh;
+    overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+    display: block;
+    opacity:0.8;
+  }
 
 </style>
 
 <div class="col-md-12 home" ng-init="init();" ng-controller="DashboardController">
   <br>
-    <div class="row">
-      <h4>Bookmarks</h4>
-       <div class="col-md-12 table-wrapper-scroll-y my-custom-scrollbar bg-light" >
-          <table class="table table-hover mb-0">
+  <div class="row">
+    <h4>Bookmarks</h4>
+    <div class="col-md-12 table-wrapper-scroll-y my-custom-scrollbar bg-light" >
+      <table class="table table-hover mb-0">
         <!--
         <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
           <table class="table table-bordered table-striped mb-0">
           -->
-               <tr>
+          <tr>
             <th ng-click="orderByMe('address.streetname')">Address</th>
             <th ng-click="orderByMe('address.city')">City</th>
             <th ng-click="orderByMe('timeframe.start_date')">Start Date </th>
             <th ng-click="orderByMe('timeframe.end_date')">End Date </th>
             <th ng-click="orderByMe('price')">Price </th>
           </tr>
-            <tbody>
+          <tbody>
             <tr valign="middle" ng-repeat="obj in bookmarks | orderBy:myOrderBy | filter:predicate() | filter: search | filter:startDate() | filter:endDate() | filter:typeFilter()">
               <td> <a href="#/viewlisting/{{obj._id}}"> {{obj.address.streetname}} </a> </td>
               <td> {{obj.address.city}}</td> 
@@ -41,28 +41,28 @@
               <td> {{obj.price}}</td>
             </tr>
           </tbody>
-          </table>
-        </div>
+        </table>
+      </div>
     </div> 
     <br>
     <div class="row">
       <h4>My Listings</h4>
 
       <div class="col-md-12 table-wrapper-scroll-y my-custom-scrollbar bg-light" >
-          <table class="table table-hover mb-0">
+        <table class="table table-hover mb-0">
         <!--
         <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
           <table class="table table-bordered table-striped mb-0">
           -->
-               <tr>
+          <tr>
             <th ng-click="orderByMe('address.streetname')">Address</th>
             <th ng-click="orderByMe('address.city')">City</th>
             <th ng-click="orderByMe('timeframe.start_date')">Start Date </th>
             <th ng-click="orderByMe('timeframe.end_date')">End Date </th>
             <th ng-click="orderByMe('price')">Price </th>
           </tr>
-            <tbody>
+          <tbody>
             <tr valign="middle" ng-repeat="obj in listings | orderBy:myOrderBy | filter:predicate() | filter: search | filter:startDate() | filter:endDate() | filter:typeFilter()">
               <td> <a href="#/viewlisting/{{obj._id}}"> {{obj.address.streetname}} </a> </td>
               <td> {{obj.address.city}}</td> 
@@ -71,8 +71,8 @@
               <td> {{obj.price}}</td>
             </tr>
           </tbody>
-          </table>
-        </div>
+        </table>
+      </div>
     </div>     
-</div>
-   
+  </div>
+  

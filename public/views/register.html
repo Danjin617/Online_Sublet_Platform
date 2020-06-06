@@ -30,7 +30,7 @@
 
 <div class="login col-md-6 user" ng-init="init();" ng-controller="RegisterController"> 
 
-<h3>Registration</h3>
+  <h3>Registration</h3>
 <!---
   <form name="userForm" onsubmit="fun()">
     <label for="email">Email</label>
@@ -70,22 +70,22 @@
   <div class="pull-left">
     <button class="btn btn-primary minwidth-10" type="button" ng-click="register()" ng-disabled="!userForm.$valid"> New </button>   
   </div>      
- 
+  
 </form>
-  <br>
-  <h5>Password must contain the following:</h5>
-  <p>
-    A <b>lowercase</b> letter <br>
-    A <b>capital (uppercase)</b> letter<br>
-    A <b>number</b><br>
-    Minimum <b>8 characters</b>
-  </p>
+<br>
+<h5>Password must contain the following:</h5>
+<p>
+  A <b>lowercase</b> letter <br>
+  A <b>capital (uppercase)</b> letter<br>
+  A <b>number</b><br>
+  Minimum <b>8 characters</b>
+</p>
   <!---
   <p id="letter">A <b>lowercase</b> letter</p>
   <p id="capital">A <b>capital (uppercase)</b> letter</p>
   <p id="number">A <b>number</b></p>
   <p id="length">Minimum <b>8 characters</b></p>
-  -->
+-->
 </div>
 
 
@@ -97,7 +97,7 @@
       register();
     }
     */
-   return true;
+    return true;
 
   }
 
@@ -137,5 +137,5 @@
         }
     }, false);
     */
-</script>
+  </script>
 

@@ -1,35 +1,35 @@
 
 <style>
 
-.wrapper {
-  position: relative;
-}
-#listSearch {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+  .wrapper {
+    position: relative;
+  }
+  #listSearch {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 
-#mapView {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+  #mapView {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 
-.my-custom-scrollbar {
-  position: relative;
-  /*height of the scroll bar*/
-  height: 65vh;
-  overflow: auto;
-}
-.table-wrapper-scroll-y {
-  display: block;
-  opacity:0.8;
-}
+  .my-custom-scrollbar {
+    position: relative;
+    /*height of the scroll bar*/
+    height: 65vh;
+    overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+    display: block;
+    opacity:0.8;
+  }
 
 
 </style>
@@ -37,78 +37,78 @@
 <div ng-init="init();toggle('list');" ng-controller="MainController">
 
  <div class="row">
-    
-    <div class="col-md-2 well">
-      <br>
-      <div>
-        <button id="listBtn" type="button" class="btn minwidth-10" onclick="toggle('list')">List</button>
-        <button id="mapBtn" type="button" class="btn minwidth-10" onclick="toggle('map')">Map</button>
-      </div>
-
-      <div class="wrapper text-white">
-        <!--MAP SEARCH -->
-        <br>
-        <div id="mapSearch" style="visibility: hidden;">
-          <input type="text" class="form-control" id="location" placeholder="Location" ng-model="address">
-          <br>
-          <button class="btn minwidth-10" ng-click="findLocation()">Find</button>
-        </div>
-        
-        <!--LIST SEARCH -->
-        <div id="listSearch">
-          <br>
-          <label>Address</label>
-          <input type="text" class="form-control" id="city" ng-model="search">
-          <br>
-          <label>Price (<)</label>
-          <input type="text" class="form-control" type="number" id="price" ng-model="price">
-          <br>
-          <label>Start Date</label>
-          <input type="date" class="form-control" id="inputStart" ng-model="start_date">
-          <br>
-          <label>End Date</label>
-          <input type="date" class="form-control" id="inputEnd" ng-model="end_date">
-          <br>
-          <label>Type</label>
-          <select id="inputType" class="form-control" ng-model="type">
-            <option>apartments</option>
-            <option>houses</option>
-            <option>townhouses</option>
-            <option>dormitory</option>
-            <option>lofts</option>
-            <option>any</option>
-          </select>
-          <br>
-          <button class="btn minwidth-10" ng-click="clearFilters()">Clear</button>
-        </div>
-      </div>
-    
+  
+  <div class="col-md-2 well">
+    <br>
+    <div>
+      <button id="listBtn" type="button" class="btn minwidth-10" onclick="toggle('list')">List</button>
+      <button id="mapBtn" type="button" class="btn minwidth-10" onclick="toggle('map')">Map</button>
     </div>
-<div class="col-md-1 well">
-</div>
-    <div class="col-md-9 well">
+
+    <div class="wrapper text-white">
+      <!--MAP SEARCH -->
+      <br>
+      <div id="mapSearch" style="visibility: hidden;">
+        <input type="text" class="form-control" id="location" placeholder="Location" ng-model="address">
+        <br>
+        <button class="btn minwidth-10" ng-click="findLocation()">Find</button>
+      </div>
+      
+      <!--LIST SEARCH -->
+      <div id="listSearch">
+        <br>
+        <label>Address</label>
+        <input type="text" class="form-control" id="city" ng-model="search">
+        <br>
+        <label>Price (<)</label>
+        <input type="text" class="form-control" type="number" id="price" ng-model="price">
+        <br>
+        <label>Start Date</label>
+        <input type="date" class="form-control" id="inputStart" ng-model="start_date">
+        <br>
+        <label>End Date</label>
+        <input type="date" class="form-control" id="inputEnd" ng-model="end_date">
+        <br>
+        <label>Type</label>
+        <select id="inputType" class="form-control" ng-model="type">
+          <option>apartments</option>
+          <option>houses</option>
+          <option>townhouses</option>
+          <option>dormitory</option>
+          <option>lofts</option>
+          <option>any</option>
+        </select>
+        <br>
+        <button class="btn minwidth-10" ng-click="clearFilters()">Clear</button>
+      </div>
+    </div>
+    
+  </div>
+  <div class="col-md-1 well">
+  </div>
+  <div class="col-md-9 well">
 
 
-      <div class="wrapper" >
-        
-        
-        <!--LIST VIEW -->
+    <div class="wrapper" >
+      
+      
+      <!--LIST VIEW -->
 
-        <div id="listView" class="table-wrapper-scroll-y my-custom-scrollbar bg-light" >
-          <table class="table table-hover mb-0">
+      <div id="listView" class="table-wrapper-scroll-y my-custom-scrollbar bg-light" >
+        <table class="table table-hover mb-0">
         <!--
         <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
           <table class="table table-bordered table-striped mb-0">
           -->
-               <tr>
+          <tr>
             <th ng-click="orderByMe('address.streetname')">Address</th>
             <th ng-click="orderByMe('address.city')">City</th>
             <th ng-click="orderByMe('timeframe.start_date')">Start Date </th>
             <th ng-click="orderByMe('timeframe.end_date')">End Date </th>
             <th ng-click="orderByMe('price')">Price </th>
           </tr>
-            <tbody>
+          <tbody>
             <tr valign="middle" ng-repeat="obj in listings | orderBy:myOrderBy | filter:predicate() | filter: search | filter:startDate() | filter:endDate() | filter:typeFilter()">
               <td> <a href="#/viewlisting/{{obj._id}}"> {{obj.address.streetname}} </a> </td>
               <td> {{obj.address.city}}</td> 
@@ -117,16 +117,16 @@
               <td> {{obj.price}}</td>
             </tr>
           </tbody>
-          </table>
-        </div>
-
-        <!--MAP VIEW -->
-        <div class="embed-responsive embed-responsive-4by3" id="mapView" style="visibility: hidden;">
-          <iframe class="embed-responsive-item" src="views/mapsAddMarker2.html" title="Maps" id="map"></iframe>
-        </div>
-
+        </table>
       </div>
-     </div>
-  </div>   
+
+      <!--MAP VIEW -->
+      <div class="embed-responsive embed-responsive-4by3" id="mapView" style="visibility: hidden;">
+        <iframe class="embed-responsive-item" src="views/mapsAddMarker2.html" title="Maps" id="map"></iframe>
+      </div>
+
+    </div>
+  </div>
+</div>   
 </div>
 
