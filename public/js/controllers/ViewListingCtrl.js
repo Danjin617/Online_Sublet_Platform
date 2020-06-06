@@ -20,7 +20,7 @@ app.controller('ViewListingController',
           //alert("is lister");
           document.getElementById("bookmark").style.visibility = "hidden";
           document.getElementById("edit").style.visibility = "visible";
-        } else{
+        } else if (sessionStorage.getItem("session_username")){
           document.getElementById("bookmark").style.visibility = "visible";
           document.getElementById("edit").style.visibility = "hidden";
 
@@ -73,15 +73,23 @@ app.controller('ViewListingController',
     window.location.href = "/#/editlisting/"+$routeParams.id;
   };
 
-
+/*
   $scope.sendLocation = function(){
       var address = $scope.listing.address.streetname + " " + $scope.listing.address.province + " " + $scope.listing.address.country;
       console.log(address);
       var frame = document.getElementById("viewAddress");
-      console.log(address);
+      console.log(frame);
       frame.contentWindow.postMessage({call:'sendValue', value: address}, '*');
-      console.log("sent message");
+      console.log("sent message from view listing");
   }
+  */
+
+  $scope.sendLocation = function(){
+      var frame = document.getElementById("viewAddress");
+      console.log(frame);
+      frame.contentWindow.postMessage({call:'sendValue', value: $scope.listing.address.streetname}, '*');
+      console.log("sent message from view listing");
+    }
 /*
      $scope.indexOf =function(){
       var result = -1;

@@ -70,8 +70,9 @@ app.controller('MainController',
 
     $scope.findLocation = function(){
       var frame = document.getElementById("map");
+      console.log(frame);
       frame.contentWindow.postMessage({call:'sendValue', value: $scope.address}, '*');
-
+      console.log("sent message from mainCtrl");
     }
 
     

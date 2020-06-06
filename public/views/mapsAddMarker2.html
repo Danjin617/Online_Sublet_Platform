@@ -100,7 +100,7 @@ function makeMarkers(address) {
 }
 
 function getMarker(url, listing_id) {
-  var xhttp = new XMLHttpRequest();
+    var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         var response = JSON.parse(this.response);
@@ -200,6 +200,8 @@ window.addEventListener('message', function(event) {
     if (origin !== "http://online-subletting-platform.herokuapp.com/#/")
         return;
         */
+
+    console.log("received message in mapsAddMarker");
     if (typeof event.data == 'object' && event.data.call=='sendValue') {
       var address = event.data.value;
       console.log(address);

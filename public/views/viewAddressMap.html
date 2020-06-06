@@ -89,7 +89,12 @@ function getMarker(url) {
                         };
 
         features.push(marker); 
-        populate(marker);           
+        populate(marker);
+        var center = response.features[0].center;
+        map.fitBounds([
+          [center[0] - 0.02, center[1] - 0.02],
+          [center[0] + 0.02, center[1] + 0.02]
+          ]);           
 
 
       }
@@ -157,9 +162,17 @@ function populate(marker) {
 
 
 
+
 window.addEventListener('message', function(event) {
-    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent ]
-    console.log("received");
+  
+    console.log("received message in mapsAddMarker");
+    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
+    //alert("here");
+    /*
+    if (origin !== "http://online-subletting-platform.herokuapp.com/#/")
+        return;
+        */
+
     if (typeof event.data == 'object' && event.data.call=='sendValue') {
       var address = event.data.value;
       console.log(address);
@@ -167,26 +180,8 @@ window.addEventListener('message', function(event) {
       var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+address+".json?access_token="+token;
       getMarker(url);
     }
-
 }, false);
 
-
-
-window.addEventListener('message', function(event) {
-    var origin = event.origin || event.originalEvent.origin; // For Chrome, the origin property is in the event.originalEvent object.
-    //alert("here");
-    /*
-    if (origin !== "http://online-subletting-platform.herokuapp.com/#/")
-        return;
-        */
-    if (typeof event.data == 'object' && event.data.call=='sendValue') {
-      var address = event.data.value;
-      console.log(address);
-      if(address === undefined) return;
-      var url = "http://api.mapbox.com/geocoding/v5/mapbox.places/"+address+".json?access_token="+token;
-      center(url);
-    }
-}, false);
 
 </script>
 
