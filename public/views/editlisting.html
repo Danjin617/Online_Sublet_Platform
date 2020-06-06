@@ -1,146 +1,8 @@
 <div class="col-md-12 listing" ng-init="alert('here'); init();" ng-controller="EditListingController">
   <div class="row">
         <div class="well col-sm-6 form-horizontal">
-   <form>
-        <div class="form-row">
-          <div class="form-group col-md-10">
-            <input type="text" class="form-control" id="inputAddress" ng-model="listing.address.streetname" placeholder="Address">
-          </div>
-          <div class="form-group col-md-2">
-            <input type="text" class="form-control" id="inputZip" ng-model="listing.address.zip" placeholder="Zip">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-5">
-            <input type="text" class="form-control" id="inputCity" ng-model="listing.address.city" placeholder="City">
-          </div>
-          <div class="form-group col-md-4">
-            <label>Province</label>
-            <select id="inputProvince" class="form-control" ng-model="listing.address.province">
-              <option selected>Choose...</option>
-              <option>Alberta</option>
-              <option>British Columbia</option>
-              <option>Ontario</option>
-              <option>Prince Edwards Island</option>
-              <option>Manitoba</option>
-              <option>Newfoundland Labrador</option>
-              <option>New Brunswick</option>
-              <option>Northwest Territories</option>
-              <option>Nova Scotia</option>
-              <option>Nunavut</option>
-              <option>Quebec</option>
-              <option>Saskatchewan</option>
-              <option>Yukon</option>
-            </select>
-          </div>
-          <div class="form-group col-md-3">
-            <label>Country</label>
-            <input type="text" class="form-control" id="inputCountry" ng-model="listing.address.country">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label>Start Time</label>
-            <input type="date" class="form-control" id="inputStart" ng-model="listing.timeframe.start_date">
-          </div>
-          <div class="form-group col-md-6">
-            <label>End Time</label>
-            <input type="date" class="form-control" id="inputEnd" ng-model="listing.timeframe.end_date">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" ng-model="listing.features.utilities" id="utilities">
-            <label> Utilities</label>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" ng-model="listing.features.furnished" id="utilities">
-            <label> Furnished</label>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" ng-model="listing.features.en_suite" id="en_suite">
-            <label> En Suite</label>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" ng-model="listing.features.public_transport" id="public_transport">
-            <label> Public Transport</label>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" ng-model="listing.features.pets" id="pets">
-            <label> Pets</label>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label>Type</label>
-            <select id="inputType" class="form-control" ng-model="listing.type">
-              <option selected>Choose...</option>
-              <option>apartments</option>
-              <option>houses</option>
-              <option>townhouses</option>
-              <option>dormitory</option>
-              <option>lofts</option>
-            </select>
-          </div>
-          <div class="form-group col-md-6">
-            <label>Demographic</label>
-            <select id="inputDemographic" class="form-control" ng-model="listing.demographic">
-              <option selected>Choose...</option>
-              <option>male</option>
-              <option>female</option>
-              <option>coed</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label>Bed</label>
-            <input type="number" class="form-control" id="inputBed" ng-model="listing.bed">
-          </div>
-          <div class="form-group col-md-6">
-            <label>Bath</label>
-            <input type="number" class="form-control" id="inputBath" ng-model="listing.bath">
-          </div>
-          <div class="form-group col-md-6">
-            <label>Area</label>
-            <input type="number" class="form-control" id="inputArea" ng-model="listing.area">
-          </div>
-          <div class="form-group col-md-6">
-            <label>Price</label>
-            <input type="number" class="form-control" id="inputPrice" ng-model="listing.price">
-          </div>
-          <div class="form-group col-md-12">
-            <label>Description</label>
-            <textarea class="form-control" id="inputDescription" rows="3" ng-model="listing.description"></textarea>
-          </div>
-
-        </div>
-      </form>
-      
-            <div class="pull-left">          
-                  <button class="btn btn-primary" type="button" ng-click = "update()">Save </button>
-                  <button class="btn btn-primary" type="button" ng-click = "deleteListing()"> Delete</button>
-            </div>                    
+  <form name="userForm">
         <br>
-    </div>	 
-</div>  
-
-
-<div class="col-md-12 listing" ng-init="alert('s');init();" ng-controller="NewController">
-  <div class="row">
-    <div class="well col-sm-6 form-horizontal">
-
-
-      <form name="userForm">
         <div class="form-row">
           <div class="form-group col-md-10">
             <input type="text" class="form-control" id="inputAddress" ng-model="listing.address.streetname" placeholder="Address" required>
@@ -162,10 +24,12 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <input type="date" class="form-control" id="inputStart" ng-model="listing.timeframe.start_date" placeholder="Start Time"required>
+            <label> Start Date</label>
+            <input type="date" class="form-control" id="inputStart" ng-model="listing.timeframe.start_date" placeholder="yyyy-mm-dd"required>
           </div>
           <div class="form-group col-md-6">
-            <input type="date" class="form-control" id="inputEnd" ng-model="listing.timeframe.end_date" placeholder="End Time" required>
+            <label> End Date</label>
+            <input type="date" class="form-control" id="inputEnd" ng-model="listing.timeframe.end_date" placeholder="yyyy-mm-dd" required>
           </div>
         </div>
         <div class="form-row">
@@ -207,9 +71,8 @@
         </div>
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label>Type</label>
             <select id="inputType" class="form-control" ng-model="listing.type">
-              <option value="" selected disabled hidden>Choose here</option>
+              <option value="" selected disabled hidden>Choose type</option>
               <option>apartments</option>
               <option>houses</option>
               <option>townhouses</option>
@@ -218,8 +81,8 @@
             </select>
           </div>
           <div class="form-group col-md-6">
-            <label>Demographic</label>
             <select id="inputDemographic" class="form-control" ng-model="listing.demographic">
+              <option value="" selected disabled hidden>Choose demographic</option>
               <option>male</option>
               <option>female</option>
               <option>coed</option>
@@ -229,19 +92,19 @@
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label>Bed</label>
+            <label># Bed</label>
             <input type="number" class="form-control" id="inputBed" ng-model="listing.bed">
           </div>
           <div class="form-group col-md-6">
-            <label>Bath</label>
+            <label># Bath</label>
             <input type="number" class="form-control" id="inputBath" ng-model="listing.bath">
           </div>
           <div class="form-group col-md-6">
-            <label>Area</label>
+            <label>Area (sqft)</label>
             <input type="number" class="form-control" id="inputArea" ng-model="listing.area">
           </div>
           <div class="form-group col-md-6">
-            <label>Price</label>
+            <label>Price/Month</label>
             <input type="number" class="form-control" id="inputPrice" ng-model="listing.price">
           </div>
           <div class="form-group col-md-12">
@@ -250,12 +113,13 @@
 
         </div>
       </form>
-      <br>
-      <div class="pull-left">          
-            <button class="btn btn-primary" type="button" ng-click = "update()">Save </button>
-            <button class="btn btn-primary" type="button" ng-click = "deleteListing()"> Delete</button>
-      </div>   
-    </div>
+      
+            <div class="pull-left">          
+                  <button class="btn btn-primary minwidth-10" type="button" ng-click = "update()">Save </button>
+                  <button class="btn btn-primary minwidth-10" type="button" ng-click = "deleteListing()"> Delete</button>
+            </div>                    
+        <br>
+    </div>	 
+</div>  
 
-  </div>
-</div>
+

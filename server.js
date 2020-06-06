@@ -57,7 +57,8 @@ app.get('/users', (req, res) => {
 
 app.post('/users', async (req, res) => {
   const user = await User.find({username: req.body.username})
-  if (user.length == 0){
+  const user_email = await User.find({email: req.body.email})
+  if ((user.length == 0) && (user_email.length == 0 )){
 
     try {
       const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -113,8 +114,11 @@ catch (e) {
    }
 
  } 
- else {
+ else if (user_email.length == 0 ){
    res.json({message: 'user exists'});
+ }
+ else {
+  res.json({message: 'email exists'});
  }
 });
 

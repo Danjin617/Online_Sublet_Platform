@@ -4,6 +4,7 @@
 
 
       <form name="userForm">
+        <br>
         <div class="form-row">
           <div class="form-group col-md-10">
             <input type="text" class="form-control" id="inputAddress" ng-model="listing.address.streetname" placeholder="Address" required>
@@ -93,19 +94,19 @@
 
         <div class="form-row">
           <div class="form-group col-md-6">
-            <label>Bed</label>
+            <label># Bed</label>
             <input type="number" class="form-control" id="inputBed" ng-model="listing.bed">
           </div>
           <div class="form-group col-md-6">
-            <label>Bath</label>
+            <label># Bath</label>
             <input type="number" class="form-control" id="inputBath" ng-model="listing.bath">
           </div>
           <div class="form-group col-md-6">
-            <label>Area</label>
+            <label>Area (sqft)</label>
             <input type="number" class="form-control" id="inputArea" ng-model="listing.area">
           </div>
           <div class="form-group col-md-6">
-            <label>Price</label>
+            <label>Price/Month</label>
             <input type="number" class="form-control" id="inputPrice" ng-model="listing.price">
           </div>
           <div class="form-group col-md-12">
@@ -114,7 +115,7 @@
 
         </div>
       </form>
-      <br>
+      
       <button type="submit" class="btn btn-primary" ng-click = "doSave()" ng-disabled="!userForm.$valid">Save</button>
     </div>
 
