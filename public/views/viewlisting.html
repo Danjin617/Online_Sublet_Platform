@@ -1,42 +1,64 @@
 <div class="col-md-12 listing" ng-init=" init(); window.setTimeout(sendLocation, 5000);" ng-controller="ViewListingController">
  <div class="row">
-  <div class="well col-sm-6 form-horizontal">
-   <p>Street: {{listing.address.streetname}}</p>
-   <p>City: {{listing.address.city}}</p>
-   <p>Postal Code: {{listing.address.postal_code}}</p>
-   <p>Province: {{listing.address.province}}</p>
-   <p>Country: {{listing.address.country}}</p>
+  <div class="well col-sm-7 bg-white text-dark p-3 opacity">
+    <div class="row">
+      <div class="col-sm-12">
 
-   <p>Start date: {{toDate(listing.timeframe.start_date)}}</p>
-   <p>End date: {{toDate(listing.timeframe.end_date)}}</p>
+        <h1>{{listing.address.streetname}}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <h3>Address</h3>
+        <p>
+        {{listing.address.streetname}} <br>
+        {{listing.address.city}} {{listing.address.province}}, <br>
+        {{listing.address.postal_code}} {{listing.address.country}}
+        </p>
 
-   <p>Utilities: {{listing.features.utilities}}</p>
-   <p>Furnished: {{listing.features.furnished}}</p>
-   <p>En_Suite: {{listing.features.en_suite}}</p>
-   <p>Close to Public Transport: {{listing.features.public_transport}}</p>
-   <p>Pets Allowed: {{listing.features.pet}}</p>
+        <h3>Type</h3>
+        <p>{{listing.type}} for {{listing.demographic}}</p>
+        
 
-   <p>Type: {{listing.type}}</p>
-   <p>Demographic: {{listing.demographic}}</p>
-   <p>Bedrooms: {{listing.bed}}</p>
-   <p>Bathrooms: {{listing.bath}}</p>
-   <p>Area: {{listing.area}}</p>
-   <p>Price: {{listing.price}}</p>
-   <p>Details: {{listing.description}}</p>
-   <p>Lister: {{listing.lister}}</p>
+        <h3>Features</h3>
+
+        <ul id="features">
+        </ul>
+
+        <h3>Measurements</h3>
+        <p>Bedrooms: {{listing.bed}}</p>
+        <p>Bathrooms: {{listing.bath}}</p>
+        <p>Area: {{listing.area}} m<sup>2</sup></p>
+    
+      </div>
+
+      <div class="col-sm-6">
+        <h3>Dates</h3>
+        <p>{{toDate(listing.timeframe.start_date)}} - {{toDate(listing.timeframe.end_date)}}</p>
+        <h3>Price</h3>
+        <p>$ {{listing.price}}</p>
+        <h3>Details</h3>
+        <p>{{listing.description}}</p>
+        <p>Lister: {{listing.lister}}</p>
+        
+      </div>
+    </div>
+    <br>
+    
+    
 
  </div>
 
- <div class="well col-sm-6 form-horizontal">
+ <div class="well col-sm-5 form-horizontal">
   <div class="embed-responsive embed-responsive-4by3" id="singleMapView">
     <iframe class="embed-responsive-item" src="views/viewAddressMap.html" title="Maps" id="viewAddress"></iframe>
   </div>
 
   <br>
-  <div class="well col-sm-6 form-horizontal">
+  <div class="well col-sm-5 form-horizontal">
     <button class="btn btn-primary minwidth-10" id="edit" type="button" ng-click = "redirectToNewPage()" style="visibility: hidden;"> Edit</button>   
   </div>
-  <div class="well col-sm-6 form-horizontal">
+  <div class="well col-sm-5 form-horizontal">
     <button class="btn btn-primary minwidth-10" id="bookmark" type="button" ng-click = "toggle()" style="visibility: hidden;"> {{bookmarkToggle}}</button>   
   </div>
 </div>

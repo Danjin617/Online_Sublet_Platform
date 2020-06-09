@@ -5,17 +5,16 @@ app.controller('MainController',
    $scope.loading = true;
 
 
-   $scope.init = function(){
+      $scope.init = function(){
       //alert($rootScope.user.username);
        //alert('init'); 
        $http.get('/api/listings').
        then(function(response) {
          $scope.listings = response.data;
-
-
        });
+       
      };
-     $scope.orderByMe = function(x) {
+    $scope.orderByMe = function(x) {
       $scope.myOrderBy = x;
     }
 

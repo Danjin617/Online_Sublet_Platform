@@ -5,6 +5,7 @@ app.controller('ViewListingController',
    $scope.bookmarkToggle = "Bookmark";
 
    $scope.init = function(){
+     $scope.featuresList = "";
      //alert('init');	
 
      //alert($routeParams.id);
@@ -13,6 +14,8 @@ app.controller('ViewListingController',
        // alert("mwahahaha");
        //alert(response.data.lister);
        $scope.listing = response.data;
+
+       $scope.readFeatures();
        //$scope.sendLocation();
        //see if it is the lister
        if (sessionStorage.getItem("session_username") == $scope.listing.lister) {
@@ -72,21 +75,34 @@ app.controller('ViewListingController',
    });
  };
 
+  $scope.readFeatures = function () {
+    console.log($scope.listing.features);
+    var list = ['furnished','utilities','en_suite','public_transport','pets'];
+
+    if($scope.listing.features.furnished) {
+      $scope.featuresList += "<li>Furnished</li>";
+    }
+    if($scope.listing.features.utilities) {
+      $scope.featuresList += "<li>Utilities</li>";
+    }
+    if($scope.listing.features.en_suite) {
+      $scope.featuresList += "<li>En Suite</li>";
+    }
+    if($scope.listing.features.public_transport) {
+      $scope.featuresList += "<li>Public Transport</li>";
+    }
+    if($scope.listing.features.pets) {
+      $scope.featuresList += "<li>Pets</li>";
+    }
+    
+    document.getElementById("features").innerHTML = $scope.featuresList;
+  }
+
    $scope.redirectToNewPage = function() {
    // alert("redirect");
     window.location.href = "/#/editlisting/"+$routeParams.id;
   };
 
-/*
-  $scope.sendLocation = function(){
-      var address = $scope.listing.address.streetname + " " + $scope.listing.address.province + " " + $scope.listing.address.country;
-      console.log(address);
-      var frame = document.getElementById("viewAddress");
-      console.log(frame);
-      frame.contentWindow.postMessage({call:'sendValue', value: address}, '*');
-      console.log("sent message from view listing");
-  }
-  */
 
   $scope.sendLocation = function(){
       var address = $scope.listing.address.streetname + " " + $scope.listing.address.province + " " + $scope.listing.address.country;
