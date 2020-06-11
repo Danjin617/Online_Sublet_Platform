@@ -23,11 +23,13 @@ app.controller('ViewListingController',
           //alert("is lister");
           //$scope.sendLocation();
           document.getElementById("bookmark").style.visibility = "hidden";
+          document.getElementById("contact").style.visibility = "hidden";
           document.getElementById("edit").style.visibility = "visible";
         } else if (sessionStorage.getItem("session_username")){
           //$scope.sendLocation();
 
           document.getElementById("bookmark").style.visibility = "visible";
+          document.getElementById("contact").style.visibility = "visible";
           document.getElementById("edit").style.visibility = "hidden";
 
         }
@@ -74,6 +76,18 @@ app.controller('ViewListingController',
 
    });
  };
+
+ $scope.contact = function(){
+  $scope.req = {
+    username: $scope.listing.lister
+  }
+  $http.post('/users/username/', $scope.req).
+  then(function(response) {
+    //alert(response.data.email);
+    location.href='mailto:' + response.data.email;
+  });
+
+}
 
   $scope.readFeatures = function () {
     console.log($scope.listing.features);

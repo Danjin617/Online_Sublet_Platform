@@ -1,6 +1,7 @@
 <div class="col-md-12 listing" ng-init=" init(); window.setTimeout(sendLocation, 5000);" ng-controller="ViewListingController">
- <div class="row">
-  <div class="well col-sm-7 bg-white text-dark p-3 opacity">
+ 
+  <div class="row mt-3">
+  <div class="well col-sm-7 bg-white text-dark p-3 opacity ">
     <div class="row">
       <div class="col-sm-12">
 
@@ -19,7 +20,6 @@
         <h3>Type</h3>
         <p>{{listing.type}} for {{listing.demographic}}</p>
         
-
         <h3>Features</h3>
 
         <ul id="features">
@@ -49,18 +49,26 @@
 
  </div>
 
+ 
  <div class="well col-sm-5 form-horizontal">
-  <div class="embed-responsive embed-responsive-4by3" id="singleMapView">
-    <iframe class="embed-responsive-item" src="views/viewAddressMap.html" title="Maps" id="viewAddress"></iframe>
-  </div>
+   <div class="row">
+    <div class="embed-responsive embed-responsive-4by3" id="singleMapView">
+      <iframe class="embed-responsive-item" src="views/viewAddressMap.html" title="Maps" id="viewAddress"></iframe>
+    </div>
+   </div>
 
   <br>
-  <div class="well col-sm-5 form-horizontal">
-    <button class="btn btn-primary minwidth-10" id="edit" type="button" ng-click = "redirectToNewPage()" style="visibility: hidden;"> Edit</button>   
+  <div class="row">
+    <div class="well col-sm-6 form-horizontal">
+      <button class="btn btn-primary minwidth-10" id = "contact" type="button" ng-click = "contact()">Contact Lister </button>
+  
+      <button class="btn btn-primary minwidth-10" id="edit" type="button" ng-click = "redirectToNewPage()" style="visibility: hidden;"> Edit</button>   
+    </div>
+    <div class="well col-sm-6 form-horizontal text-right">
+      <button class="btn btn-primary minwidth-10" id="bookmark" type="button" ng-click = "toggle()" style="visibility: hidden;"> {{bookmarkToggle}}</button>   
+    </div>
   </div>
-  <div class="well col-sm-5 form-horizontal">
-    <button class="btn btn-primary minwidth-10" id="bookmark" type="button" ng-click = "toggle()" style="visibility: hidden;"> {{bookmarkToggle}}</button>   
-  </div>
+  
 </div>
 
 </div>
