@@ -419,9 +419,8 @@ app.post('/api/images', function(req, res) {
 });
 
 app.get('/api/images', function(req, res) {
-  A.findById(a, function (err, doc) {
+  A.find(function (err, doc) {
     if (err) return next(err);
-    res.contentType(doc.img.contentType);
-    res.send(doc.img.data);
+    res.json(doc);
   });
 });
