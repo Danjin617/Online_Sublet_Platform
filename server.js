@@ -9,6 +9,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var methodOverride = require('method-override');
 
+var fs = require('fs');
+
 // set our port
 const port = process.env.PORT || 3030;
 //app.get('/', (req, res) => res.send('Welcome to Tutorialspoint!'));
@@ -386,3 +388,40 @@ app.listen(port, function () {
 
 
 
+
+
+
+///image
+
+var Schema = mongoose.Schema;
+
+var imgPath = '/Users/jenniferliang/Desktop/trollolol.jpg';
+
+
+var schema = new Schema({
+  img: { data: Buffer, contentType: String },
+  listing_id: String
+});
+var A = mongoose.model('A', schema);
+
+
+app.post('/api/images', function(req, res) {
+  // store an img in binary in mongo
+  var a = new A;
+  a.img.data = fs.readFileSync(req.body.imgPath);
+  a.img.contentType = 'image/png';
+  a.listing_id = req.body.listing_id;
+  a.save(function (err, a) {
+    if (err) throw err;
+
+    console.error('saved img to mongo');
+  });
+});
+
+app.get('/api/images', function(req, res) {
+  A.findById(a, function (err, doc) {
+    if (err) return next(err);
+    res.contentType(doc.img.contentType);
+    res.send(doc.img.data);
+  });
+});
