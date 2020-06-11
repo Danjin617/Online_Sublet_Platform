@@ -321,7 +321,6 @@ app.get('/api/listings', function(req, res) {
     });
  });
 
-
 app.post('/api/listings/send', function (req, res) {
    var listing = new Listing(); // create a new instance of the listing model
    listing.address.streetname = req.body.address.streetname; // set the listing name (comes from the request)
@@ -381,17 +380,81 @@ app.put('/api/listings/:listing_id', function (req, res) {
 });
 });
 
-// startup our app at http://localhost:3000
-app.listen(port, function () {
-  console.log('listening: http://localhost:' + port + '/');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//IMAGES
+var Image = require('./models/images');
+
+app.get('/api/images', (req, res) => {
+ Image.find(function(err, doc) {
+      // if there is an error retrieving, send the error.
+      // nothing after res.send(err) will execute
+      if (err)
+       res.send(err);
+    res.send(doc);
+    });
 });
 
 
+app.post('/api/imagelisting', async (req, res) => {
+  const images = await Image.find({listing_id: req.body.listing_id})
+  if (images.length == 0) {
+
+    return res.json({message: 'Cannot find images'});
+  }
+
+ res.json(images);
+
+ } 
+ );
+
+
+app.post('/api/images', function(req, res) {
+  // store an img in binary in mongo
+  var a = new Image();
+  a.img.data = fs.readFileSync(req.body.imgPath);
+  a.img.contentType = 'image/png';
+  a.listing_id = req.body.listing_id;
+  a.save(function (err, a) {
+    if (err) throw err;
+
+    console.error('saved img to mongo');
+  });
+});
+
+/*
+app.post('/api/images', function(req, res) {
+  // store an img in binary in mongo
+  var a = new Image();
+  a.img.data = fs.readFileSync('/home/daniel/Downloads/BACKGROUND%20DAY_photos_v2_x4.jpg');
+  a.img.contentType = 'image/png';
+  a.listing_id = 'listing1';
+  a.save(function (err, a) {
+    if (err) throw err;
+    res.json({ message: 'Successfully uploaded' });
+    console.error('saved img to mongo');
+  });
+});
+*/
+app.delete('/api/images/:image_id', async function (req, res) {
+  //get user first to get its array of listings
+  const images = await Image.find({_id: req.params.image_id});
+   if (images.length == 0) {
+
+    return res.json({message: 'Cannot find images'});
+  }
+  Image.remove({
+    _id: req.params.image_id
+    }, function(err, bear) {
+      if (err)
+       res.send(err);
+      res.json({ message: 'Successfully deleted' });
+  });
+  });
 
 
 
-
-///image
+/*
 
 var Schema = mongoose.Schema;
 
@@ -424,4 +487,11 @@ app.get('/api/images', function(req, res) {
     res.contentType(doc.img.contentType);
     res.send(doc.img.data);
   });
+});
+*/
+
+
+// startup our app at http://localhost:3000
+app.listen(port, function () {
+  console.log('listening: http://localhost:' + port + '/');
 });
