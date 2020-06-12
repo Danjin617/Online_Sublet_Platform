@@ -33,23 +33,47 @@ app.controller('ViewListingController',
           document.getElementById("edit").style.visibility = "hidden";
 
         }
-       //alert($scope.toggle());
+
         var myVar = setTimeout($scope.sendLocation, 500);
 
-       //document.getElementById("loadlocation").click();
-       //$scope.toggle();
 
 
-     });
 
-     var result = -1;
+        var imgreq = {
+          listing_id = $listing._id
+        }
 
-     $scope.req = {
+        //call image list
+        $http.post('/api/imagelisting', $scope.req).
+        then(function(response){
+          console.log("got images");
+            var images = response.data;
+            //populate html
+            for(var i = 0; i < images.count; i++){
+              var image = new Image();
+              image.src = images.img;
+              document.body.appendChild(image);
+            }
+
+        });
+
+
+      });
+
+
+
+    $scope.getBookmarks();
+  };
+
+  $scope.getBookmarks = function () {
+   var result = -1;
+
+      var req = {
         username: sessionStorage.getItem("session_username")
       }
         //$scope.req.body.username = sessionStorage.getItem("session_username");
         //$scope.req.body.listing = response.data.message;
-        $http.post('/users/bookmarks', $scope.req).
+        $http.post('/users/bookmarks', req).
         then(function(response) {
           //alert(JSON.stringify(response.data));
           $scope.bookmarked = response.data;
@@ -74,8 +98,8 @@ app.controller('ViewListingController',
 
 
 
-   });
- };
+        });
+ }
 
  $scope.contact = function(){
   $scope.req = {
@@ -208,6 +232,6 @@ app.controller('ViewListingController',
 
     });
 
-      };  
+  };  
 
-    }]);
+}]);

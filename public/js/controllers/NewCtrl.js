@@ -5,7 +5,9 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
    $scope.init = function(){
     
     $scope.listing = new Listing();
-    $scope.imagebase = "";
+    $scope.imagebase ='';
+
+    //$scope.image = new Image();
 
     //check
     //alert("hi");
@@ -14,11 +16,13 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
    };
 
   $scope.doSave = function(){
-    
+    $scope.print();
+    console.log("saving")
     //creating new listing
     $scope.listing.lister = sessionStorage.getItem("session_username");
     $http.post('/api/listings/send',$scope.listing).
     then(function(response) {
+      console.log("obtained listing")
       if(response.data.message != null) {
         //return id
         alert(response.data.message);
@@ -36,15 +40,19 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
         then(function(response) {
           alert("sent listing");
         });
-        var imageReq = {
-          listing_id: listing_id,
-          imgbase: $scope.imagebase
+
+        if($scope.imagebase === '') {
+          var imageReq = {
+            listing_id: listing_id,
+            img: $scope.imagebase
+          }
+          //adding image to 
+          $http.post('/api/images', imageReq).
+          then(function(response) {
+            alert("sent image");
+          });
+          
         }
-        //adding image to 
-        $http.post('/api/images', imageReq).
-        then(function(response) {
-          alert("sent image");
-        });
         window.location.href = "/";
       }
     });
@@ -54,7 +62,9 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
   $scope.onChange = function (files) {
     //alert('hi');
     if(files[0] == undefined) return;
-    $scope.fileExt = files[0].name.split(".").pop()
+    $scope.fileExt = files[0].name.split(".").pop();
+
+
   }
   
   $scope.isImage = function(ext) {

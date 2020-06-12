@@ -398,22 +398,17 @@ app.get('/api/images', (req, res) => {
 
 app.post('/api/imagelisting', async (req, res) => {
   const images = await Image.find({listing_id: req.body.listing_id})
-  if (images.length == 0) {
-
-    return res.json({message: 'Cannot find images'});
-  }
-
- res.json(images);
+  
+    res.json(images);
 
  } 
  );
 
-/*
+
 app.post('/api/images', function(req, res) {
   // store an img in binary in mongo
   var a = new Image();
-  a.img.data = fs.readFileSync(req.body.imgPath);
-  a.img.contentType = 'image/png';
+  a.img = req.body.img;
   a.listing_id = req.body.listing_id;
   a.save(function (err, a) {
     if (err) throw err;
@@ -421,13 +416,12 @@ app.post('/api/images', function(req, res) {
     console.error('saved img to mongo');
   });
 });
-*/
+/*
 
 app.post('/api/images', function(req, res) {
   // store an img in binary in mongo
   var a = new Image();
-  a.img.data = fs.readFileSync('/home/daniel/Downloads/cat.png');
-  a.img.contentType = 'image/png';
+  a.img = fs.readFileSync(req.img);
   a.listing_id = 'listing1';
   a.save(function (err, a) {
     if (err) throw err;
@@ -436,6 +430,7 @@ app.post('/api/images', function(req, res) {
   });
 });
 
+*/
 app.delete('/api/images/:image_id', async function (req, res) {
   //get user first to get its array of listings
   const images = await Image.find({_id: req.params.image_id});
@@ -460,6 +455,15 @@ app.delete('/api/images', async function (req, res) {
     console.log('deleted!');
   });
   });
+
+// app.get('/api/images/:listing_id', async function(req, res) {
+//   const images = await Image.find({listing_id: req.params.listing_id});
+//    if (images.length == 0) {
+
+//     return res.json({message: 'Cannot find images'});
+//   } 
+//   res.json(images);
+// })
 
 
 
