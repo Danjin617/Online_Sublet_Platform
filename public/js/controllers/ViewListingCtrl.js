@@ -5,6 +5,7 @@ app.controller('ViewListingController',
    $scope.bookmarkToggle = "Bookmark";
 
    $scope.init = function(){
+    document.getElementById('carouselExampleControls').carousel()
      $scope.featuresList = "";
      //alert('init'); 
 
@@ -40,17 +41,18 @@ app.controller('ViewListingController',
 
 
 
+          console.log($scope.listing._id)
         var imgreq = {
           listing_id: $scope.listing._id
         }
 
         //call image list
-        $http.post('/api/imagelisting', $scope.req).
+        $http.post('/api/imagelisting', imgreq).
         then(function(response){
-          console.log("got images");
-          var images = response.data;
+          console.log("got images" + response.data.length);
+          $scope.images = response.data;
             //populate html
-            for(var i = 0; i < images.count; i++){
+            for(var i = 0; i < images.length; i++){
               console.log( images[i].listing_id);
               var image = new Image();
               image.src = images[i].img;
@@ -213,64 +215,3 @@ $scope.toggle = function(){
 
   }]);
 
-
-
-/*
-
-$scope.toggle = function(){
-        //alert($scope.indexOf());
-        var result = -1;
-      //add listing id to user
-      $scope.req = {
-        username: sessionStorage.getItem("session_username")
-      }
-        //$scope.req.body.username = sessionStorage.getItem("session_username");
-        //$scope.req.body.listing = response.data.message;
-        $http.post('/users/bookmarks', $scope.req).
-        then(function(response) {
-          //alert(JSON.stringify(response.data));
-          $scope.bookmarked = response.data;
-          //test if route params is in bookmakrs
-          for (i = 0; i < $scope.bookmarked.length; i++) {
-            //alert($scope.bookmarked[i] + " " + $routeParams.id);
-            if ($scope.bookmarked[i] == $routeParams.id) {
-              alert("index:" + i);
-              result = i;
-              //return result;
-
-            }
-          }
-          console.log('INDEX' + result);
-          if (result != -1) {
-       // if ($scope.indexOf() != undefined) {
-        console.log('REMOVE')
-        $scope.req = {
-          username: sessionStorage.getItem("session_username"),
-          index: result
-        }
-        $http.post('/users/removebookmark', $scope.req).
-        then(function(response) {
-          alert("removed bookmark");
-        });
-        $scope.bookmarkToggle = "Bookmark";
-
-      } else {
-        //add listing id to user
-        console.log('ADD')
-        $scope.req = {
-          username: sessionStorage.getItem("session_username"),
-          listing: $routeParams.id
-        }
-        //$scope.req.body.username = sessionStorage.getItem("session_username");
-        //$scope.req.body.listing = response.data.message;
-        $http.post('/users/sendbookmark', $scope.req).
-        then(function(response) {
-          alert("sent bookmark");
-        });
-        $scope.bookmarkToggle = "Unbookmark";
-      }
-
-    });
-
-      };  
-      */
