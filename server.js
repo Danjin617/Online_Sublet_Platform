@@ -408,7 +408,7 @@ app.post('/api/imagelisting', async (req, res) => {
  } 
  );
 
-
+/*
 app.post('/api/images', function(req, res) {
   // store an img in binary in mongo
   var a = new Image();
@@ -421,12 +421,12 @@ app.post('/api/images', function(req, res) {
     console.error('saved img to mongo');
   });
 });
+*/
 
-/*
 app.post('/api/images', function(req, res) {
   // store an img in binary in mongo
   var a = new Image();
-  a.img.data = fs.readFileSync('/home/daniel/Downloads/BACKGROUND%20DAY_photos_v2_x4.jpg');
+  a.img.data = fs.readFileSync('/home/daniel/Downloads/cat.png');
   a.img.contentType = 'image/png';
   a.listing_id = 'listing1';
   a.save(function (err, a) {
@@ -435,7 +435,7 @@ app.post('/api/images', function(req, res) {
     console.error('saved img to mongo');
   });
 });
-*/
+
 app.delete('/api/images/:image_id', async function (req, res) {
   //get user first to get its array of listings
   const images = await Image.find({_id: req.params.image_id});
@@ -449,6 +449,15 @@ app.delete('/api/images/:image_id', async function (req, res) {
       if (err)
        res.send(err);
       res.json({ message: 'Successfully deleted' });
+  });
+  });
+
+app.delete('/api/images', async function (req, res) {
+  //get user first to get its array of listings
+ 
+  Image.remove(function (err) {
+    if (err) throw err;
+    console.log('deleted!');
   });
   });
 
