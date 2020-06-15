@@ -16,6 +16,8 @@ app.controller('EditListingController',
 
 
     $scope.update = function(){
+      $scope.print();
+      
       $http.put('/api/listings/' + $scope.listing._id, $scope.listing).
       then(function(response) {
        // alert(response);
@@ -41,5 +43,44 @@ app.controller('EditListingController',
       window.location.href = '/';
      });
     };
+
+
+  $scope.onChange = function (files) {
+    //alert('hi');
+    if(files[0] == undefined) return;
+    $scope.fileExt = files[0].name.split(".").pop();
+
+
+  }
+  
+  $scope.isImage = function(ext) {
+    if(ext) {
+      return ext == "jpg" || ext == "jpeg"|| ext == "gif" || ext=="png"
+    }
+  }
+
+  $scope.print = function(){
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("preview");
+    ctx.drawImage(img, 10, 10);
+    console.log(c.toDataURL());
+    $scope.imagebase = c.toDataURL();
+
+    if($scope.imagebase != '') {
+      var imageReq = {
+        listing_id: $scope.listing._id,
+        img: $scope.imagebase
+      }
+      //adding image to 
+      $http.post('/api/images', imageReq).
+      then(function(response) {
+        alert("sent image");
+      });
+      
+    }
+  }
+  
+
 
   }]);

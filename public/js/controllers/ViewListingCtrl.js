@@ -5,7 +5,7 @@ app.controller('ViewListingController',
    $scope.bookmarkToggle = "Bookmark";
 
    $scope.init = function(){
-    document.getElementById('carouselExampleControls').carousel()
+     $scope.i = 0;
      $scope.featuresList = "";
      //alert('init'); 
 

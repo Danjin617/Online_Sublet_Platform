@@ -1,50 +1,57 @@
 <div class="col-md-12 listing" ng-init=" init(); window.setTimeout(sendLocation, 5000);" ng-controller="ViewListingController">
  
   <div class="row mt-3">
+    <div class="row"></div>
   <div class="well col-sm-7 bg-white text-dark p-3 opacity ">
     <div class="row">
       <div class="col-sm-12">
 
-        <h1>{{listing.address.streetname}}</h1>
+        <h2>{{listing.address.streetname}}</h2>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <h3>Address</h3>
+        <h4>Address</h4>
         <p>
         {{listing.address.streetname}} <br>
         {{listing.address.city}} {{listing.address.province}}, <br>
         {{listing.address.postal_code}} {{listing.address.country}}
         </p>
 
-        <h3>Type</h3>
+        <h4>Type</h4>
         <p>{{listing.type}} for {{listing.demographic}}</p>
         
-        <h3>Features</h3>
 
       
 
-        <h3>Measurements</h3>
-        <p>Bedrooms: {{listing.bed}}</p>
-        <p>Bathrooms: {{listing.bath}}</p>
-        <p>Area: {{listing.area}} m<sup>2</sup></p>
+        <h4>Measurements</h4>
+        <p>Bedrooms: {{listing.bed}}
+        <br>Bathrooms: {{listing.bath}}
+        <br>Area: {{listing.area}} m<sup>2</sup></p>
     
       </div>
 
       <div class="col-sm-6">
-        <h3>Dates</h3>
+        <h4>Dates</h4>
         <p>{{toDate(listing.timeframe.start_date)}} - {{toDate(listing.timeframe.end_date)}}</p>
-        <h3>Price</h3>
+        <h4>Price</h4>
         <p>$ {{listing.price}}</p>
 
+        <h4>Details</h4>
+        <p>Includes</p>
         <ul id="features">
         </ul>
-
-        <h3>Details</h3>
         <p>{{listing.description}}</p>
         <p>Lister: {{listing.lister}}</p>
         
       </div>
+    </div>
+    
+    <div class="row">
+      <button ng-click="i=(i-1)%images.length;"><</button>
+      <img src="{{images[i].img}}">
+      <img src="{{images[(i + 1)%images.length].img}}">
+      <button ng-click="i=(i+1)%images.length;">></button>
     </div>
   <br>
     
