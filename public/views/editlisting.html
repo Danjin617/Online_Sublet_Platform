@@ -1,7 +1,10 @@
-<div class="col-md-12 listing" ng-init="alert('here'); init();" ng-controller="EditListingController">
+
+<div class="col-md-12 listing" ng-init="alert('s');init();" ng-controller="EditListingController">
   <div class="row">
     <div class="well col-sm-6 form-horizontal">
-      <form name="userForm">
+
+
+      <form name="userForm" enctype="multipart/form-data">
         <br>
         <div class="form-row">
           <div class="form-group col-md-10">
@@ -112,15 +115,36 @@
           </div>
 
         </div>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <input type="file" id="file" class="input-text" ngf-change="onChange($files)" ngf-select ng-model="picFile" name="attachement" accept="image/png, image/jpeg, image/jpg, application/msword, application/vnd.ms-excel, application/pdf " />
+          </div>
+        </div>
+        <div class="form-row">
+
+          <div class="form-group col-md-12">
+          <img id="preview" ng-if="isImage(fileExt)" ngf-src="picFile[0]" class="thumb">
+          </div>
+        </div>
+
+        
       </form>
       
-      <div class="pull-left">          
-        <button class="btn btn-primary minwidth-10" type="button" ng-click = "update()">Save </button>
-        <button class="btn btn-primary minwidth-10" type="button" ng-click = "deleteListing()"> Delete</button>
-      </div>                    
-      <br>
-      <br>
-    </div>	 
-  </div>  
+      <button class="btn btn-primary minwidth-10" type="button" ng-click = "update()">Save </button>
+      <button class="btn btn-primary minwidth-10" type="button" ng-click = "deleteListing()"> Delete</button>
+          <canvas id="myCanvas"></canvas>
+    </div>
 
+  </div>
 
+</div>
+
+<style>
+  .thumb {
+  width: 100%;
+  height: 100%;
+  float: none;
+  position: relative;
+  display: inline;  
+}
+  </style>

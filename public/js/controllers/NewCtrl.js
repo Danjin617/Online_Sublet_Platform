@@ -41,7 +41,7 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
           alert("sent listing");
         });
 
-        if($scope.imagebase === '') {
+        if($scope.imagebase != '') {
           var imageReq = {
             listing_id: listing_id,
             img: $scope.imagebase
