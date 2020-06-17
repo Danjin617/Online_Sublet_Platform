@@ -237,6 +237,8 @@ app.post('/users/login', async (req, res) => {
 app.delete('/users/:user_id', async function (req, res) {
   //get user first to get its array of listings
   const user = await User.find({_id: req.params.user_id});
+
+  /*
   const listingArray = user.lists;
 
   //delete their listings
@@ -250,7 +252,7 @@ app.delete('/users/:user_id', async function (req, res) {
      console.log('Successfully deleted');
     });
   }
-
+*/
 
   User.remove({
     _id: req.params.user_id
@@ -302,6 +304,15 @@ app.get('/users/:username', async (req, res) => {
 
 });
 */
+
+app.delete('/users/clear', async function (req, res) {
+  //get user first to get its array of listings
+ 
+  User.remove(function (err) {
+    if (err) throw err;
+    console.log('deleted!');
+  });
+  });
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //LISTINGS
 
@@ -380,7 +391,14 @@ app.put('/api/listings/:listing_id', function (req, res) {
 });
 });
 
-
+app.delete('/api/listings/clear', async function (req, res) {
+  //get user first to get its array of listings
+ 
+  Listing.remove(function (err) {
+    if (err) throw err;
+    console.log('deleted!');
+  });
+  });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //IMAGES
 var Image = require('./models/images');
@@ -468,6 +486,8 @@ app.delete('/api/images', async function (req, res) {
 
 
 /*
+
+ALTERNATE METHOD
 
 var Schema = mongoose.Schema;
 
