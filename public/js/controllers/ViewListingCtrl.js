@@ -5,7 +5,7 @@ app.controller('ViewListingController',
    $scope.bookmarkToggle = "Bookmark";
 
    $scope.init = function(){
-     $scope.i = 0;
+     $scope.i = 100;
      $scope.featuresList = "";
      //alert('init'); 
 

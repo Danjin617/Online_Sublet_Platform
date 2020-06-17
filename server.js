@@ -394,7 +394,7 @@ app.put('/api/listings/:listing_id', function (req, res) {
 });
 });
 
-app.delete('/api/listings/clear', async function (req, res) {
+app.delete('/api/listingsclear', async function (req, res) {
   //get user first to get its array of listings
  
   Listing.remove(function (err) {
