@@ -74,11 +74,18 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
   }
 
   $scope.print = function(){
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
     var img = document.getElementById("preview");
+
+
+   canvas.width = img.width;
+   canvas.height = img.height;
+
     ctx.drawImage(img, 10, 10);
     console.log(c.toDataURL());
     $scope.imagebase = c.toDataURL();
+
+
   }
   }]);
