@@ -11,7 +11,7 @@
             <input type="text" class="form-control" id="inputAddress" ng-model="listing.address.streetname" placeholder="Address" required>
           </div>
           <div class="form-group col-md-2">
-            <input type="text" class="form-control" id="inputZip" ng-model="listing.address.zip" placeholder="Zip code" required>
+            <input type="text" class="form-control" id="inputZip" ng-model="listing.address.postal_code" placeholder="Zip code" required>
           </div>
         </div>
         <div class="form-row">
@@ -28,11 +28,11 @@
         <div class="form-row">
           <div class="form-group col-md-6">
             <label> Start Date</label>
-            <input type="date" class="form-control" id="inputStart" ng-model="listing.timeframe.start_date" placeholder="yyyy-mm-dd"required>
+            <input type="date" class="form-control" id="inputStart" ng-model="listing.timeframe.start_date" required>
           </div>
           <div class="form-group col-md-6">
             <label> End Date</label>
-            <input type="date" class="form-control" id="inputEnd" ng-model="listing.timeframe.end_date" placeholder="yyyy-mm-dd" required>
+            <input type="date" class="form-control" id="inputEnd" ng-model="listing.timeframe.end_date" required>
           </div>
         </div>
         <div class="form-row">

@@ -48,15 +48,16 @@
           </div>
         </div>
         <div class="row">
-            <img src="{{images[i%images.length].img}}" style="object-fit: cover;">
+          <div class="text-center" style="width: 100%;">
+            <img class="img-fluid mx-auto d-block" src="{{images[i%images.length].img}}" style="width: 100%;">
+          </div>
             
-          
+          <div class="row d-flex justify-content-center ml-5 mt-2">
+            <button id="btnprev" class="btn minwidth-10 slides" ng-click="i=i-1;" ><</button>
+            <button id="btnnext" class="btn minwidth-10 slides" ng-click="i=i+1;">></button>
+          </div>
         </div>
-        <div class="row">
-
-          <button ng-click="i=i-1;"><</button>
-          <button ng-click="i=i+1;">></button>
-        </div>
+        
         
       </div>
     </div>
@@ -97,3 +98,10 @@
   
 </div>
 </div>
+
+<style>
+  .slides {
+    border-color: #2196F3;
+    color: #2196F3;
+  }
+</style>
