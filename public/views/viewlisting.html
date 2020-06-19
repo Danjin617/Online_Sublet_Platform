@@ -28,14 +28,14 @@
         <p>Bedrooms: {{listing.bed}}
         <br>Bathrooms: {{listing.bath}}
         <br>Area: {{listing.area}} m<sup>2</sup></p>
+                <h4>Price: ${{listing.price}}/month</h4>
+        
     
       </div>
 
       <div class="col-sm-6">
         <h4>Dates</h4>
         <p>{{toDate(listing.timeframe.start_date)}} - {{toDate(listing.timeframe.end_date)}}</p>
-        <h4>Price</h4>
-        <p>$ {{listing.price}}</p>
 
         <h4>Details</h4>
         <p>Includes</p>
