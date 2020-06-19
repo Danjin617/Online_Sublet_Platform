@@ -11,7 +11,7 @@
             <input type="text" class="form-control" id="inputAddress" ng-model="listing.address.streetname" placeholder="Address" required>
           </div>
           <div class="form-group col-md-2">
-            <input type="text" class="form-control" id="inputZip" ng-model="listing.address.zip" placeholder="Zip code" required>
+            <input type="text" class="form-control" id="inputZip" ng-model="listing.address.postal_code" placeholder="Zip code" required>
           </div>
         </div>
         <div class="form-row">
@@ -120,24 +120,28 @@
             <input type="file" id="file" class="input-text" ngf-change="onChange($files)" ngf-select ng-model="picFile" name="attachement" accept="image/png, image/jpeg, image/jpg, application/msword, application/vnd.ms-excel, application/pdf " />
           </div>
         </div>
+
+        
         <div class="form-row">
 
           <div class="form-group col-md-12">
           <img id="preview" ng-if="isImage(fileExt)" ngf-src="picFile[0]" class="thumb">
           </div>
         </div>
+    
 
         
       </form>
       
       <button type="submit" class="btn btn-primary" ng-click = "doSave()" ng-disabled="!userForm.$valid">Save</button>
 
-          <canvas id="myCanvas"></canvas>
     </div>
 
   </div>
 
 </div>
+<canvas id="myCanvas"></canvas>
+
 
 <style>
   .thumb {

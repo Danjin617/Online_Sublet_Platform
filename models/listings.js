@@ -29,6 +29,5 @@ module.exports = mongoose.model('Listing', {
    area: {type : Number, default: 0},
    price: {type : Number, default: 0},
    description : {type : String, default: ''},
-   lister : {type : String, default: ''},
-   images: {type: [String], default: ['https://specials-images.forbesimg.com/imageserve/1026205392/960x0.jpg?fit=scale']}
+   lister : {type : String, default: ''}
 });

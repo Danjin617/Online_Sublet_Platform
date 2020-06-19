@@ -51,15 +51,20 @@ app.controller('ViewListingController',
         then(function(response){
           console.log("got images" + response.data.length);
           $scope.images = response.data;
-            //populate html
-            for(var i = 0; i < images.length; i++){
-              console.log( images[i].listing_id);
-              var image = new Image();
-              image.src = images[i].img;
-              document.body.appendChild(image);
-            }
+          if($scope.images.length == 0) {
+            
+            document.getElementById("btnprev").style.visibility = "hidden";
+            document.getElementById("btnnext").style.visibility = "hidden";
+          }
+          //populate html
+          for(var i = 0; i < images.length; i++){
+            console.log( images[i].listing_id);
+            var image = new Image();
+            image.src = images[i].img;
+            document.body.appendChild(image);
+          }
 
-          });
+        });
 
 
       });

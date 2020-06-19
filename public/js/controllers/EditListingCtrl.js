@@ -2,6 +2,12 @@ app.controller('EditListingController',
   ['$scope','$http','$routeParams',function($scope, $http, $routeParams) {	
   // $scope.tagline = 'Welcome to Listing section!';
 
+  $scope.toDate = function(d){
+    const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d);
+    const mo = new Intl.DateTimeFormat('en', { month: '2-digit' }).format(d);
+    const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d);
+    return `${da}-${mo}-${ye}`;
+  };
    $scope.init = function(){
        //alert('init');	
 
@@ -24,6 +30,8 @@ app.controller('EditListingController',
       window.location.href = '/#/viewlisting/'+$routeParams.id;
 
       });
+
+      
 
     }
 
@@ -60,12 +68,13 @@ app.controller('EditListingController',
   }
 
   $scope.print = function(){
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
+
+    var canvas = document.getElementById("myCanvas");
     var img = document.getElementById("preview");
-    ctx.drawImage(img, 10, 10);
-    console.log(c.toDataURL());
-    $scope.imagebase = c.toDataURL();
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, 200, 150);
+    console.log(canvas.toDataURL());
+    $scope.imagebase = canvas.toDataURL();
 
     if($scope.imagebase != '') {
       var imageReq = {
@@ -79,7 +88,19 @@ app.controller('EditListingController',
       });
       
     }
+
   }
+  
+    /*
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("preview");
+    ctx.drawImage(img, 10, 10);
+    console.log(c.toDataURL());
+    $scope.imagebase = c.toDataURL();
+*/
+    
+  
   
 
 

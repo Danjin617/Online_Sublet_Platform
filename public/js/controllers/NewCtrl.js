@@ -38,7 +38,7 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
         //adding listing to user
         $http.post('/users/sendlisting', req).
         then(function(response) {
-          alert("sent listing");
+          console.log("sent listing");
         });
 
         if($scope.imagebase != '') {
@@ -49,6 +49,7 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
           //adding image to 
           $http.post('/api/images', imageReq).
           then(function(response) {
+            console.log("sent image");
             alert("sent image");
           });
           
@@ -74,18 +75,15 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
   }
 
   $scope.print = function(){
+
     var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
     var img = document.getElementById("preview");
-
-
-   canvas.width = img.width;
-   canvas.height = img.height;
-
-    ctx.drawImage(img, 10, 10);
-    console.log(c.toDataURL());
-    $scope.imagebase = c.toDataURL();
-
+    const ctx = canvas.getContext('2d');
+    canvas.height = img.naturalHeight;
+    canvas.width = img.naturalWidth;
+    ctx.drawImage(img, 0, 0, 200, 150);
+    console.log(canvas.toDataURL());
+    $scope.imagebase = canvas.toDataURL();
 
   }
   }]);
