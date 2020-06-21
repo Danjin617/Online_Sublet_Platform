@@ -308,7 +308,7 @@ app.get('/users/:username', async (req, res) => {
 });
 */
 
-app.delete('/users/clear', async function (req, res) {
+app.delete('/usersclear', async function (req, res) {
   //get user first to get its array of listings
  
   User.remove(function (err) {
