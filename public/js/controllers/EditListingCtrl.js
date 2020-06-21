@@ -58,7 +58,6 @@ app.controller('EditListingController',
     if(files[0] == undefined) return;
     $scope.fileExt = files[0].name.split(".").pop();
 
-
   }
   
   $scope.isImage = function(ext) {
@@ -68,26 +67,30 @@ app.controller('EditListingController',
   }
 
   $scope.print = function(){
-
-    var canvas = document.getElementById("myCanvas");
-    var img = document.getElementById("preview");
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0, 200, 150);
-    console.log(canvas.toDataURL());
-    $scope.imagebase = canvas.toDataURL();
-
-    if($scope.imagebase != '') {
-      var imageReq = {
-        listing_id: $scope.listing._id,
-        img: $scope.imagebase
+    try {
+      var canvas = document.getElementById("myCanvas");
+      var img = document.getElementById("preview");
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, 200, 150);
+      console.log(canvas.toDataURL());
+      $scope.imagebase = canvas.toDataURL();
+  
+      if($scope.imagebase != '') {
+        var imageReq = {
+          listing_id: $scope.listing._id,
+          img: $scope.imagebase
+        }
+        //adding image to 
+        $http.post('/api/images', imageReq).
+        then(function(response) {
+          //alert("sent image");
+        });
+        
       }
-      //adding image to 
-      $http.post('/api/images', imageReq).
-      then(function(response) {
-        //alert("sent image");
-      });
-      
+    } catch (err){
+      console.log("no image");
     }
+    
 
   }
   

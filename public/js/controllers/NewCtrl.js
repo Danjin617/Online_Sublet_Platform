@@ -15,7 +15,7 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
     $scope.listing.lister = sessionStorage.getItem("session_username");
    };
 
-  $scope.doSave = function(){
+  $scope.doSave = function(){    
     $scope.print();
     console.log("saving")
     //creating new listing
@@ -65,7 +65,6 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
     if(files[0] == undefined) return;
     $scope.fileExt = files[0].name.split(".").pop();
 
-
   }
   
   $scope.isImage = function(ext) {
@@ -75,15 +74,23 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
   }
 
   $scope.print = function(){
+    try {
+      var canvas = document.getElementById("myCanvas");
+      var img = document.getElementById("preview");
+      const ctx = canvas.getContext('2d');
+      //canvas.height = img.naturalHeight;
+      //canvas.width = img.naturalWidth;
+      ctx.drawImage(img, 0, 0, 200, 150);
+      console.log(canvas.toDataURL());
+      $scope.imagebase = canvas.toDataURL();
+    }
+    catch(err) {
+      console.log("No image");
+      $scope.imagebase = '';
+      
+    }
 
-    var canvas = document.getElementById("myCanvas");
-    var img = document.getElementById("preview");
-    const ctx = canvas.getContext('2d');
-    canvas.height = img.naturalHeight;
-    canvas.width = img.naturalWidth;
-    ctx.drawImage(img, 0, 0, 200, 150);
-    console.log(canvas.toDataURL());
-    $scope.imagebase = canvas.toDataURL();
+   
 
   }
   }]);
