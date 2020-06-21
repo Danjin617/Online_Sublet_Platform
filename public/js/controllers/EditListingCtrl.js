@@ -84,7 +84,7 @@ app.controller('EditListingController',
       //adding image to 
       $http.post('/api/images', imageReq).
       then(function(response) {
-        alert("sent image");
+        //alert("sent image");
       });
       
     }

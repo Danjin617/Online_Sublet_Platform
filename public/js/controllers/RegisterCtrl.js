@@ -23,7 +23,7 @@ app.controller('RegisterController',
         return;
       }
 
-      if (!confirm("Confirm registration?")) {return;}
+      //if (!confirm("Confirm registration?")) {return;}
 
       $http.post('/users',$scope.user).
         then(function(response){

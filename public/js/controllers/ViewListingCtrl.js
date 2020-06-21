@@ -7,13 +7,9 @@ app.controller('ViewListingController',
    $scope.init = function(){
      $scope.i = 100;
      $scope.featuresList = "";
-     //alert('init'); 
 
-     //alert($routeParams.id);
      $http.get('/api/listings/' + $routeParams.id).
      then(function(response) {
-       // alert("mwahahaha");
-       //alert(response.data.lister);
        $scope.listing = response.data;
 
        $scope.readFeatures();
@@ -21,7 +17,6 @@ app.controller('ViewListingController',
        //see if it is the lister
        if (sessionStorage.getItem("session_username") == $scope.listing.lister) {
           //is lister
-          //alert("is lister");
           //$scope.sendLocation();
           document.getElementById("bookmark").style.visibility = "hidden";
           document.getElementById("contact").style.visibility = "hidden";
@@ -178,7 +173,7 @@ $scope.toggle = function(){
           for (i = 0; i < $scope.bookmarked.length; i++) {
             //alert($scope.bookmarked[i] + " " + $routeParams.id);
             if ($scope.bookmarked[i] == $routeParams.id) {
-              alert("index:" + i);
+              //alert("index:" + i);
               result = i;
               //return result;
 
@@ -194,7 +189,7 @@ $scope.toggle = function(){
         }
         $http.post('/users/removebookmark', $scope.req).
         then(function(response) {
-          alert("removed bookmark");
+          //alert("removed bookmark");
         });
         $scope.bookmarkToggle = "Bookmark";
 
@@ -209,7 +204,7 @@ $scope.toggle = function(){
         //$scope.req.body.listing = response.data.message;
         $http.post('/users/sendbookmark', $scope.req).
         then(function(response) {
-          alert("sent bookmark");
+          //alert("sent bookmark");
         });
         $scope.bookmarkToggle = "Unbookmark";
       }

@@ -11,7 +11,7 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
 
     //check
     //alert("hi");
-    alert(sessionStorage.getItem("session_username"));
+    //alert(sessionStorage.getItem("session_username"));
     $scope.listing.lister = sessionStorage.getItem("session_username");
    };
 
@@ -25,7 +25,7 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
       console.log("obtained listing")
       if(response.data.message != null) {
         //return id
-        alert(response.data.message);
+        //alert(response.data.message);
         
         var listing_id = response.data.message;
         
@@ -50,7 +50,7 @@ app.controller('NewController', ['$scope', '$http', '$timeout', '$compile', 'Upl
           $http.post('/api/images', imageReq).
           then(function(response) {
             console.log("sent image");
-            alert("sent image");
+            //alert("sent image");
           });
           
         }
