@@ -2,4 +2,4 @@
 
 [www.online-subletting-platform.herokuapp.com](http://online-subletting-platform.herokuapp.com/)
 
-An online platform where users can create accountsbrowse through and post listings of available housing.
+An online platform developed using MEAN stack where users can create accountsbrowse through and post listings of available housing.
