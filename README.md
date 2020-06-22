@@ -4,4 +4,4 @@
 
 An online platform developed using MEAN stack where users can create accountsbrowse through and post listings of available housing.
 
-[![Watch the video](https://i.imgur.com/vKb2F1B.png)](https://youtu.be/5XCXOgpVGsE)
+![Website](https://github.com/Danjin617/Online_Sublet_Platform/blob/master/websitetime.gif)
