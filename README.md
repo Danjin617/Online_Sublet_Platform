@@ -11,9 +11,9 @@ About: https://www.youtube.com/watch?v=5lM1UaZmZH0
 
 Credentials required for:
 
-ACCESS_TOKEN_SECRET
-EMAIL
-PASSWORD
-MONGODB_URI
+* ACCESS_TOKEN_SECRET
+* EMAIL
+* PASSWORD
+* MONGODB_URI
 
 
