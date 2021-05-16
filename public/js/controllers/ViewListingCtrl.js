@@ -147,7 +147,7 @@ app.controller('ViewListingController',
  };
 
  $scope.sendLocation = function(){
-  var address = $scope.listing.address.streetname + " " + $scope.listing.address.province + " " + $scope.listing.address.country;
+  var address = $scope.listing.address.streetname + " " +$scope.listing.address.city +" "  + $scope.listing.address.province + " " + $scope.listing.address.country;
 
   var frame = document.getElementById("viewAddress");
   console.log(frame);
